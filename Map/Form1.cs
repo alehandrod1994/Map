@@ -59,18 +59,26 @@ namespace Map
                 pictureBoxMap.Width = this.Width - 10;
                 pictureBoxMap.Height = this.Height - 150;
 
+                comboBoxMaps.Items.Clear();                                                         //Загрузка схем
+
+                DirectoryInfo dirMaps = new DirectoryInfo("схемы");
+                foreach (FileInfo files in dirMaps.GetFiles())
+                {
+                    comboBoxMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+                }
+
                 comboBoxMaps.Text = labelPreview;
 
                 raz = 1;
             }
-            this.Cursor = Cursors.WaitCursor;
 
+            this.Cursor = Cursors.WaitCursor;
+            
             comboBoxCameras.Items.Clear();                                                         //Загрузка камер
             comboBoxCameras.Text = "";
 
-            DirectoryInfo dir = new DirectoryInfo(@"камеры\" + labelPreview);
-
-            foreach (FileInfo files in dir.GetFiles())
+            DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + labelPreview);
+            foreach (FileInfo files in dirCameras.GetFiles())
             {
                 comboBoxCameras.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
             }
@@ -93,14 +101,7 @@ namespace Map
             {                                                                                      //если выбрана новая схема
                 try
                 {
-                    //if (labelPreview == labelPreview9.Text)
-                    //{
-                        img = Image.FromFile(@"схемы\" + labelPreview + ".png");
-                    //}
-                    //else
-                    //{
-                    //    img = Image.FromFile(@"схемы\" + labelPreview + ".bmp");
-                    //}
+                    img = Image.FromFile(@"схемы\" + labelPreview + ".png");
                 }
                 catch
                 {
@@ -116,10 +117,10 @@ namespace Map
             picWidth = pictureBoxMap.Width;                                                        //Изменение размеров изображения под размеры холста    
             picHeight = Convert.ToInt32(imgHeight / (imgWidth / pictureboxWidth));
             if (pictureBoxMap.Height < picHeight)
-                {
-                    picHeight = pictureBoxMap.Height;
-                    picWidth = Convert.ToInt32(imgWidth / (imgHeight / pictureboxHeight));
-                }
+            {
+                picHeight = pictureBoxMap.Height;
+                picWidth = Convert.ToInt32(imgWidth / (imgHeight / pictureboxHeight));
+            }
                      
             x = (pictureBoxMap.Width - picWidth) / 2;                                              //По центру экрана
             y = 0;
@@ -350,6 +351,11 @@ namespace Map
             LoadMap(labelPreview8.Text);
         }
 
+        private void pictureBoxPreview10_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview10.Text);
+        }
+
         private void buttonOpenMap_Click(object sender, EventArgs e)
         {
             LoadMap(comboBoxMaps.Text);
@@ -374,5 +380,7 @@ namespace Map
             pictureBoxSound.Image = Map.Properties.Resources.mute;
             sp.Stop();
         }
+
+     
     }
 }

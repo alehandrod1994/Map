@@ -48,6 +48,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelStart = new System.Windows.Forms.Panel();
+            this.labelPreview10 = new System.Windows.Forms.Label();
+            this.pictureBoxPreview10 = new System.Windows.Forms.PictureBox();
             this.pictureBoxSound = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
             this.labelPreview9 = new System.Windows.Forms.Label();
@@ -74,9 +76,8 @@
             this.pictureBoxMapLogo = new System.Windows.Forms.PictureBox();
             this.pictureBoxCameraLogo = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
-            this.labelPreview10 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview10 = new System.Windows.Forms.PictureBox();
             this.panelStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSound)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview8)).BeginInit();
@@ -92,7 +93,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCameraLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview10)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -317,6 +317,30 @@
             this.panelStart.TabIndex = 22;
             this.panelStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelStart_MouseDown);
             this.panelStart.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelStart_MouseMove);
+            // 
+            // labelPreview10
+            // 
+            this.labelPreview10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview10.Location = new System.Drawing.Point(1010, 425);
+            this.labelPreview10.Name = "labelPreview10";
+            this.labelPreview10.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview10.TabIndex = 21;
+            this.labelPreview10.Text = "Охрана периметра";
+            this.labelPreview10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview10.Click += new System.EventHandler(this.pictureBoxPreview10_Click);
+            // 
+            // pictureBoxPreview10
+            // 
+            this.pictureBoxPreview10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview10.Image = global::Map.Properties.Resources.Охрана_периметра__превью_;
+            this.pictureBoxPreview10.Location = new System.Drawing.Point(1010, 430);
+            this.pictureBoxPreview10.Name = "pictureBoxPreview10";
+            this.pictureBoxPreview10.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview10.TabIndex = 20;
+            this.pictureBoxPreview10.TabStop = false;
+            this.pictureBoxPreview10.Click += new System.EventHandler(this.pictureBoxPreview10_Click);
             // 
             // pictureBoxSound
             // 
@@ -621,28 +645,6 @@
             this.pictureBoxMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBoxMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             // 
-            // labelPreview10
-            // 
-            this.labelPreview10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview10.Location = new System.Drawing.Point(1010, 425);
-            this.labelPreview10.Name = "labelPreview10";
-            this.labelPreview10.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview10.TabIndex = 21;
-            this.labelPreview10.Text = "Охрана периметра";
-            this.labelPreview10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // pictureBoxPreview10
-            // 
-            this.pictureBoxPreview10.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview10.Image = global::Map.Properties.Resources.Т2___Цоколь__превью_;
-            this.pictureBoxPreview10.Location = new System.Drawing.Point(1010, 430);
-            this.pictureBoxPreview10.Name = "pictureBoxPreview10";
-            this.pictureBoxPreview10.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview10.TabIndex = 20;
-            this.pictureBoxPreview10.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -679,6 +681,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panelStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSound)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview8)).EndInit();
@@ -694,7 +697,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCameraLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview10)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
