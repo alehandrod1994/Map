@@ -39,6 +39,19 @@ namespace Map
 
         public void LoadMap(string labelPreview)
         {
+            if (mapName != labelPreview)                                                           //Загрузка схемы происходит
+            {                                                                                      //если выбрана новая схема
+                try
+                {
+                    img = Image.FromFile(@"схемы\" + labelPreview + ".png");
+                }
+                catch
+                {
+                    MessageBox.Show("Схема не найдена");
+                    return;
+                }
+            }
+
             if (raz == 0)
             {
                 pictureBoxMap.Visible = true;
@@ -77,10 +90,13 @@ namespace Map
             comboBoxCameras.Items.Clear();                                                         //Загрузка камер
             comboBoxCameras.Text = "";
 
-            DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + labelPreview);
-            foreach (FileInfo files in dirCameras.GetFiles())
+            if (Directory.Exists(@"камеры\" + labelPreview))
             {
-                comboBoxCameras.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+                DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + labelPreview);
+                foreach (FileInfo files in dirCameras.GetFiles())
+                {
+                    comboBoxCameras.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+                }
             }
 
             string c;                                                                              // Сортировка камер
@@ -97,17 +113,7 @@ namespace Map
                 }
             }
 
-            if (mapName != labelPreview)                                                           //Загрузка схемы происходит
-            {                                                                                      //если выбрана новая схема
-                try
-                {
-                    img = Image.FromFile(@"схемы\" + labelPreview + ".png");
-                }
-                catch
-                {
-                    MessageBox.Show("Схема не найдена");
-                }
-            }
+           
 
             pictureboxWidth = pictureBoxMap.Width;
             pictureboxHeight = pictureBoxMap.Height;
