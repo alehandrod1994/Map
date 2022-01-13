@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Media;
+using System.Runtime.Serialization.Json;
 
 namespace Map
 {
@@ -18,32 +19,36 @@ namespace Map
         public Form1()
         {
             InitializeComponent();
+
+            _audio = new Audio(@"audio\start.wav");
         }
 
-        Image img;
+        private Image _img;
         //  bool right = false;
         // bool left = false;
-        int x = 0;
-        int y = 0;
-        int picWidth = 0;
-        int picHeight = 0;
-        int zoom = 100;
-        Point lastPoint;
-        float imgWidth;
-        float imgHeight;
-        float pictureboxWidth;
-        float pictureboxHeight;
-        int raz = 0;
-        SoundPlayer sp = new SoundPlayer(@"audio\start.wav");
-        string mapName;
+        private int _x = 0;
+        private int _y = 0;
+        private int _picWidth = 0;
+        private int _picHeight = 0;
+        private int _zoom = 100;
+        private Point _lastPoint;
+        private float _imgWidth;
+        private float _imgHeight;
+        private float _pictureboxWidth;
+        private float _pictureboxHeight;
+        private int _raz = 0;
+
+        //SoundPlayer sp = new SoundPlayer(@"audio\start.wav");
+        private Audio _audio;
+        private string _mapName;
 
         public void LoadMap(string labelPreview)
         {
-            if (mapName != labelPreview)                                                           //Загрузка схемы происходит
+            if (_mapName != labelPreview)                                                           //Загрузка схемы происходит
             {                                                                                      //если выбрана новая схема
                 try
                 {
-                    img = Image.FromFile(@"схемы\" + labelPreview + ".png");
+                    _img = Image.FromFile(@"схемы\" + labelPreview + ".png");
                 }
                 catch
                 {
@@ -52,7 +57,7 @@ namespace Map
                 }
             }
 
-            if (raz == 0)
+            if (_raz == 0)
             {
                 pictureBoxMap.Visible = true;
                 pictureBoxMapLogo.Visible = true;
@@ -65,7 +70,8 @@ namespace Map
                 pictureBoxPlus.Visible = true;
                 labelZoom.Visible = true;
                 panelStart.Visible = false;
-                sp.Stop();
+                //sp.Stop();
+                _audio.Stop();
 
                 this.WindowState = FormWindowState.Maximized;                                      //Подбор размеров под разрешение монитора
                 this.MaximizeBox = true;
@@ -82,7 +88,7 @@ namespace Map
 
                 comboBoxMaps.Text = labelPreview;
 
-                raz = 1;
+                _raz = 1;
             }
 
             this.Cursor = Cursors.WaitCursor;
@@ -115,25 +121,25 @@ namespace Map
 
            
 
-            pictureboxWidth = pictureBoxMap.Width;
-            pictureboxHeight = pictureBoxMap.Height;
-            imgWidth = img.Width;
-            imgHeight = img.Height;
+            _pictureboxWidth = pictureBoxMap.Width;
+            _pictureboxHeight = pictureBoxMap.Height;
+            _imgWidth = _img.Width;
+            _imgHeight = _img.Height;
                                                                       
-            picWidth = pictureBoxMap.Width;                                                        //Изменение размеров изображения под размеры холста    
-            picHeight = Convert.ToInt32(imgHeight / (imgWidth / pictureboxWidth));
-            if (pictureBoxMap.Height < picHeight)
+            _picWidth = pictureBoxMap.Width;                                                        //Изменение размеров изображения под размеры холста    
+            _picHeight = Convert.ToInt32(_imgHeight / (_imgWidth / _pictureboxWidth));
+            if (pictureBoxMap.Height < _picHeight)
             {
-                picHeight = pictureBoxMap.Height;
-                picWidth = Convert.ToInt32(imgWidth / (imgHeight / pictureboxHeight));
+                _picHeight = pictureBoxMap.Height;
+                _picWidth = Convert.ToInt32(_imgWidth / (_imgHeight / _pictureboxHeight));
             }
                      
-            x = (pictureBoxMap.Width - picWidth) / 2;                                              //По центру экрана
-            y = 0;
+            _x = (pictureBoxMap.Width - _picWidth) / 2;                                              //По центру экрана
+            _y = 0;
             labelZoom.Text = "100%";
-            zoom = 100;
+            _zoom = 100;
 
-            mapName = labelPreview;
+            _mapName = labelPreview;
             pictureBoxMap.Invalidate();
             this.Cursor = Cursors.Default;
 
@@ -147,8 +153,47 @@ namespace Map
             this.MaximizeBox = false;
             this.Width = 1280;
             this.Height = 720;
-            
-            sp.Play();
+
+            //sp.Play();
+
+            var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
+
+            // Создаёт файл settings, если его нет, и записывает туда данные об audio.
+            if (!File.Exists("settings.json"))
+            {
+                using (var file = new FileStream("settings.json", FileMode.Create))
+                {
+                    jsonFormatter.WriteObject(file, _audio);
+
+                    _audio.Play();
+
+                    return;
+                }
+            }
+
+            // Открывает файл settings и считывает данные об audio.
+            using (var file = new FileStream("settings.json", FileMode.OpenOrCreate))
+            {
+                _audio = (Audio)jsonFormatter.ReadObject(file);
+
+                if (_audio != null)
+                {
+                    if (_audio.Enabled == true)
+                    {
+                        _audio = new Audio(@"audio\start.wav");
+                        _audio.Play();
+                    }
+                    else
+                    {
+                        pictureBoxSound.Image = Properties.Resources.mute;
+                    }
+                }
+                else
+                {
+                    _audio = new Audio(@"audio\start.wav");
+                    _audio.Play();
+                }
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
@@ -191,12 +236,12 @@ namespace Map
             }    */     
 
             Graphics g = e.Graphics;
-            g.DrawImage(img, x, y, picWidth, picHeight);
+            g.DrawImage(_img, _x, _y, _picWidth, _picHeight);
 
-            label2.Text = "picW =" + picWidth;
+            label2.Text = "picW =" + _picWidth;
             label3.Text = "scrollW =" + hScrollBar1.Maximum;
             label4.Text = "valueW =" + hScrollBar1.Value;
-            label6.Text = "picH =" + picHeight;
+            label6.Text = "picH =" + _picHeight;
             label5.Text = "scrollH =" + vScrollBar1.Maximum;
             label1.Text = "valueH =" + vScrollBar1.Value;
         }
@@ -246,7 +291,7 @@ namespace Map
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            lastPoint = new Point(e.X, e.Y);
+            _lastPoint = new Point(e.X, e.Y);
             pictureBoxMap.Invalidate();
         }
 
@@ -254,61 +299,61 @@ namespace Map
         {
             if (pictureBoxMap.Capture)
             {
-                x += e.X - lastPoint.X;
-                y += e.Y - lastPoint.Y;
-                lastPoint = new Point(e.X, e.Y);
+                _x += e.X - _lastPoint.X;
+                _y += e.Y - _lastPoint.Y;
+                _lastPoint = new Point(e.X, e.Y);
                 pictureBoxMap.Invalidate();
             }
         }
 
         private void pictureBoxMinus_Click(object sender, EventArgs e)
         {
-            if (zoom == 100)
+            if (_zoom == 100)
             {
-                picWidth = Convert.ToInt32(picWidth / 2);
-                picHeight = Convert.ToInt32(picHeight / 2);
-                zoom -= 50;
-                x = Convert.ToInt32(x / 2);
-                y = Convert.ToInt32(y / 2);
+                _picWidth = Convert.ToInt32(_picWidth / 2);
+                _picHeight = Convert.ToInt32(_picHeight / 2);
+                _zoom -= 50;
+                _x = Convert.ToInt32(_x / 2);
+                _y = Convert.ToInt32(_y / 2);
             }
 
-            else if (zoom > 100)
+            else if (_zoom > 100)
             {
-                picWidth = Convert.ToInt32(picWidth / 1.5);
-                picHeight = Convert.ToInt32(picHeight / 1.5);
-                zoom -= 25;
-                x = Convert.ToInt32(x / 1.5);
-                y = Convert.ToInt32(y / 1.5);
+                _picWidth = Convert.ToInt32(_picWidth / 1.5);
+                _picHeight = Convert.ToInt32(_picHeight / 1.5);
+                _zoom -= 25;
+                _x = Convert.ToInt32(_x / 1.5);
+                _y = Convert.ToInt32(_y / 1.5);
             }
 
            // x = Convert.ToInt32(x / 2.4);
             //y = Convert.ToInt32(y / 2);
-            labelZoom.Text = zoom + "%";
+            labelZoom.Text = _zoom + "%";
             pictureBoxMap.Invalidate();
         }
 
         private void pictureBoxPlus_Click(object sender, EventArgs e)
         {
-            if (zoom == 50)
+            if (_zoom == 50)
             {
-                picWidth = Convert.ToInt32(picWidth * 2);
-                picHeight = Convert.ToInt32(picHeight * 2);
-                zoom += 50;
-                x = Convert.ToInt32 (x * 2);
-                y = Convert.ToInt32 (y * 2);
+                _picWidth = Convert.ToInt32(_picWidth * 2);
+                _picHeight = Convert.ToInt32(_picHeight * 2);
+                _zoom += 50;
+                _x = Convert.ToInt32 (_x * 2);
+                _y = Convert.ToInt32 (_y * 2);
             }
 
-            else if (zoom < 200)
+            else if (_zoom < 200)
             {
-                picWidth = Convert.ToInt32(picWidth * 1.5);
-                picHeight = Convert.ToInt32(picHeight * 1.5);
-                zoom += 25;
-                x = Convert.ToInt32(x * 1.5);
-                y = Convert.ToInt32(y * 1.5);
+                _picWidth = Convert.ToInt32(_picWidth * 1.5);
+                _picHeight = Convert.ToInt32(_picHeight * 1.5);
+                _zoom += 25;
+                _x = Convert.ToInt32(_x * 1.5);
+                _y = Convert.ToInt32(_y * 1.5);
             }
 
             
-            labelZoom.Text = zoom + "%";
+            labelZoom.Text = _zoom + "%";
             pictureBoxMap.Invalidate();
         }
 
@@ -369,22 +414,41 @@ namespace Map
 
         private void panelStart_MouseDown(object sender, MouseEventArgs e)
         {
-            lastPoint = new Point(e.X, e.Y);
+            _lastPoint = new Point(e.X, e.Y);
         }
 
         private void panelStart_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - lastPoint.X;
-                this.Top += e.Y - lastPoint.Y;
+                this.Left += e.X - _lastPoint.X;
+                this.Top += e.Y - _lastPoint.Y;
             }
         }
 
         private void pictureBoxSound_Click(object sender, EventArgs e)
         {
-            pictureBoxSound.Image = Map.Properties.Resources.mute;
-            sp.Stop();
+            //pictureBoxSound.Image = Map.Properties.Resources.mute;
+            //sp.Stop();
+
+            if (_audio.Enabled == true)
+            {
+                _audio.Stop();
+                _audio.Enabled = false;
+                pictureBoxSound.Image = Properties.Resources.mute;
+            }
+            else
+            {
+                _audio.Enabled = true;
+                pictureBoxSound.Image = Properties.Resources.speaker;
+            }
+
+            var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
+
+            using (var file = new FileStream("settings.json", FileMode.Create))
+            {
+                jsonFormatter.WriteObject(file, _audio);
+            }
         }
 
      
