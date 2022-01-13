@@ -11,7 +11,9 @@ namespace Map
     [DataContract]
     public class Audio 
     {
+        [DataMember]
         private SoundPlayer sp;
+
         public Audio(string soundLocation)
         {
             SoundLocation = soundLocation;

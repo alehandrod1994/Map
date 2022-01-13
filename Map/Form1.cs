@@ -20,6 +20,42 @@ namespace Map
         {
             InitializeComponent();
 
+            _labels = new List<Label>()
+            {
+                labelPreview1,
+                labelPreview2,
+                labelPreview3,
+                labelPreview4,
+                labelPreview5,
+                labelPreview6,
+                labelPreview7,
+                labelPreview8,
+                labelPreview9,
+                labelPreview10,
+                labelPreview11,
+                labelPreview12,
+                labelPreview13
+            };
+
+            _pictureBoxes = new List<PictureBox>()
+            {
+                pictureBoxPreview1,
+                pictureBoxPreview2,
+                pictureBoxPreview3,
+                pictureBoxPreview4,
+                pictureBoxPreview5,
+                pictureBoxPreview6,
+                pictureBoxPreview7,
+                pictureBoxPreview8,
+                pictureBoxPreview9,
+                pictureBoxPreview10,
+                pictureBoxPreview11,
+                pictureBoxPreview12,
+                pictureBoxPreview13
+            };
+
+            this.MouseWheel += new MouseEventHandler(this_MouseWheel);      
+
             _audio = new Audio(@"audio\start.wav");
         }
 
@@ -41,6 +77,9 @@ namespace Map
         //SoundPlayer sp = new SoundPlayer(@"audio\start.wav");
         private Audio _audio;
         private string _mapName;
+
+        private List<Label> _labels;
+        private List<PictureBox> _pictureBoxes;
 
         public void LoadMap(string labelPreview)
         {
@@ -275,7 +314,7 @@ namespace Map
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string path = @"камеры\" + comboBoxMaps.Text + @"\" + comboBoxCameras.Text + ".jpg";
+            string path = @"камеры\" + _mapName + @"\" + comboBoxCameras.Text + ".jpg";
 
             if (File.Exists(path))
                 Process.Start(path);
@@ -405,6 +444,21 @@ namespace Map
         private void pictureBoxPreview10_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview10.Text);
+        }     
+
+        private void pictureBoxPreview11_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview11.Text);
+        }
+
+        private void pictureBoxPreview12_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview12.Text);
+        }
+
+        private void pictureBoxPreview13_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview13.Text);
         }
 
         private void buttonOpenMap_Click(object sender, EventArgs e)
@@ -449,8 +503,42 @@ namespace Map
             {
                 jsonFormatter.WriteObject(file, _audio);
             }
+        }    
+
+        private void this_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                //(Controls[$"labelPreview{1}"] as Label).Top -= 10;
+
+                labelTitle.Top -= 20;
+
+                foreach (var label in _labels)
+                {
+                    label.Top -= 20;                    
+                }
+
+                foreach (var picture in _pictureBoxes)
+                {
+                    picture.Top -= 20;
+                }                
+            }
+            else
+            {
+                labelTitle.Top += 20;
+
+                foreach (var label in _labels)
+                {
+                    label.Top += 20;
+                }
+
+                foreach (var picture in _pictureBoxes)
+                {
+                    picture.Top += 20;
+                }
+            }
         }
 
-     
+        
     }
 }

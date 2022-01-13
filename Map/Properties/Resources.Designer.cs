@@ -143,6 +143,26 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Галерея_5___1_этаж__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Галерея 5 - 1 этаж (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Галерея_5___2_этаж__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Галерея 5 - 2 этаж (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Охрана_периметра__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Охрана периметра (превью)", resourceCulture);
@@ -236,6 +256,16 @@ namespace Map.Properties {
         internal static System.Drawing.Bitmap Т2___Цоколь__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Т2 - Цоколь (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Т3__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Т3 (превью)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
