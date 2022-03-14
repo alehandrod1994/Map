@@ -11,6 +11,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Media;
 using System.Runtime.Serialization.Json;
+using System.Linq;
 
 namespace Map
 {
@@ -54,9 +55,10 @@ namespace Map
                 pictureBoxPreview13
             };
 
-            this.MouseWheel += new MouseEventHandler(this_MouseWheel);      
+            this.MouseWheel += new MouseEventHandler(This_MouseWheel);      
 
             _audio = new Audio(@"audio\start.wav");
+            _cameras = new List<string>();
         }
 
         private Image _img;
@@ -80,6 +82,7 @@ namespace Map
 
         private List<Label> _labels;
         private List<PictureBox> _pictureBoxes;
+        private List<string> _cameras;
 
         public void LoadMap(string labelPreview)
         {
@@ -117,12 +120,13 @@ namespace Map
                 pictureBoxMap.Width = this.Width - 10;
                 pictureBoxMap.Height = this.Height - 150;
 
-                comboBoxMaps.Items.Clear();                                                         //Загрузка схем
+                comboBoxMaps.Items.Clear();                                                         //Загрузка схем               
 
                 DirectoryInfo dirMaps = new DirectoryInfo("схемы");
                 foreach (FileInfo files in dirMaps.GetFiles())
                 {
                     comboBoxMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+                   
                 }
 
                 comboBoxMaps.Text = labelPreview;
@@ -131,34 +135,38 @@ namespace Map
             }
 
             this.Cursor = Cursors.WaitCursor;
-            
+
             comboBoxCameras.Items.Clear();                                                         //Загрузка камер
             comboBoxCameras.Text = "";
+            _cameras.Clear();
 
             if (Directory.Exists(@"камеры\" + labelPreview))
             {
                 DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + labelPreview);
                 foreach (FileInfo files in dirCameras.GetFiles())
                 {
-                    comboBoxCameras.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+                    _cameras.Add(Path.GetFileNameWithoutExtension(files.Name));
                 }
             }
 
             string c;                                                                              // Сортировка камер
-            for (int i = 0; i < comboBoxCameras.Items.Count; i++)
+            for (int i = 0; i < _cameras.Count; i++)
             {
-                for (int j = 0; j < comboBoxCameras.Items.Count; j++)
+                for (int j = 0; j < _cameras.Count; j++)
                 {
-                    if ((Convert.ToString(comboBoxCameras.Items[j]).Length > Convert.ToString(comboBoxCameras.Items[i]).Length))
+                    if (_cameras[j].ToString().Length > _cameras[i].ToString().Length)
                     {
-                        c = comboBoxCameras.Items[i].ToString();
-                        comboBoxCameras.Items[i] = comboBoxCameras.Items[j];
-                        comboBoxCameras.Items[j] = c;
+                        c = _cameras[i].ToString();
+                        _cameras[i] = _cameras[j];
+                        _cameras[j] = c;
                     }
                 }
-            }
+            }        
 
-           
+            foreach (var camera in _cameras)
+            {
+                comboBoxCameras.Items.Add(camera);
+            }
 
             _pictureboxWidth = pictureBoxMap.Width;
             _pictureboxHeight = pictureBoxMap.Height;
@@ -505,9 +513,9 @@ namespace Map
             }
         }    
 
-        private void this_MouseWheel(object sender, MouseEventArgs e)
+        private void This_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (e.Delta > 0)
+            if (e.Delta < 0)
             {
                 //(Controls[$"labelPreview{1}"] as Label).Top -= 10;
 
@@ -515,13 +523,13 @@ namespace Map
 
                 foreach (var label in _labels)
                 {
-                    label.Top -= 20;                    
+                    label.Top -= 20;
                 }
 
                 foreach (var picture in _pictureBoxes)
                 {
                     picture.Top -= 20;
-                }                
+                }
             }
             else
             {
