@@ -11,7 +11,6 @@ using System.IO;
 using System.Diagnostics;
 using System.Media;
 using System.Runtime.Serialization.Json;
-using System.Linq;
 
 namespace Map
 {
@@ -35,7 +34,9 @@ namespace Map
                 labelPreview10,
                 labelPreview11,
                 labelPreview12,
-                labelPreview13
+                labelPreview13,
+                labelPreview14,
+                labelPreview15
             };
 
             _pictureBoxes = new List<PictureBox>()
@@ -52,7 +53,9 @@ namespace Map
                 pictureBoxPreview10,
                 pictureBoxPreview11,
                 pictureBoxPreview12,
-                pictureBoxPreview13
+                pictureBoxPreview13,
+                pictureBoxPreview14,
+                pictureBoxPreview15
             };
 
             this.MouseWheel += new MouseEventHandler(This_MouseWheel);      
@@ -467,6 +470,16 @@ namespace Map
         private void pictureBoxPreview13_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview13.Text);
+        }
+
+        private void pictureBoxPreview14_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview14.Text);
+        }
+
+        private void pictureBoxPreview15_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview15.Text);
         }
 
         private void buttonOpenMap_Click(object sender, EventArgs e)

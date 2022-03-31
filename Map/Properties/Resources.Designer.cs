@@ -253,6 +253,26 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Т2___1_этаж__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Т2 - 1 этаж (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Т2___2_этаж__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Т2 - 2 этаж (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Т2___Цоколь__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Т2 - Цоколь (превью)", resourceCulture);
