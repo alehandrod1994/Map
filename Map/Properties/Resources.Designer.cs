@@ -173,6 +173,16 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap СТАБ__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("СТАБ (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Т1___1_этаж__1___превью_ {
             get {
                 object obj = ResourceManager.GetObject("Т1 - 1 этаж (1) (превью)", resourceCulture);
@@ -286,6 +296,16 @@ namespace Map.Properties {
         internal static System.Drawing.Bitmap Т3__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Т3 (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Штаб__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Штаб (превью)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

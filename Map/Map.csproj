@@ -133,6 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Basic_view_watch_eye_6611489.ico" />
+    <None Include="images\Штаб %28превью%29.png" />
+    <None Include="images\СТАБ %28превью%29.png" />
     <None Include="images\Т2 - 2 этаж %28превью%29.png" />
     <None Include="images\Т2 - 1 этаж %28превью%29.png" />
     <None Include="images\Галерея 5 - 2 этаж %28превью%29.png" />
