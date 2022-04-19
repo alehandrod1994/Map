@@ -163,6 +163,16 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap КПП_1__2__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("КПП-1, 2 (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Охрана_периметра__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Охрана периметра (превью)", resourceCulture);
