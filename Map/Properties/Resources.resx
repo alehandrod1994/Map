@@ -124,14 +124,17 @@
   <data name="arrow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\arrow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Охрана периметра (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\Охрана периметра (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Т3 (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Т3 (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="КПП-1, 2 (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\КПП-1, 2 (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Т1 - 2 этаж (2) (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Т1 - 2 этаж (2) (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Т1 - 3 этаж (2) (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\Т1 - 3 этаж (2) (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Т1 - 4 этаж (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Т1 - 4 этаж (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -139,14 +142,14 @@
   <data name="Image1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Image1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Т2 - 2 этаж (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\Т2 - 2 этаж (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="speaker" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\speaker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Т1 - 3 этаж (2) (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\Т1 - 3 этаж (2) (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Т2 - 1 этаж (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\Т2 - 1 этаж (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mute" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\mute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,11 +175,11 @@
   <data name="Т1 - 1 этаж (2) (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Т1 - 1 этаж (2) (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\plus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Охрана периметра (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\Охрана периметра (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Т2 - Цоколь (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\Т2 - Цоколь (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Т1 - 1 этаж (1) (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\Т1 - 1 этаж (1) (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Галерея 5 - 1 этаж (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Галерея 5 - 1 этаж (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -184,16 +187,16 @@
   <data name="Image0" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Image0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Т1 - 1 этаж (1) (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\Т1 - 1 этаж (1) (превью).bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Т2 - 2 этаж (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\Т2 - 2 этаж (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Т2 - 1 этаж (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\Т2 - 1 этаж (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Т2 - Цоколь (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\Т2 - Цоколь (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="СТАБ (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\СТАБ (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="КПП-1, 2 (превью)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\images\КПП-1, 2 (превью).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="parking_square_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\parking_square_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

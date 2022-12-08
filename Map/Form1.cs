@@ -68,6 +68,9 @@ namespace Map
 
             _audio = new Audio(@"audio\start.wav");
             _cameras = new List<string>();
+            _parkings = new List<Parking>();
+            _ccameras = new List<Camera>();
+
         }
 
         private Image _img;
@@ -92,6 +95,9 @@ namespace Map
         private List<Label> _labels;
         private List<PictureBox> _pictureBoxes;
         private List<string> _cameras;
+        private List<Parking> _parkings;
+        private List<Camera> _ccameras;
+
 
         public void LoadMap(string labelPreview)
         {
@@ -176,6 +182,24 @@ namespace Map
             {
                 comboBoxCameras.Items.Add(camera);
             }
+
+            if (_mapName == "Охрана периметра")                                                    // Загрузка панели со стоянками
+            {
+                _parkings = LoadFile<Parking>();
+                _ccameras = LoadFile<Camera>();
+
+                pictureBoxParkingLogo.Visible = true;
+                comboBoxParkings.Visible = true;
+                buttonOpenParking.Visible = true;
+                
+            }
+            else
+            {
+                pictureBoxParkingLogo.Visible = false;
+                comboBoxParkings.Visible = false;
+                buttonOpenParking.Visible = false;
+            }
+
 
             _pictureboxWidth = pictureBoxMap.Width;
             _pictureboxHeight = pictureBoxMap.Height;
@@ -581,6 +605,44 @@ namespace Map
             }
         }
 
-       
+        private void ShowParkingCameras()
+        {
+            var parking = _parkings.SingleOrDefault(p => p.Number.ToString() == comboBoxParkings.Text);
+
+            if (parking != null)
+            {
+                FormParkingCameras formParkingCameras = new FormParkingCameras(parking);
+                formParkingCameras.Show();
+            }
+            else
+            {
+                MessageBox.Show("Стоянка не найдена.");
+            }
+        }
+
+
+        private void SaveFile<T>(List<T> items)
+        {
+            var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
+            var fileName = $"{typeof(T).Name}s.json";
+
+            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
+                jsonFormatter.WriteObject(fs, items);
+            }
+        }
+
+        private List<T> LoadFile<T>()
+        {
+            var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
+            var fileName = $"{typeof(T).Name}s.json";
+
+            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+            {
+                return fs.Length > 0 && jsonFormatter.ReadObject(fs) is List<T> items ? items : new List<T>();
+            }
+        }
+
+
     }
 }
