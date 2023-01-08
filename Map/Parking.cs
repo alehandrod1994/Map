@@ -16,7 +16,7 @@ namespace Map
         }
 
         public Parking(string number)
-        {
+            {
             if (string.IsNullOrWhiteSpace(number))
             {
                 throw new ArgumentException("Номер стоянки не может быть меньше 1.", nameof(number));
@@ -69,6 +69,7 @@ namespace Map
         public override string ToString()
         {
             return Number.ToString();
-        }    
+        }
+
     }
 }

@@ -50,41 +50,45 @@
             this.panelStart = new System.Windows.Forms.Panel();
             this.imgSettings = new System.Windows.Forms.PictureBox();
             this.labelPreview18 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview18 = new System.Windows.Forms.PictureBox();
             this.labelPreview17 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview17 = new System.Windows.Forms.PictureBox();
             this.labelPreview16 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview16 = new System.Windows.Forms.PictureBox();
             this.labelPreview15 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview15 = new System.Windows.Forms.PictureBox();
             this.labelPreview14 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview14 = new System.Windows.Forms.PictureBox();
             this.labelPreview13 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview13 = new System.Windows.Forms.PictureBox();
             this.labelPreview12 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview12 = new System.Windows.Forms.PictureBox();
             this.labelPreview11 = new System.Windows.Forms.Label();
             this.labelPreview10 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview10 = new System.Windows.Forms.PictureBox();
-            this.pictureBoxSound = new System.Windows.Forms.PictureBox();
             this.labelTitle = new System.Windows.Forms.Label();
             this.labelPreview9 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview9 = new System.Windows.Forms.PictureBox();
             this.labelPreview8 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview8 = new System.Windows.Forms.PictureBox();
             this.labelPreview7 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview7 = new System.Windows.Forms.PictureBox();
             this.labelPreview6 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview6 = new System.Windows.Forms.PictureBox();
             this.labelPreview5 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview5 = new System.Windows.Forms.PictureBox();
             this.labelPreview4 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview4 = new System.Windows.Forms.PictureBox();
             this.labelPreview3 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview3 = new System.Windows.Forms.PictureBox();
             this.labelPreview2 = new System.Windows.Forms.Label();
-            this.pictureBoxPreview2 = new System.Windows.Forms.PictureBox();
             this.labelPreview1 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.buttonOpenParking = new System.Windows.Forms.Button();
+            this.comboBoxParkings = new System.Windows.Forms.ComboBox();
+            this.pictureBoxParkingLogo = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview18 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview17 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview16 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview15 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview14 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview13 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview12 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview10 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxSound = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview9 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview8 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview7 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview6 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview5 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview4 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview3 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxPreview2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPreview1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPreview11 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -393,18 +397,6 @@
             this.labelPreview18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview18.Click += new System.EventHandler(this.pictureBoxPreview18_Click);
             // 
-            // pictureBoxPreview18
-            // 
-            this.pictureBoxPreview18.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview18.Image = global::Map.Properties.Resources.КПП_1__2__превью_;
-            this.pictureBoxPreview18.Location = new System.Drawing.Point(550, 890);
-            this.pictureBoxPreview18.Name = "pictureBoxPreview18";
-            this.pictureBoxPreview18.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview18.TabIndex = 37;
-            this.pictureBoxPreview18.TabStop = false;
-            this.pictureBoxPreview18.Click += new System.EventHandler(this.pictureBoxPreview18_Click);
-            // 
             // labelPreview17
             // 
             this.labelPreview17.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -416,18 +408,6 @@
             this.labelPreview17.Text = "Штаб";
             this.labelPreview17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview17.Click += new System.EventHandler(this.pictureBoxPreview17_Click);
-            // 
-            // pictureBoxPreview17
-            // 
-            this.pictureBoxPreview17.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview17.Image = global::Map.Properties.Resources.Штаб__превью_;
-            this.pictureBoxPreview17.Location = new System.Drawing.Point(320, 890);
-            this.pictureBoxPreview17.Name = "pictureBoxPreview17";
-            this.pictureBoxPreview17.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview17.TabIndex = 35;
-            this.pictureBoxPreview17.TabStop = false;
-            this.pictureBoxPreview17.Click += new System.EventHandler(this.pictureBoxPreview17_Click);
             // 
             // labelPreview16
             // 
@@ -441,18 +421,6 @@
             this.labelPreview16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview16.Click += new System.EventHandler(this.pictureBoxPreview16_Click);
             // 
-            // pictureBoxPreview16
-            // 
-            this.pictureBoxPreview16.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview16.Image = global::Map.Properties.Resources.СТАБ__превью_;
-            this.pictureBoxPreview16.Location = new System.Drawing.Point(90, 890);
-            this.pictureBoxPreview16.Name = "pictureBoxPreview16";
-            this.pictureBoxPreview16.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview16.TabIndex = 33;
-            this.pictureBoxPreview16.TabStop = false;
-            this.pictureBoxPreview16.Click += new System.EventHandler(this.pictureBoxPreview16_Click);
-            // 
             // labelPreview15
             // 
             this.labelPreview15.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -464,18 +432,6 @@
             this.labelPreview15.Text = "Охрана периметра";
             this.labelPreview15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview15.Click += new System.EventHandler(this.pictureBoxPreview15_Click);
-            // 
-            // pictureBoxPreview15
-            // 
-            this.pictureBoxPreview15.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview15.Image = global::Map.Properties.Resources.Охрана_периметра__превью_;
-            this.pictureBoxPreview15.Location = new System.Drawing.Point(1010, 660);
-            this.pictureBoxPreview15.Name = "pictureBoxPreview15";
-            this.pictureBoxPreview15.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview15.TabIndex = 31;
-            this.pictureBoxPreview15.TabStop = false;
-            this.pictureBoxPreview15.Click += new System.EventHandler(this.pictureBoxPreview15_Click);
             // 
             // labelPreview14
             // 
@@ -489,18 +445,6 @@
             this.labelPreview14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview14.Click += new System.EventHandler(this.pictureBoxPreview14_Click);
             // 
-            // pictureBoxPreview14
-            // 
-            this.pictureBoxPreview14.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview14.Image = global::Map.Properties.Resources.Галерея_5___2_этаж__превью_;
-            this.pictureBoxPreview14.Location = new System.Drawing.Point(780, 660);
-            this.pictureBoxPreview14.Name = "pictureBoxPreview14";
-            this.pictureBoxPreview14.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview14.TabIndex = 29;
-            this.pictureBoxPreview14.TabStop = false;
-            this.pictureBoxPreview14.Click += new System.EventHandler(this.pictureBoxPreview14_Click);
-            // 
             // labelPreview13
             // 
             this.labelPreview13.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -513,18 +457,6 @@
             this.labelPreview13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview13.Click += new System.EventHandler(this.pictureBoxPreview13_Click);
             // 
-            // pictureBoxPreview13
-            // 
-            this.pictureBoxPreview13.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview13.Image = global::Map.Properties.Resources.Галерея_5___1_этаж__превью_;
-            this.pictureBoxPreview13.Location = new System.Drawing.Point(550, 660);
-            this.pictureBoxPreview13.Name = "pictureBoxPreview13";
-            this.pictureBoxPreview13.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview13.TabIndex = 27;
-            this.pictureBoxPreview13.TabStop = false;
-            this.pictureBoxPreview13.Click += new System.EventHandler(this.pictureBoxPreview13_Click);
-            // 
             // labelPreview12
             // 
             this.labelPreview12.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -536,18 +468,6 @@
             this.labelPreview12.Text = "Т3";
             this.labelPreview12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview12.Click += new System.EventHandler(this.pictureBoxPreview12_Click);
-            // 
-            // pictureBoxPreview12
-            // 
-            this.pictureBoxPreview12.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview12.Image = global::Map.Properties.Resources.Т3__превью_;
-            this.pictureBoxPreview12.Location = new System.Drawing.Point(320, 660);
-            this.pictureBoxPreview12.Name = "pictureBoxPreview12";
-            this.pictureBoxPreview12.Size = new System.Drawing.Size(180, 180);
-            this.pictureBoxPreview12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPreview12.TabIndex = 25;
-            this.pictureBoxPreview12.TabStop = false;
-            this.pictureBoxPreview12.Click += new System.EventHandler(this.pictureBoxPreview12_Click);
             // 
             // labelPreview11
             // 
@@ -573,6 +493,253 @@
             this.labelPreview10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview10.Click += new System.EventHandler(this.pictureBoxPreview10_Click);
             // 
+            // labelTitle
+            // 
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelTitle.Location = new System.Drawing.Point(0, 51);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(1280, 24);
+            this.labelTitle.TabIndex = 18;
+            this.labelTitle.Text = "Схемы международного аэропорта \"Красноярск\"";
+            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelPreview9
+            // 
+            this.labelPreview9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview9.Location = new System.Drawing.Point(780, 425);
+            this.labelPreview9.Name = "labelPreview9";
+            this.labelPreview9.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview9.TabIndex = 17;
+            this.labelPreview9.Text = "Т2 - Цоколь";
+            this.labelPreview9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview9.Click += new System.EventHandler(this.pictureBoxPreview9_Click);
+            // 
+            // labelPreview8
+            // 
+            this.labelPreview8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview8.Location = new System.Drawing.Point(550, 425);
+            this.labelPreview8.Name = "labelPreview8";
+            this.labelPreview8.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview8.TabIndex = 15;
+            this.labelPreview8.Text = "Т1 - 4 этаж";
+            this.labelPreview8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview8.Click += new System.EventHandler(this.pictureBoxPreview8_Click);
+            // 
+            // labelPreview7
+            // 
+            this.labelPreview7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview7.Location = new System.Drawing.Point(320, 425);
+            this.labelPreview7.Name = "labelPreview7";
+            this.labelPreview7.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview7.TabIndex = 13;
+            this.labelPreview7.Text = "Т1 - 3 этаж (2)";
+            this.labelPreview7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview7.Click += new System.EventHandler(this.pictureBoxPreview7_Click);
+            // 
+            // labelPreview6
+            // 
+            this.labelPreview6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview6.Location = new System.Drawing.Point(90, 425);
+            this.labelPreview6.Name = "labelPreview6";
+            this.labelPreview6.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview6.TabIndex = 11;
+            this.labelPreview6.Text = "Т1 - 3 этаж (1)";
+            this.labelPreview6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview6.Click += new System.EventHandler(this.pictureBoxPreview6_Click);
+            // 
+            // labelPreview5
+            // 
+            this.labelPreview5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview5.Location = new System.Drawing.Point(1010, 195);
+            this.labelPreview5.Name = "labelPreview5";
+            this.labelPreview5.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview5.TabIndex = 9;
+            this.labelPreview5.Text = "Т1 - 2 этаж (2)";
+            this.labelPreview5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview5.Click += new System.EventHandler(this.pictureBoxPreview5_Click);
+            // 
+            // labelPreview4
+            // 
+            this.labelPreview4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview4.Location = new System.Drawing.Point(780, 195);
+            this.labelPreview4.Name = "labelPreview4";
+            this.labelPreview4.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview4.TabIndex = 7;
+            this.labelPreview4.Text = "Т1 - 2 этаж (1)";
+            this.labelPreview4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview4.Click += new System.EventHandler(this.pictureBoxPreview4_Click);
+            // 
+            // labelPreview3
+            // 
+            this.labelPreview3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview3.Location = new System.Drawing.Point(550, 195);
+            this.labelPreview3.Name = "labelPreview3";
+            this.labelPreview3.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview3.TabIndex = 5;
+            this.labelPreview3.Text = "Т1 - 1 этаж (2)";
+            this.labelPreview3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview3.Click += new System.EventHandler(this.pictureBoxPreview3_Click);
+            // 
+            // labelPreview2
+            // 
+            this.labelPreview2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview2.Location = new System.Drawing.Point(320, 195);
+            this.labelPreview2.Name = "labelPreview2";
+            this.labelPreview2.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview2.TabIndex = 3;
+            this.labelPreview2.Text = "Т1 - 1 этаж (1)";
+            this.labelPreview2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview2.Click += new System.EventHandler(this.pictureBoxPreview2_Click);
+            // 
+            // labelPreview1
+            // 
+            this.labelPreview1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview1.Location = new System.Drawing.Point(90, 195);
+            this.labelPreview1.Name = "labelPreview1";
+            this.labelPreview1.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview1.TabIndex = 1;
+            this.labelPreview1.Text = "Т1 - Цоколь";
+            this.labelPreview1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview1.Click += new System.EventHandler(this.pictureBoxPreview1_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // buttonOpenParking
+            // 
+            this.buttonOpenParking.Location = new System.Drawing.Point(674, 10);
+            this.buttonOpenParking.Name = "buttonOpenParking";
+            this.buttonOpenParking.Size = new System.Drawing.Size(75, 23);
+            this.buttonOpenParking.TabIndex = 24;
+            this.buttonOpenParking.Text = "Показать";
+            this.buttonOpenParking.UseVisualStyleBackColor = true;
+            this.buttonOpenParking.Visible = false;
+            // 
+            // comboBoxParkings
+            // 
+            this.comboBoxParkings.FormattingEnabled = true;
+            this.comboBoxParkings.Items.AddRange(new object[] {
+            "Т1 - Цоколь",
+            "Т1 - 1 этаж (1)",
+            "Т1 - 1 этаж (2)",
+            "Т1 - 2 этаж (1)",
+            "Т1 - 2 этаж (2)",
+            "Т1 - 3 этаж (1)",
+            "Т1 - 3 этаж (2)",
+            "Т1 - 4 этаж",
+            "Т2 - Цоколь"});
+            this.comboBoxParkings.Location = new System.Drawing.Point(525, 10);
+            this.comboBoxParkings.Name = "comboBoxParkings";
+            this.comboBoxParkings.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxParkings.TabIndex = 23;
+            this.comboBoxParkings.Visible = false;
+            // 
+            // pictureBoxParkingLogo
+            // 
+            this.pictureBoxParkingLogo.Image = global::Map.Properties.Resources.parking_square_icon;
+            this.pictureBoxParkingLogo.Location = new System.Drawing.Point(474, 10);
+            this.pictureBoxParkingLogo.Name = "pictureBoxParkingLogo";
+            this.pictureBoxParkingLogo.Size = new System.Drawing.Size(23, 23);
+            this.pictureBoxParkingLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxParkingLogo.TabIndex = 25;
+            this.pictureBoxParkingLogo.TabStop = false;
+            this.pictureBoxParkingLogo.Visible = false;
+            // 
+            // pictureBoxPreview18
+            // 
+            this.pictureBoxPreview18.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview18.Image = global::Map.Properties.Resources.КПП_1__2__превью_;
+            this.pictureBoxPreview18.Location = new System.Drawing.Point(550, 890);
+            this.pictureBoxPreview18.Name = "pictureBoxPreview18";
+            this.pictureBoxPreview18.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview18.TabIndex = 37;
+            this.pictureBoxPreview18.TabStop = false;
+            this.pictureBoxPreview18.Click += new System.EventHandler(this.pictureBoxPreview18_Click);
+            // 
+            // pictureBoxPreview17
+            // 
+            this.pictureBoxPreview17.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview17.Image = global::Map.Properties.Resources.Штаб__превью_;
+            this.pictureBoxPreview17.Location = new System.Drawing.Point(320, 890);
+            this.pictureBoxPreview17.Name = "pictureBoxPreview17";
+            this.pictureBoxPreview17.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview17.TabIndex = 35;
+            this.pictureBoxPreview17.TabStop = false;
+            this.pictureBoxPreview17.Click += new System.EventHandler(this.pictureBoxPreview17_Click);
+            // 
+            // pictureBoxPreview16
+            // 
+            this.pictureBoxPreview16.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview16.Image = global::Map.Properties.Resources.СТАБ__превью_;
+            this.pictureBoxPreview16.Location = new System.Drawing.Point(90, 890);
+            this.pictureBoxPreview16.Name = "pictureBoxPreview16";
+            this.pictureBoxPreview16.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview16.TabIndex = 33;
+            this.pictureBoxPreview16.TabStop = false;
+            this.pictureBoxPreview16.Click += new System.EventHandler(this.pictureBoxPreview16_Click);
+            // 
+            // pictureBoxPreview15
+            // 
+            this.pictureBoxPreview15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview15.Image = global::Map.Properties.Resources.Охрана_периметра__превью_;
+            this.pictureBoxPreview15.Location = new System.Drawing.Point(1010, 660);
+            this.pictureBoxPreview15.Name = "pictureBoxPreview15";
+            this.pictureBoxPreview15.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview15.TabIndex = 31;
+            this.pictureBoxPreview15.TabStop = false;
+            this.pictureBoxPreview15.Click += new System.EventHandler(this.pictureBoxPreview15_Click);
+            // 
+            // pictureBoxPreview14
+            // 
+            this.pictureBoxPreview14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview14.Image = global::Map.Properties.Resources.Галерея_5___2_этаж__превью_;
+            this.pictureBoxPreview14.Location = new System.Drawing.Point(780, 660);
+            this.pictureBoxPreview14.Name = "pictureBoxPreview14";
+            this.pictureBoxPreview14.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview14.TabIndex = 29;
+            this.pictureBoxPreview14.TabStop = false;
+            this.pictureBoxPreview14.Click += new System.EventHandler(this.pictureBoxPreview14_Click);
+            // 
+            // pictureBoxPreview13
+            // 
+            this.pictureBoxPreview13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview13.Image = global::Map.Properties.Resources.Галерея_5___1_этаж__превью_;
+            this.pictureBoxPreview13.Location = new System.Drawing.Point(550, 660);
+            this.pictureBoxPreview13.Name = "pictureBoxPreview13";
+            this.pictureBoxPreview13.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview13.TabIndex = 27;
+            this.pictureBoxPreview13.TabStop = false;
+            this.pictureBoxPreview13.Click += new System.EventHandler(this.pictureBoxPreview13_Click);
+            // 
+            // pictureBoxPreview12
+            // 
+            this.pictureBoxPreview12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview12.Image = global::Map.Properties.Resources.Т3__превью_;
+            this.pictureBoxPreview12.Location = new System.Drawing.Point(320, 660);
+            this.pictureBoxPreview12.Name = "pictureBoxPreview12";
+            this.pictureBoxPreview12.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview12.TabIndex = 25;
+            this.pictureBoxPreview12.TabStop = false;
+            this.pictureBoxPreview12.Click += new System.EventHandler(this.pictureBoxPreview12_Click);
+            // 
             // pictureBoxPreview10
             // 
             this.pictureBoxPreview10.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -597,28 +764,6 @@
             this.pictureBoxSound.TabStop = false;
             this.pictureBoxSound.Click += new System.EventHandler(this.pictureBoxSound_Click);
             // 
-            // labelTitle
-            // 
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelTitle.Location = new System.Drawing.Point(0, 51);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(1280, 24);
-            this.labelTitle.TabIndex = 18;
-            this.labelTitle.Text = "Схемы международного аэропорта \"Красноярск\"";
-            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // labelPreview9
-            // 
-            this.labelPreview9.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview9.Location = new System.Drawing.Point(780, 425);
-            this.labelPreview9.Name = "labelPreview9";
-            this.labelPreview9.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview9.TabIndex = 17;
-            this.labelPreview9.Text = "Т2 - Цоколь";
-            this.labelPreview9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview9.Click += new System.EventHandler(this.pictureBoxPreview9_Click);
-            // 
             // pictureBoxPreview9
             // 
             this.pictureBoxPreview9.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -630,18 +775,6 @@
             this.pictureBoxPreview9.TabIndex = 16;
             this.pictureBoxPreview9.TabStop = false;
             this.pictureBoxPreview9.Click += new System.EventHandler(this.pictureBoxPreview9_Click);
-            // 
-            // labelPreview8
-            // 
-            this.labelPreview8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview8.Location = new System.Drawing.Point(550, 425);
-            this.labelPreview8.Name = "labelPreview8";
-            this.labelPreview8.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview8.TabIndex = 15;
-            this.labelPreview8.Text = "Т1 - 4 этаж";
-            this.labelPreview8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview8.Click += new System.EventHandler(this.pictureBoxPreview8_Click);
             // 
             // pictureBoxPreview8
             // 
@@ -655,18 +788,6 @@
             this.pictureBoxPreview8.TabStop = false;
             this.pictureBoxPreview8.Click += new System.EventHandler(this.pictureBoxPreview8_Click);
             // 
-            // labelPreview7
-            // 
-            this.labelPreview7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview7.Location = new System.Drawing.Point(320, 425);
-            this.labelPreview7.Name = "labelPreview7";
-            this.labelPreview7.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview7.TabIndex = 13;
-            this.labelPreview7.Text = "Т1 - 3 этаж (2)";
-            this.labelPreview7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview7.Click += new System.EventHandler(this.pictureBoxPreview7_Click);
-            // 
             // pictureBoxPreview7
             // 
             this.pictureBoxPreview7.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -678,18 +799,6 @@
             this.pictureBoxPreview7.TabIndex = 12;
             this.pictureBoxPreview7.TabStop = false;
             this.pictureBoxPreview7.Click += new System.EventHandler(this.pictureBoxPreview7_Click);
-            // 
-            // labelPreview6
-            // 
-            this.labelPreview6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview6.Location = new System.Drawing.Point(90, 425);
-            this.labelPreview6.Name = "labelPreview6";
-            this.labelPreview6.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview6.TabIndex = 11;
-            this.labelPreview6.Text = "Т1 - 3 этаж (1)";
-            this.labelPreview6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview6.Click += new System.EventHandler(this.pictureBoxPreview6_Click);
             // 
             // pictureBoxPreview6
             // 
@@ -703,18 +812,6 @@
             this.pictureBoxPreview6.TabStop = false;
             this.pictureBoxPreview6.Click += new System.EventHandler(this.pictureBoxPreview6_Click);
             // 
-            // labelPreview5
-            // 
-            this.labelPreview5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview5.Location = new System.Drawing.Point(1010, 195);
-            this.labelPreview5.Name = "labelPreview5";
-            this.labelPreview5.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview5.TabIndex = 9;
-            this.labelPreview5.Text = "Т1 - 2 этаж (2)";
-            this.labelPreview5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview5.Click += new System.EventHandler(this.pictureBoxPreview5_Click);
-            // 
             // pictureBoxPreview5
             // 
             this.pictureBoxPreview5.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -726,18 +823,6 @@
             this.pictureBoxPreview5.TabIndex = 8;
             this.pictureBoxPreview5.TabStop = false;
             this.pictureBoxPreview5.Click += new System.EventHandler(this.pictureBoxPreview5_Click);
-            // 
-            // labelPreview4
-            // 
-            this.labelPreview4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview4.Location = new System.Drawing.Point(780, 195);
-            this.labelPreview4.Name = "labelPreview4";
-            this.labelPreview4.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview4.TabIndex = 7;
-            this.labelPreview4.Text = "Т1 - 2 этаж (1)";
-            this.labelPreview4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview4.Click += new System.EventHandler(this.pictureBoxPreview4_Click);
             // 
             // pictureBoxPreview4
             // 
@@ -751,18 +836,6 @@
             this.pictureBoxPreview4.TabStop = false;
             this.pictureBoxPreview4.Click += new System.EventHandler(this.pictureBoxPreview4_Click);
             // 
-            // labelPreview3
-            // 
-            this.labelPreview3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview3.Location = new System.Drawing.Point(550, 195);
-            this.labelPreview3.Name = "labelPreview3";
-            this.labelPreview3.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview3.TabIndex = 5;
-            this.labelPreview3.Text = "Т1 - 1 этаж (2)";
-            this.labelPreview3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview3.Click += new System.EventHandler(this.pictureBoxPreview3_Click);
-            // 
             // pictureBoxPreview3
             // 
             this.pictureBoxPreview3.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -775,18 +848,6 @@
             this.pictureBoxPreview3.TabStop = false;
             this.pictureBoxPreview3.Click += new System.EventHandler(this.pictureBoxPreview3_Click);
             // 
-            // labelPreview2
-            // 
-            this.labelPreview2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview2.Location = new System.Drawing.Point(320, 195);
-            this.labelPreview2.Name = "labelPreview2";
-            this.labelPreview2.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview2.TabIndex = 3;
-            this.labelPreview2.Text = "Т1 - 1 этаж (1)";
-            this.labelPreview2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview2.Click += new System.EventHandler(this.pictureBoxPreview2_Click);
-            // 
             // pictureBoxPreview2
             // 
             this.pictureBoxPreview2.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -798,18 +859,6 @@
             this.pictureBoxPreview2.TabIndex = 2;
             this.pictureBoxPreview2.TabStop = false;
             this.pictureBoxPreview2.Click += new System.EventHandler(this.pictureBoxPreview2_Click);
-            // 
-            // labelPreview1
-            // 
-            this.labelPreview1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.labelPreview1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPreview1.Location = new System.Drawing.Point(90, 195);
-            this.labelPreview1.Name = "labelPreview1";
-            this.labelPreview1.Size = new System.Drawing.Size(180, 20);
-            this.labelPreview1.TabIndex = 1;
-            this.labelPreview1.Text = "Т1 - Цоколь";
-            this.labelPreview1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelPreview1.Click += new System.EventHandler(this.pictureBoxPreview1_Click);
             // 
             // pictureBoxPreview1
             // 
