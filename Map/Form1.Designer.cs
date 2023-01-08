@@ -35,19 +35,20 @@
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.buttonLittle = new System.Windows.Forms.Button();
-            this.comboBoxCameras = new System.Windows.Forms.ComboBox();
-            this.buttonOpenCamera = new System.Windows.Forms.Button();
+            this.cbCameras = new System.Windows.Forms.ComboBox();
+            this.btnOpenCamera = new System.Windows.Forms.Button();
             this.buttonBig = new System.Windows.Forms.Button();
             this.labelZoom = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonOpenMap = new System.Windows.Forms.Button();
-            this.comboBoxMaps = new System.Windows.Forms.ComboBox();
+            this.btnOpenMap = new System.Windows.Forms.Button();
+            this.cbMaps = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panelStart = new System.Windows.Forms.Panel();
+            this.imgSettings = new System.Windows.Forms.PictureBox();
             this.labelPreview18 = new System.Windows.Forms.Label();
             this.pictureBoxPreview18 = new System.Windows.Forms.PictureBox();
             this.labelPreview17 = new System.Windows.Forms.Label();
@@ -87,12 +88,18 @@
             this.pictureBoxPreview1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPreview11 = new System.Windows.Forms.PictureBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.pictureBoxPlus = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMinus = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMapLogo = new System.Windows.Forms.PictureBox();
-            this.pictureBoxCameraLogo = new System.Windows.Forms.PictureBox();
+            this.btnOpenParking = new System.Windows.Forms.Button();
+            this.cbParkings = new System.Windows.Forms.ComboBox();
+            this.panelParking = new System.Windows.Forms.Panel();
+            this.imgParkingLogo = new System.Windows.Forms.PictureBox();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.imgPlus = new System.Windows.Forms.PictureBox();
+            this.imgMinus = new System.Windows.Forms.PictureBox();
+            this.imgMapLogo = new System.Windows.Forms.PictureBox();
+            this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.panelStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview16)).BeginInit();
@@ -112,10 +119,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCameraLogo)).BeginInit();
+            this.panelParking.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgParkingLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPlus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgMinus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgMapLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,25 +186,25 @@
             this.buttonLittle.Visible = false;
             this.buttonLittle.Click += new System.EventHandler(this.button3_Click);
             // 
-            // comboBoxCameras
+            // cbCameras
             // 
-            this.comboBoxCameras.FormattingEnabled = true;
-            this.comboBoxCameras.Location = new System.Drawing.Point(108, 40);
-            this.comboBoxCameras.Name = "comboBoxCameras";
-            this.comboBoxCameras.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCameras.TabIndex = 6;
-            this.comboBoxCameras.Visible = false;
+            this.cbCameras.FormattingEnabled = true;
+            this.cbCameras.Location = new System.Drawing.Point(108, 40);
+            this.cbCameras.Name = "cbCameras";
+            this.cbCameras.Size = new System.Drawing.Size(121, 21);
+            this.cbCameras.TabIndex = 6;
+            this.cbCameras.Visible = false;
             // 
-            // buttonOpenCamera
+            // btnOpenCamera
             // 
-            this.buttonOpenCamera.Location = new System.Drawing.Point(257, 40);
-            this.buttonOpenCamera.Name = "buttonOpenCamera";
-            this.buttonOpenCamera.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenCamera.TabIndex = 7;
-            this.buttonOpenCamera.Text = "Показать";
-            this.buttonOpenCamera.UseVisualStyleBackColor = true;
-            this.buttonOpenCamera.Visible = false;
-            this.buttonOpenCamera.Click += new System.EventHandler(this.button4_Click);
+            this.btnOpenCamera.Location = new System.Drawing.Point(257, 40);
+            this.btnOpenCamera.Name = "btnOpenCamera";
+            this.btnOpenCamera.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenCamera.TabIndex = 7;
+            this.btnOpenCamera.Text = "Показать";
+            this.btnOpenCamera.UseVisualStyleBackColor = true;
+            this.btnOpenCamera.Visible = false;
+            this.btnOpenCamera.Click += new System.EventHandler(this.button4_Click);
             // 
             // buttonBig
             // 
@@ -250,21 +259,21 @@
             this.label4.Text = "valueW =";
             this.label4.Visible = false;
             // 
-            // buttonOpenMap
+            // btnOpenMap
             // 
-            this.buttonOpenMap.Location = new System.Drawing.Point(257, 10);
-            this.buttonOpenMap.Name = "buttonOpenMap";
-            this.buttonOpenMap.Size = new System.Drawing.Size(75, 23);
-            this.buttonOpenMap.TabIndex = 14;
-            this.buttonOpenMap.Text = "Открыть";
-            this.buttonOpenMap.UseVisualStyleBackColor = true;
-            this.buttonOpenMap.Visible = false;
-            this.buttonOpenMap.Click += new System.EventHandler(this.buttonOpenMap_Click);
+            this.btnOpenMap.Location = new System.Drawing.Point(257, 10);
+            this.btnOpenMap.Name = "btnOpenMap";
+            this.btnOpenMap.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenMap.TabIndex = 14;
+            this.btnOpenMap.Text = "Открыть";
+            this.btnOpenMap.UseVisualStyleBackColor = true;
+            this.btnOpenMap.Visible = false;
+            this.btnOpenMap.Click += new System.EventHandler(this.buttonOpenMap_Click);
             // 
-            // comboBoxMaps
+            // cbMaps
             // 
-            this.comboBoxMaps.FormattingEnabled = true;
-            this.comboBoxMaps.Items.AddRange(new object[] {
+            this.cbMaps.FormattingEnabled = true;
+            this.cbMaps.Items.AddRange(new object[] {
             "Т1 - Цоколь",
             "Т1 - 1 этаж (1)",
             "Т1 - 1 этаж (2)",
@@ -274,11 +283,11 @@
             "Т1 - 3 этаж (2)",
             "Т1 - 4 этаж",
             "Т2 - Цоколь"});
-            this.comboBoxMaps.Location = new System.Drawing.Point(108, 10);
-            this.comboBoxMaps.Name = "comboBoxMaps";
-            this.comboBoxMaps.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxMaps.TabIndex = 13;
-            this.comboBoxMaps.Visible = false;
+            this.cbMaps.Location = new System.Drawing.Point(108, 10);
+            this.cbMaps.Name = "cbMaps";
+            this.cbMaps.Size = new System.Drawing.Size(121, 21);
+            this.cbMaps.TabIndex = 13;
+            this.cbMaps.Visible = false;
             // 
             // label5
             // 
@@ -313,6 +322,7 @@
             // panelStart
             // 
             this.panelStart.BackColor = System.Drawing.SystemColors.Window;
+            this.panelStart.Controls.Add(this.imgSettings);
             this.panelStart.Controls.Add(this.labelPreview18);
             this.panelStart.Controls.Add(this.pictureBoxPreview18);
             this.panelStart.Controls.Add(this.labelPreview17);
@@ -358,6 +368,18 @@
             this.panelStart.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             this.panelStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelStart_MouseDown);
             this.panelStart.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelStart_MouseMove);
+            // 
+            // imgSettings
+            // 
+            this.imgSettings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgSettings.Image = global::Map.Properties.Resources.settings;
+            this.imgSettings.Location = new System.Drawing.Point(1190, 15);
+            this.imgSettings.Name = "imgSettings";
+            this.imgSettings.Size = new System.Drawing.Size(24, 24);
+            this.imgSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgSettings.TabIndex = 38;
+            this.imgSettings.TabStop = false;
+            this.imgSettings.Click += new System.EventHandler(this.imgSettings_Click);
             // 
             // labelPreview18
             // 
@@ -818,53 +840,103 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // pictureBoxPlus
+            // btnOpenParking
             // 
-            this.pictureBoxPlus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPlus.Image = global::Map.Properties.Resources.plus;
-            this.pictureBoxPlus.Location = new System.Drawing.Point(969, 21);
-            this.pictureBoxPlus.Name = "pictureBoxPlus";
-            this.pictureBoxPlus.Size = new System.Drawing.Size(35, 35);
-            this.pictureBoxPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxPlus.TabIndex = 21;
-            this.pictureBoxPlus.TabStop = false;
-            this.pictureBoxPlus.Visible = false;
-            this.pictureBoxPlus.Click += new System.EventHandler(this.pictureBoxPlus_Click);
+            this.btnOpenParking.Location = new System.Drawing.Point(203, 3);
+            this.btnOpenParking.Name = "btnOpenParking";
+            this.btnOpenParking.Size = new System.Drawing.Size(75, 23);
+            this.btnOpenParking.TabIndex = 24;
+            this.btnOpenParking.Text = "Показать";
+            this.btnOpenParking.UseVisualStyleBackColor = true;
+            this.btnOpenParking.Click += new System.EventHandler(this.btnOpenParking_Click);
             // 
-            // pictureBoxMinus
+            // cbParkings
             // 
-            this.pictureBoxMinus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxMinus.Image = global::Map.Properties.Resources.minus;
-            this.pictureBoxMinus.Location = new System.Drawing.Point(872, 21);
-            this.pictureBoxMinus.Name = "pictureBoxMinus";
-            this.pictureBoxMinus.Size = new System.Drawing.Size(35, 35);
-            this.pictureBoxMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMinus.TabIndex = 20;
-            this.pictureBoxMinus.TabStop = false;
-            this.pictureBoxMinus.Visible = false;
-            this.pictureBoxMinus.Click += new System.EventHandler(this.pictureBoxMinus_Click);
+            this.cbParkings.FormattingEnabled = true;
+            this.cbParkings.Location = new System.Drawing.Point(54, 3);
+            this.cbParkings.Name = "cbParkings";
+            this.cbParkings.Size = new System.Drawing.Size(121, 21);
+            this.cbParkings.TabIndex = 23;
             // 
-            // pictureBoxMapLogo
+            // panelParking
             // 
-            this.pictureBoxMapLogo.Image = global::Map.Properties.Resources.map;
-            this.pictureBoxMapLogo.Location = new System.Drawing.Point(57, 10);
-            this.pictureBoxMapLogo.Name = "pictureBoxMapLogo";
-            this.pictureBoxMapLogo.Size = new System.Drawing.Size(23, 23);
-            this.pictureBoxMapLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMapLogo.TabIndex = 19;
-            this.pictureBoxMapLogo.TabStop = false;
-            this.pictureBoxMapLogo.Visible = false;
+            this.panelParking.Controls.Add(this.imgParkingLogo);
+            this.panelParking.Controls.Add(this.cbParkings);
+            this.panelParking.Controls.Add(this.btnOpenParking);
+            this.panelParking.Location = new System.Drawing.Point(444, 7);
+            this.panelParking.Name = "panelParking";
+            this.panelParking.Size = new System.Drawing.Size(278, 26);
+            this.panelParking.TabIndex = 26;
+            this.panelParking.Visible = false;
             // 
-            // pictureBoxCameraLogo
+            // imgParkingLogo
             // 
-            this.pictureBoxCameraLogo.Image = global::Map.Properties.Resources.Image0;
-            this.pictureBoxCameraLogo.Location = new System.Drawing.Point(46, 40);
-            this.pictureBoxCameraLogo.Name = "pictureBoxCameraLogo";
-            this.pictureBoxCameraLogo.Size = new System.Drawing.Size(46, 29);
-            this.pictureBoxCameraLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCameraLogo.TabIndex = 18;
-            this.pictureBoxCameraLogo.TabStop = false;
-            this.pictureBoxCameraLogo.Visible = false;
+            this.imgParkingLogo.Image = global::Map.Properties.Resources.parking_square_icon;
+            this.imgParkingLogo.Location = new System.Drawing.Point(3, 3);
+            this.imgParkingLogo.Name = "imgParkingLogo";
+            this.imgParkingLogo.Size = new System.Drawing.Size(23, 23);
+            this.imgParkingLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgParkingLogo.TabIndex = 25;
+            this.imgParkingLogo.TabStop = false;
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(566, 45);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(156, 23);
+            this.btnTest.TabIndex = 27;
+            this.btnTest.Text = "Тест";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
+            this.btnTest.Click += new System.EventHandler(this.btnAddParking_Click);
+            // 
+            // imgPlus
+            // 
+            this.imgPlus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgPlus.Image = global::Map.Properties.Resources.plus;
+            this.imgPlus.Location = new System.Drawing.Point(969, 21);
+            this.imgPlus.Name = "imgPlus";
+            this.imgPlus.Size = new System.Drawing.Size(35, 35);
+            this.imgPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgPlus.TabIndex = 21;
+            this.imgPlus.TabStop = false;
+            this.imgPlus.Visible = false;
+            this.imgPlus.Click += new System.EventHandler(this.pictureBoxPlus_Click);
+            // 
+            // imgMinus
+            // 
+            this.imgMinus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgMinus.Image = global::Map.Properties.Resources.minus;
+            this.imgMinus.Location = new System.Drawing.Point(872, 21);
+            this.imgMinus.Name = "imgMinus";
+            this.imgMinus.Size = new System.Drawing.Size(35, 35);
+            this.imgMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgMinus.TabIndex = 20;
+            this.imgMinus.TabStop = false;
+            this.imgMinus.Visible = false;
+            this.imgMinus.Click += new System.EventHandler(this.pictureBoxMinus_Click);
+            // 
+            // imgMapLogo
+            // 
+            this.imgMapLogo.Image = global::Map.Properties.Resources.map;
+            this.imgMapLogo.Location = new System.Drawing.Point(57, 10);
+            this.imgMapLogo.Name = "imgMapLogo";
+            this.imgMapLogo.Size = new System.Drawing.Size(23, 23);
+            this.imgMapLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgMapLogo.TabIndex = 19;
+            this.imgMapLogo.TabStop = false;
+            this.imgMapLogo.Visible = false;
+            // 
+            // imgCameraLogo
+            // 
+            this.imgCameraLogo.Image = global::Map.Properties.Resources.Image0;
+            this.imgCameraLogo.Location = new System.Drawing.Point(46, 40);
+            this.imgCameraLogo.Name = "imgCameraLogo";
+            this.imgCameraLogo.Size = new System.Drawing.Size(46, 29);
+            this.imgCameraLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgCameraLogo.TabIndex = 18;
+            this.imgCameraLogo.TabStop = false;
+            this.imgCameraLogo.Visible = false;
             // 
             // pictureBoxMap
             // 
@@ -883,24 +955,26 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.ClientSize = new System.Drawing.Size(1596, 874);
+            this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.panelParking);
             this.Controls.Add(this.panelStart);
-            this.Controls.Add(this.pictureBoxPlus);
-            this.Controls.Add(this.pictureBoxMinus);
-            this.Controls.Add(this.pictureBoxMapLogo);
-            this.Controls.Add(this.pictureBoxCameraLogo);
+            this.Controls.Add(this.imgPlus);
+            this.Controls.Add(this.imgMinus);
+            this.Controls.Add(this.imgMapLogo);
+            this.Controls.Add(this.imgCameraLogo);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.buttonOpenMap);
-            this.Controls.Add(this.comboBoxMaps);
+            this.Controls.Add(this.btnOpenMap);
+            this.Controls.Add(this.cbMaps);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.labelZoom);
             this.Controls.Add(this.buttonBig);
-            this.Controls.Add(this.buttonOpenCamera);
-            this.Controls.Add(this.comboBoxCameras);
+            this.Controls.Add(this.btnOpenCamera);
+            this.Controls.Add(this.cbCameras);
             this.Controls.Add(this.buttonLittle);
             this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.hScrollBar1);
@@ -914,6 +988,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panelStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview16)).EndInit();
@@ -933,10 +1008,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPlus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMapLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCameraLogo)).EndInit();
+            this.panelParking.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgParkingLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgPlus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgMinus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgMapLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -951,22 +1028,22 @@
         private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.Button buttonLittle;
-        private System.Windows.Forms.ComboBox comboBoxCameras;
-        private System.Windows.Forms.Button buttonOpenCamera;
+        private System.Windows.Forms.ComboBox cbCameras;
+        private System.Windows.Forms.Button btnOpenCamera;
         private System.Windows.Forms.Button buttonBig;
         private System.Windows.Forms.Label labelZoom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button buttonOpenMap;
-        private System.Windows.Forms.ComboBox comboBoxMaps;
+        private System.Windows.Forms.Button btnOpenMap;
+        private System.Windows.Forms.ComboBox cbMaps;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBoxCameraLogo;
-        private System.Windows.Forms.PictureBox pictureBoxMapLogo;
-        private System.Windows.Forms.PictureBox pictureBoxMinus;
-        private System.Windows.Forms.PictureBox pictureBoxPlus;
+        private System.Windows.Forms.PictureBox imgCameraLogo;
+        private System.Windows.Forms.PictureBox imgMapLogo;
+        private System.Windows.Forms.PictureBox imgMinus;
+        private System.Windows.Forms.PictureBox imgPlus;
         private System.Windows.Forms.Panel panelStart;
         private System.Windows.Forms.PictureBox pictureBoxPreview1;
         private System.Windows.Forms.Label labelPreview1;
@@ -1007,6 +1084,12 @@
         private System.Windows.Forms.PictureBox pictureBoxPreview17;
         private System.Windows.Forms.Label labelPreview16;
         private System.Windows.Forms.PictureBox pictureBoxPreview16;
+        private System.Windows.Forms.PictureBox imgParkingLogo;
+        private System.Windows.Forms.Button btnOpenParking;
+        private System.Windows.Forms.ComboBox cbParkings;
+        private System.Windows.Forms.Panel panelParking;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.PictureBox imgSettings;
     }
 }
 

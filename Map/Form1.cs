@@ -16,6 +16,29 @@ namespace Map
 {
     public partial class Form1 : Form
     {
+        private Image _img;
+        private int _x = 0;
+        private int _y = 0;
+        private int _picWidth = 0;
+        private int _picHeight = 0;
+        private int _zoom = 100;
+        private Point _lastPoint;
+        private float _imgWidth;
+        private float _imgHeight;
+        private float _pictureboxWidth;
+        private float _pictureboxHeight;
+        private bool _isFirstMap = true;
+
+        private Audio _audio;
+        private string _mapName;
+
+        private List<Label> _labels;
+        private List<PictureBox> _pictureBoxes;
+        private List<string> _cameras;
+        private List<Parking> _parkings = new List<Parking>();
+        private List<Camera> _ccameras = new List<Camera>();
+        private List<ParkingCamera> _parkingCameras = new List<ParkingCamera>();
+
         public Form1()
         {
             InitializeComponent();
@@ -64,36 +87,16 @@ namespace Map
                 pictureBoxPreview18
             };
 
-            this.MouseWheel += new MouseEventHandler(This_MouseWheel);      
+            MouseWheel += new MouseEventHandler(This_MouseWheel);
 
-            _audio = new Audio(@"audio\start.wav");
+            List<Audio> audios = Saver.Load<Audio>();
+            _audio = audios.Count > 0 ? audios.First() : new Audio();
             _cameras = new List<string>();
+            _parkings = Saver.Load<Parking>();
+
         }
 
-        private Image _img;
-        //  bool right = false;
-        // bool left = false;
-        private int _x = 0;
-        private int _y = 0;
-        private int _picWidth = 0;
-        private int _picHeight = 0;
-        private int _zoom = 100;
-        private Point _lastPoint;
-        private float _imgWidth;
-        private float _imgHeight;
-        private float _pictureboxWidth;
-        private float _pictureboxHeight;
-        private int _raz = 0;
-
-        //SoundPlayer sp = new SoundPlayer(@"audio\start.wav");
-        private Audio _audio;
-        private string _mapName;
-
-        private List<Label> _labels;
-        private List<PictureBox> _pictureBoxes;
-        private List<string> _cameras;
-
-        public void LoadMap(string labelPreview)
+        private void LoadMap(string labelPreview)
         {
             if (_mapName != labelPreview)                                                           //Загрузка схемы происходит
             {                                                                                      //если выбрана новая схема
@@ -103,61 +106,69 @@ namespace Map
                 }
                 catch
                 {
-                    MessageBox.Show("Схема не найдена");
+                    MessageBox.Show("Схема не найдена.");
                     return;
                 }
             }
 
-            if (_raz == 0)
+            if (_isFirstMap)
             {
-                pictureBoxMap.Visible = true;
-                pictureBoxMapLogo.Visible = true;
-                pictureBoxCameraLogo.Visible = true;
-                comboBoxMaps.Visible = true;
-                comboBoxCameras.Visible = true;
-                buttonOpenMap.Visible = true;
-                buttonOpenCamera.Visible = true;
-                pictureBoxMinus.Visible = true;
-                pictureBoxPlus.Visible = true;
-                labelZoom.Visible = true;
-                panelStart.Visible = false;
-                //sp.Stop();
-                _audio.Stop();
-
-                this.WindowState = FormWindowState.Maximized;                                      //Подбор размеров под разрешение монитора
-                this.MaximizeBox = true;
-                pictureBoxMap.Width = this.Width - 10;
-                pictureBoxMap.Height = this.Height - 150;
-
-                comboBoxMaps.Items.Clear();                                                         //Загрузка схем               
-
-                DirectoryInfo dirMaps = new DirectoryInfo("схемы");
-                foreach (FileInfo files in dirMaps.GetFiles())
-                {
-                    comboBoxMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
-                   
-                }
-
-                comboBoxMaps.Text = labelPreview;
-
-                _raz = 1;
+                OpenMapWindow(labelPreview);
             }
 
-            this.Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
+            LoadCameras(labelPreview);
+            SortCameras();
 
-            comboBoxCameras.Items.Clear();                                                         //Загрузка камер
-            comboBoxCameras.Text = "";
-            _cameras.Clear();
-
-            if (Directory.Exists(@"камеры\" + labelPreview))
+            foreach (var camera in _cameras)
             {
-                DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + labelPreview);
-                foreach (FileInfo files in dirCameras.GetFiles())
-                {
-                    _cameras.Add(Path.GetFileNameWithoutExtension(files.Name));
-                }
+                cbCameras.Items.Add(camera);
             }
 
+            if (labelPreview == "Охрана периметра")                                                    // Загрузка панели со стоянками
+            {
+                cbParkings.Items.Clear();                                                         //Загрузка схем               
+                foreach (var p in _parkings)
+                {
+                    cbParkings.Items.Add(p.Number);
+                }
+                panelParking.Visible = true;
+            }
+            else
+            {
+                panelParking.Visible = false;
+            }
+
+            CalculateMapSize(labelPreview);
+            Cursor = Cursors.Default;
+        }
+
+        private void CalculateMapSize(string labelPreview)
+        {
+            _pictureboxWidth = pictureBoxMap.Width;
+            _pictureboxHeight = pictureBoxMap.Height;
+            _imgWidth = _img.Width;
+            _imgHeight = _img.Height;
+
+            _picWidth = pictureBoxMap.Width;                                                        //Изменение размеров изображения под размеры холста    
+            _picHeight = Convert.ToInt32(_imgHeight / (_imgWidth / _pictureboxWidth));
+            if (pictureBoxMap.Height < _picHeight)
+            {
+                _picHeight = pictureBoxMap.Height;
+                _picWidth = Convert.ToInt32(_imgWidth / (_imgHeight / _pictureboxHeight));
+            }
+
+            _x = (pictureBoxMap.Width - _picWidth) / 2;                                              //По центру экрана
+            _y = 0;
+            labelZoom.Text = "100%";
+            _zoom = 100;
+
+            _mapName = labelPreview;
+            pictureBoxMap.Invalidate();
+        }
+
+        private void SortCameras()
+        {
             string c;                                                                              // Сортировка камер
             for (int i = 0; i < _cameras.Count; i++)
             {
@@ -170,37 +181,55 @@ namespace Map
                         _cameras[j] = c;
                     }
                 }
-            }        
-
-            foreach (var camera in _cameras)
-            {
-                comboBoxCameras.Items.Add(camera);
             }
+        }
 
-            _pictureboxWidth = pictureBoxMap.Width;
-            _pictureboxHeight = pictureBoxMap.Height;
-            _imgWidth = _img.Width;
-            _imgHeight = _img.Height;
-                                                                      
-            _picWidth = pictureBoxMap.Width;                                                        //Изменение размеров изображения под размеры холста    
-            _picHeight = Convert.ToInt32(_imgHeight / (_imgWidth / _pictureboxWidth));
-            if (pictureBoxMap.Height < _picHeight)
+        private void LoadCameras(string mapName)
+        {
+            cbCameras.Items.Clear();                                                         //Загрузка камер
+            cbCameras.Text = "";
+            _cameras.Clear();
+
+            if (Directory.Exists(@"камеры\" + mapName))
             {
-                _picHeight = pictureBoxMap.Height;
-                _picWidth = Convert.ToInt32(_imgWidth / (_imgHeight / _pictureboxHeight));
+                DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + mapName);
+                foreach (FileInfo files in dirCameras.GetFiles())
+                {
+                    _cameras.Add(Path.GetFileNameWithoutExtension(files.Name));
+                }
             }
-                     
-            _x = (pictureBoxMap.Width - _picWidth) / 2;                                              //По центру экрана
-            _y = 0;
-            labelZoom.Text = "100%";
-            _zoom = 100;
+        }
 
-            _mapName = labelPreview;
-            pictureBoxMap.Invalidate();
-            this.Cursor = Cursors.Default;
+        private void OpenMapWindow(string mapName)
+        {
+            pictureBoxMap.Visible = true;
+            imgMapLogo.Visible = true;
+            imgCameraLogo.Visible = true;
+            cbMaps.Visible = true;
+            cbCameras.Visible = true;
+            btnOpenMap.Visible = true;
+            btnOpenCamera.Visible = true;
+            imgMinus.Visible = true;
+            imgPlus.Visible = true;
+            labelZoom.Visible = true;
+            panelStart.Visible = false;
+            _audio.Stop();
 
-            // MessageBox.Show("imgW= " + img.Width + ", imgH= " + img.Height + ", pictureBoxMap.Width=" + pictureBoxMap.Width +
-            //  ", pictureBoxMap.Height=" + pictureBoxMap.Height + ", first=" + first + ", newFloatNum=" + newFloatNum);           
+            this.WindowState = FormWindowState.Maximized;                                      //Подбор размеров под разрешение монитора
+            this.MaximizeBox = true;
+            pictureBoxMap.Width = this.Width - 10;
+            pictureBoxMap.Height = this.Height - 150;
+
+            cbMaps.Items.Clear();                                                         //Загрузка схем               
+            DirectoryInfo dirMaps = new DirectoryInfo("схемы");
+            foreach (FileInfo files in dirMaps.GetFiles())
+            {
+                cbMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+
+            }
+            cbMaps.Text = mapName;
+
+            _isFirstMap = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -210,45 +239,53 @@ namespace Map
             this.Width = 1280;
             this.Height = 720;
 
-            //sp.Play();
-
-            var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
+            //var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
 
             // Создаёт файл settings, если его нет, и записывает туда данные об audio.
-            if (!File.Exists("settings.json"))
-            {
-                using (var file = new FileStream("settings.json", FileMode.Create))
-                {
-                    jsonFormatter.WriteObject(file, _audio);
+            //if (!File.Exists("settings.json"))
+            //{
+            //    using (var file = new FileStream("settings.json", FileMode.Create))
+            //    {
+            //        jsonFormatter.WriteObject(file, _audio);
 
-                    _audio.Play();
+            //        _audio.Play();
 
-                    return;
-                }
-            }
+            //        return;
+            //    }
+            //}
 
             // Открывает файл settings и считывает данные об audio.
-            using (var file = new FileStream("settings.json", FileMode.OpenOrCreate))
-            {
-                _audio = (Audio)jsonFormatter.ReadObject(file);
+            //using (var file = new FileStream("settings.json", FileMode.OpenOrCreate))
+            //{
+            //    _audio = (Audio)jsonFormatter.ReadObject(file);
 
-                if (_audio != null)
-                {
-                    if (_audio.Enabled == true)
-                    {
-                        _audio = new Audio(@"audio\start.wav");
-                        _audio.Play();
-                    }
-                    else
-                    {
-                        pictureBoxSound.Image = Properties.Resources.mute;
-                    }
-                }
-                else
-                {
-                    _audio = new Audio(@"audio\start.wav");
-                    _audio.Play();
-                }
+            //    if (_audio != null)
+            //    {
+            //        if (_audio.Enabled == true)
+            //        {
+            //            _audio = new Audio(@"audio\start.wav");
+            //            _audio.Play();
+            //        }
+            //        else
+            //        {
+            //            pictureBoxSound.Image = Properties.Resources.mute;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        _audio = new Audio(@"audio\start.wav");
+            //        _audio.Play();
+            //    }
+            //}
+
+            if (_audio.Enabled == true)
+            {
+                pictureBoxSound.Image = Properties.Resources.speaker;
+                _audio.Play();
+            }
+            else
+            {
+                pictureBoxSound.Image = Properties.Resources.mute;
             }
         }
 
@@ -331,7 +368,7 @@ namespace Map
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string path = @"камеры\" + _mapName + @"\" + comboBoxCameras.Text + ".jpg";
+            string path = @"камеры\" + _mapName + @"\" + cbCameras.Text + ".jpg";
 
             if (File.Exists(path))
                 Process.Start(path);
@@ -505,7 +542,7 @@ namespace Map
 
         private void buttonOpenMap_Click(object sender, EventArgs e)
         {
-            LoadMap(comboBoxMaps.Text);
+            LoadMap(cbMaps.Text);
         }
 
         private void panelStart_MouseDown(object sender, MouseEventArgs e)
@@ -539,12 +576,15 @@ namespace Map
                 pictureBoxSound.Image = Properties.Resources.speaker;
             }
 
-            var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
+            //var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
 
-            using (var file = new FileStream("settings.json", FileMode.Create))
-            {
-                jsonFormatter.WriteObject(file, _audio);
-            }
+            //using (var file = new FileStream("settings.json", FileMode.Create))
+            //{
+            //    jsonFormatter.WriteObject(file, _audio);
+            //}
+
+            //_audio.Save();
+            Saver.Save(new List<Audio>() { _audio });
         }    
 
         private void This_MouseWheel(object sender, MouseEventArgs e)
@@ -581,6 +621,110 @@ namespace Map
             }
         }
 
-       
+        private void ShowParkingCameras()
+        {
+            var parking = _parkings.SingleOrDefault(p => p.Number == cbParkings.Text);
+
+            if (parking != null)
+            {
+                FormParkingCameras formParkingCameras = new FormParkingCameras(parking);
+                formParkingCameras.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Стоянка не найдена.");
+            }
+        }
+
+        private void btnAddParking_Click(object sender, EventArgs e)
+        {
+            //var parking = new Parking("42");
+            //var camera1 = new Camera(63);
+            //var camera2 = new Camera(64);
+            //var camera3 = new Camera(65);
+            //var camera4 = new Camera(45);
+
+            //parking.Cameras.Add(camera1, Rating.Low);
+            //parking.Cameras.Add(camera2, Rating.Medium);
+            //parking.Cameras.Add(camera3, Rating.High);
+            //parking.Cameras.Add(camera4, Rating.Medium);
+
+            //_parkings.Add(parking);
+            //parking.Save(_parkings);
+            //MessageBox.Show("Стоянка успешно добавлена.");   
+
+            //var parking = new Parking("10");
+            //var camera1 = new Camera(110);
+            //var camera2 = new Camera(119);
+            //var camera3 = new Camera(555);
+            //var pc1 = new ParkingCamera(parking, camera1, Rating.Low);
+            //var pc2 = new ParkingCamera(parking, camera2, Rating.Medium);
+            //var pc3 = new ParkingCamera(parking, camera3, Rating.High);
+
+            //_parkings.Add(parking);
+            //_ccameras.Add(camera1);
+            //_ccameras.Add(camera2);
+            //_ccameras.Add(camera3);
+            //_parkingCameras.Add(pc1);
+            //_parkingCameras.Add(pc2);
+            //_parkingCameras.Add(pc3);
+
+            //Saver.Save(_parkings);
+            //Saver.Save(_ccameras);
+            //Saver.Save(_parkingCameras);
+
+            _ccameras.Clear();
+            DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\Охрана периметра");
+            foreach (FileInfo files in dirCameras.GetFiles())
+            {
+                var camera = new Camera(Convert.ToInt32(Path.GetFileNameWithoutExtension(files.Name)));
+                _ccameras.Add(camera);
+            }
+
+            Saver.Save(_ccameras);
+            MessageBox.Show("Сохранено.");
+        }
+
+        private void btnOpenParking_Click(object sender, EventArgs e)
+        {
+            ShowParkingCameras();
+        }
+
+        private void imgSettings_Click(object sender, EventArgs e)
+        {
+            ShowSettingsForm();
+        }
+
+        private static void ShowSettingsForm()
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            settingsForm.Show();
+        }
+
+
+
+        //private void SaveFile<T>(List<T> items)
+        //{
+        //    var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
+        //    var fileName = $"{typeof(T).Name}s.json";
+
+        //    using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+        //    {
+        //        jsonFormatter.WriteObject(fs, items);
+        //    }
+        //}
+
+        //private List<T> LoadFile<T>()
+        //{
+        //    var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
+        //    var fileName = $"{typeof(T).Name}s.json";
+
+        //    using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+        //    {
+        //        return fs.Length > 0 && jsonFormatter.ReadObject(fs) is List<T> items ? items : new List<T>();
+        //    }
+        //}
+
+
     }
 }

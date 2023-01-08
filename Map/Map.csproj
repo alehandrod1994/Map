@@ -36,6 +36,10 @@
     <ApplicationIcon>iconfinder_Basic_view_watch_eye_6611489.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -50,17 +54,61 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddCamerasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddCamerasForm.Designer.cs">
+      <DependentUpon>AddCamerasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddParkingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddParkingForm.Designer.cs">
+      <DependentUpon>AddParkingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Audio.cs" />
+    <Compile Include="Camera.cs" />
+    <Compile Include="RemoveParkingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RemoveParkingForm.Designer.cs">
+      <DependentUpon>RemoveParkingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Saver.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormParkingCameras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormParkingCameras.Designer.cs">
+      <DependentUpon>FormParkingCameras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Parking.cs" />
+    <Compile Include="ParkingCamera.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rating.cs" />
+    <EmbeddedResource Include="AddCamerasForm.resx">
+      <DependentUpon>AddCamerasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddParkingForm.resx">
+      <DependentUpon>AddParkingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormParkingCameras.resx">
+      <DependentUpon>FormParkingCameras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -72,6 +120,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RemoveParkingForm.resx">
+      <DependentUpon>RemoveParkingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -133,6 +187,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Basic_view_watch_eye_6611489.ico" />
+    <None Include="images\settings.png" />
+    <None Include="images\parking_square_icon.png" />
     <None Include="images\КПП-1, 2 %28превью%29.png" />
     <None Include="images\Штаб %28превью%29.png" />
     <None Include="images\СТАБ %28превью%29.png" />
