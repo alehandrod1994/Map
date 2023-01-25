@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,31 +34,23 @@ namespace Map
             for (int i = 0; i < parkingCameras.Count; i++)
             {
                 table.Rows[i].Cells[0].Value = parkingCameras[i].Camera.Number;
-                table.Rows[i].Cells[1].Value = GetRatingValue(parkingCameras[i].Rating);
+                table.Rows[i].Cells[1].Value = Parser.GetValue(parkingCameras[i].Rating);
             }
         }
 
-        private string GetRatingValue(Rating rating)
+        private void Table_DoubleClick(object sender, EventArgs e)
         {
-            string value = "";
+            var cameraNumber = table.SelectedRows[0].Cells[0].Value;
+            var path = $"cameras\\Охрана периметра\\{cameraNumber}.jpg";
 
-            switch(rating)
+            if (File.Exists(path))
             {
-                case Rating.High:
-                    value = "***";
-                    break;
-
-                case Rating.Medium:
-                    value = "**";
-                    break;
-
-                case Rating.Low:
-                    value = "*";
-                    break;
+                Process.Start(path);
             }
-
-            return value;
+            else
+            {
+                MessageBox.Show("Камера не найдена.");
+            }
         }
-
     }
 }

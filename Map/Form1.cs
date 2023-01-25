@@ -98,11 +98,13 @@ namespace Map
 
         private void LoadMap(string labelPreview)
         {
+            var path = $"maps\\{ labelPreview}.png";
+
             if (_mapName != labelPreview)                                                           //Загрузка схемы происходит
             {                                                                                      //если выбрана новая схема
                 try
                 {
-                    _img = Image.FromFile(@"схемы\" + labelPreview + ".png");
+                    _img = Image.FromFile(path);
                 }
                 catch
                 {
@@ -190,9 +192,9 @@ namespace Map
             cbCameras.Text = "";
             _cameras.Clear();
 
-            if (Directory.Exists(@"камеры\" + mapName))
+            if (Directory.Exists($"cameras\\{mapName}"))
             {
-                DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\" + mapName);
+                DirectoryInfo dirCameras = new DirectoryInfo($"cameras\\{mapName}");
                 foreach (FileInfo files in dirCameras.GetFiles())
                 {
                     _cameras.Add(Path.GetFileNameWithoutExtension(files.Name));
@@ -221,7 +223,7 @@ namespace Map
             pictureBoxMap.Height = this.Height - 150;
 
             cbMaps.Items.Clear();                                                         //Загрузка схем               
-            DirectoryInfo dirMaps = new DirectoryInfo("схемы");
+            DirectoryInfo dirMaps = new DirectoryInfo("maps");
             foreach (FileInfo files in dirMaps.GetFiles())
             {
                 cbMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
@@ -235,49 +237,10 @@ namespace Map
         private void Form1_Load(object sender, EventArgs e)
         {
             panelStart.Location = new Point(0, 0);
-            this.MaximizeBox = false;
-            this.Width = 1280;
-            this.Height = 720;
-
-            //var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
-
-            // Создаёт файл settings, если его нет, и записывает туда данные об audio.
-            //if (!File.Exists("settings.json"))
-            //{
-            //    using (var file = new FileStream("settings.json", FileMode.Create))
-            //    {
-            //        jsonFormatter.WriteObject(file, _audio);
-
-            //        _audio.Play();
-
-            //        return;
-            //    }
-            //}
-
-            // Открывает файл settings и считывает данные об audio.
-            //using (var file = new FileStream("settings.json", FileMode.OpenOrCreate))
-            //{
-            //    _audio = (Audio)jsonFormatter.ReadObject(file);
-
-            //    if (_audio != null)
-            //    {
-            //        if (_audio.Enabled == true)
-            //        {
-            //            _audio = new Audio(@"audio\start.wav");
-            //            _audio.Play();
-            //        }
-            //        else
-            //        {
-            //            pictureBoxSound.Image = Properties.Resources.mute;
-            //        }
-            //    }
-            //    else
-            //    {
-            //        _audio = new Audio(@"audio\start.wav");
-            //        _audio.Play();
-            //    }
-            //}
-
+            MaximizeBox = false;
+            Width = 1280;
+            Height = 720;
+         
             if (_audio.Enabled == true)
             {
                 pictureBoxSound.Image = Properties.Resources.speaker;
@@ -330,13 +293,6 @@ namespace Map
 
             Graphics g = e.Graphics;
             g.DrawImage(_img, _x, _y, _picWidth, _picHeight);
-
-            label2.Text = "picW =" + _picWidth;
-            label3.Text = "scrollW =" + hScrollBar1.Maximum;
-            label4.Text = "valueW =" + hScrollBar1.Value;
-            label6.Text = "picH =" + _picHeight;
-            label5.Text = "scrollH =" + vScrollBar1.Maximum;
-            label1.Text = "valueH =" + vScrollBar1.Value;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -368,12 +324,16 @@ namespace Map
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string path = @"камеры\" + _mapName + @"\" + cbCameras.Text + ".jpg";
+            var path = $"cameras\\{_mapName}\\{cbCameras.Text}.jpg";
 
             if (File.Exists(path))
+            {
                 Process.Start(path);
+            }
             else
-                MessageBox.Show("Камера не найдена");
+            {
+                MessageBox.Show("Камера не найдена.");
+            }
         }
 
         private void buttonBig_Click(object sender, EventArgs e)
@@ -674,7 +634,7 @@ namespace Map
             //Saver.Save(_parkingCameras);
 
             _ccameras.Clear();
-            DirectoryInfo dirCameras = new DirectoryInfo(@"камеры\Охрана периметра");
+            DirectoryInfo dirCameras = new DirectoryInfo(@"cameras\Охрана периметра");
             foreach (FileInfo files in dirCameras.GetFiles())
             {
                 var camera = new Camera(Convert.ToInt32(Path.GetFileNameWithoutExtension(files.Name)));

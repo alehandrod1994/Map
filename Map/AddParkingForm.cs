@@ -11,21 +11,24 @@ using System.Windows.Forms;
 namespace Map
 {
     public partial class AddParkingForm : Form
-    {
-        public event EventHandler OnAdd;
-
+    {      
         public AddParkingForm()
         {
             InitializeComponent();           
         }
 
-        private void btnAddParking_Click(object sender, EventArgs e)
+        public Parking Parking { get; private set; }
+
+        private void BtnAddParking_Click(object sender, EventArgs e)
         {
-            Close();
-            OnAdd?.Invoke(tbParking.Text, null);
+            if (!string.IsNullOrWhiteSpace(tbParking.Text))
+            {
+                Parking = new Parking(tbParking.Text);
+                DialogResult = DialogResult.OK;
+            }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }

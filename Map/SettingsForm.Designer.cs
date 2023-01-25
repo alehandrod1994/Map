@@ -29,12 +29,18 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
             this.tabControl = new System.Windows.Forms.TabControl();
             this.parkingPage = new System.Windows.Forms.TabPage();
+            this.btnDownParking = new System.Windows.Forms.Button();
+            this.btnUpParking = new System.Windows.Forms.Button();
+            this.progressBarParkings = new System.Windows.Forms.ProgressBar();
+            this.btnExportParkings = new System.Windows.Forms.Button();
             this.panelParkingPreview = new System.Windows.Forms.Panel();
+            this.btnNextImgParking = new System.Windows.Forms.Button();
+            this.btnPreviousImgParking = new System.Windows.Forms.Button();
             this.tableSelectedCameras = new System.Windows.Forms.DataGridView();
             this.tableParkingCamerasCameraColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableSelectedCamerasRatingColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -54,8 +60,7 @@
             this.btnAddParking = new System.Windows.Forms.Button();
             this.labelParking = new System.Windows.Forms.Label();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btnPreviousImgParking = new System.Windows.Forms.Button();
-            this.btnNextImgParking = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl.SuspendLayout();
             this.parkingPage.SuspendLayout();
             this.panelParkingPreview.SuspendLayout();
@@ -75,6 +80,10 @@
             // 
             // parkingPage
             // 
+            this.parkingPage.Controls.Add(this.btnDownParking);
+            this.parkingPage.Controls.Add(this.btnUpParking);
+            this.parkingPage.Controls.Add(this.progressBarParkings);
+            this.parkingPage.Controls.Add(this.btnExportParkings);
             this.parkingPage.Controls.Add(this.panelParkingPreview);
             this.parkingPage.Controls.Add(this.tbAddParking);
             this.parkingPage.Controls.Add(this.tvParking);
@@ -90,6 +99,46 @@
             this.parkingPage.Text = "Стоянки ВС";
             this.parkingPage.UseVisualStyleBackColor = true;
             // 
+            // btnDownParking
+            // 
+            this.btnDownParking.BackgroundImage = global::Map.Properties.Resources.sortDown;
+            this.btnDownParking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDownParking.Location = new System.Drawing.Point(345, 131);
+            this.btnDownParking.Name = "btnDownParking";
+            this.btnDownParking.Size = new System.Drawing.Size(23, 23);
+            this.btnDownParking.TabIndex = 28;
+            this.btnDownParking.UseVisualStyleBackColor = true;
+            this.btnDownParking.Click += new System.EventHandler(this.BtnDownParking_Click);
+            // 
+            // btnUpParking
+            // 
+            this.btnUpParking.BackgroundImage = global::Map.Properties.Resources.sortUp;
+            this.btnUpParking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnUpParking.Location = new System.Drawing.Point(345, 102);
+            this.btnUpParking.Name = "btnUpParking";
+            this.btnUpParking.Size = new System.Drawing.Size(23, 23);
+            this.btnUpParking.TabIndex = 27;
+            this.btnUpParking.UseVisualStyleBackColor = true;
+            this.btnUpParking.Click += new System.EventHandler(this.BtnUpParking_Click);
+            // 
+            // progressBarParkings
+            // 
+            this.progressBarParkings.Location = new System.Drawing.Point(21, 50);
+            this.progressBarParkings.Name = "progressBarParkings";
+            this.progressBarParkings.Size = new System.Drawing.Size(318, 10);
+            this.progressBarParkings.TabIndex = 26;
+            this.progressBarParkings.Visible = false;
+            // 
+            // btnExportParkings
+            // 
+            this.btnExportParkings.Location = new System.Drawing.Point(21, 15);
+            this.btnExportParkings.Name = "btnExportParkings";
+            this.btnExportParkings.Size = new System.Drawing.Size(149, 29);
+            this.btnExportParkings.TabIndex = 25;
+            this.btnExportParkings.Text = "Экспортировать в Excel";
+            this.btnExportParkings.UseVisualStyleBackColor = true;
+            this.btnExportParkings.Click += new System.EventHandler(this.BtnExportParkings_Click);
+            // 
             // panelParkingPreview
             // 
             this.panelParkingPreview.Controls.Add(this.btnNextImgParking);
@@ -103,34 +152,54 @@
             this.panelParkingPreview.Controls.Add(this.lblParkingCameras);
             this.panelParkingPreview.Controls.Add(this.tbParkingNumber);
             this.panelParkingPreview.Controls.Add(this.lblParkingNumber);
-            this.panelParkingPreview.Location = new System.Drawing.Point(392, 88);
+            this.panelParkingPreview.Location = new System.Drawing.Point(392, 102);
             this.panelParkingPreview.Name = "panelParkingPreview";
-            this.panelParkingPreview.Size = new System.Drawing.Size(757, 527);
+            this.panelParkingPreview.Size = new System.Drawing.Size(757, 513);
             this.panelParkingPreview.TabIndex = 24;
+            // 
+            // btnNextImgParking
+            // 
+            this.btnNextImgParking.Location = new System.Drawing.Point(514, 268);
+            this.btnNextImgParking.Name = "btnNextImgParking";
+            this.btnNextImgParking.Size = new System.Drawing.Size(24, 24);
+            this.btnNextImgParking.TabIndex = 33;
+            this.btnNextImgParking.Text = ">";
+            this.btnNextImgParking.UseVisualStyleBackColor = true;
+            this.btnNextImgParking.Click += new System.EventHandler(this.btnNextImgParking_Click);
+            // 
+            // btnPreviousImgParking
+            // 
+            this.btnPreviousImgParking.Location = new System.Drawing.Point(62, 268);
+            this.btnPreviousImgParking.Name = "btnPreviousImgParking";
+            this.btnPreviousImgParking.Size = new System.Drawing.Size(24, 24);
+            this.btnPreviousImgParking.TabIndex = 32;
+            this.btnPreviousImgParking.Text = "<";
+            this.btnPreviousImgParking.UseVisualStyleBackColor = true;
+            this.btnPreviousImgParking.Click += new System.EventHandler(this.btnPreviousImgParking_Click);
             // 
             // tableSelectedCameras
             // 
             this.tableSelectedCameras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tableSelectedCameras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tableSelectedCameras.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.tableSelectedCameras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableSelectedCameras.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.tableParkingCamerasCameraColumn,
             this.tableSelectedCamerasRatingColumn});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tableSelectedCameras.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tableSelectedCameras.DefaultCellStyle = dataGridViewCellStyle4;
             this.tableSelectedCameras.Location = new System.Drawing.Point(295, 306);
             this.tableSelectedCameras.Name = "tableSelectedCameras";
             this.tableSelectedCameras.Size = new System.Drawing.Size(243, 194);
@@ -171,6 +240,7 @@
             this.imgParking.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgParking.TabIndex = 14;
             this.imgParking.TabStop = false;
+            this.imgParking.DoubleClick += new System.EventHandler(this.ImgParking_DoubleClick);
             // 
             // btnCancelParking
             // 
@@ -237,7 +307,7 @@
             // 
             // tbAddParking
             // 
-            this.tbAddParking.Location = new System.Drawing.Point(76, 62);
+            this.tbAddParking.Location = new System.Drawing.Point(76, 73);
             this.tbAddParking.Name = "tbAddParking";
             this.tbAddParking.Size = new System.Drawing.Size(100, 20);
             this.tbAddParking.TabIndex = 23;
@@ -245,15 +315,15 @@
             // 
             // tvParking
             // 
-            this.tvParking.Location = new System.Drawing.Point(21, 88);
+            this.tvParking.Location = new System.Drawing.Point(21, 102);
             this.tvParking.Name = "tvParking";
-            this.tvParking.Size = new System.Drawing.Size(318, 527);
+            this.tvParking.Size = new System.Drawing.Size(318, 513);
             this.tvParking.TabIndex = 13;
-            this.tvParking.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvParking_AfterSelect);
+            this.tvParking.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TvParking_AfterSelect);
             // 
             // btnRemoveParking
             // 
-            this.btnRemoveParking.Location = new System.Drawing.Point(316, 60);
+            this.btnRemoveParking.Location = new System.Drawing.Point(316, 71);
             this.btnRemoveParking.Name = "btnRemoveParking";
             this.btnRemoveParking.Size = new System.Drawing.Size(23, 23);
             this.btnRemoveParking.TabIndex = 11;
@@ -263,7 +333,7 @@
             // 
             // btnPrepareAddParking
             // 
-            this.btnPrepareAddParking.Location = new System.Drawing.Point(287, 60);
+            this.btnPrepareAddParking.Location = new System.Drawing.Point(287, 71);
             this.btnPrepareAddParking.Name = "btnPrepareAddParking";
             this.btnPrepareAddParking.Size = new System.Drawing.Size(23, 23);
             this.btnPrepareAddParking.TabIndex = 10;
@@ -273,7 +343,7 @@
             // 
             // btnAddParking
             // 
-            this.btnAddParking.Location = new System.Drawing.Point(182, 60);
+            this.btnAddParking.Location = new System.Drawing.Point(182, 71);
             this.btnAddParking.Name = "btnAddParking";
             this.btnAddParking.Size = new System.Drawing.Size(75, 23);
             this.btnAddParking.TabIndex = 4;
@@ -285,7 +355,7 @@
             // labelParking
             // 
             this.labelParking.AutoSize = true;
-            this.labelParking.Location = new System.Drawing.Point(18, 63);
+            this.labelParking.Location = new System.Drawing.Point(18, 74);
             this.labelParking.Name = "labelParking";
             this.labelParking.Size = new System.Drawing.Size(52, 13);
             this.labelParking.TabIndex = 0;
@@ -297,31 +367,11 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "parking_square_icon (2).png");
             // 
-            // btnPreviousImgParking
-            // 
-            this.btnPreviousImgParking.Location = new System.Drawing.Point(62, 268);
-            this.btnPreviousImgParking.Name = "btnPreviousImgParking";
-            this.btnPreviousImgParking.Size = new System.Drawing.Size(24, 24);
-            this.btnPreviousImgParking.TabIndex = 32;
-            this.btnPreviousImgParking.Text = "<";
-            this.btnPreviousImgParking.UseVisualStyleBackColor = true;
-            this.btnPreviousImgParking.Click += new System.EventHandler(this.btnPreviousImgParking_Click);
-            // 
-            // btnNextImgParking
-            // 
-            this.btnNextImgParking.Location = new System.Drawing.Point(514, 268);
-            this.btnNextImgParking.Name = "btnNextImgParking";
-            this.btnNextImgParking.Size = new System.Drawing.Size(24, 24);
-            this.btnNextImgParking.TabIndex = 33;
-            this.btnNextImgParking.Text = ">";
-            this.btnNextImgParking.UseVisualStyleBackColor = true;
-            this.btnNextImgParking.Click += new System.EventHandler(this.btnNextImgParking_Click);
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 682);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.tabControl);
             this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -364,5 +414,10 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn tableSelectedCamerasRatingColumn;
         private System.Windows.Forms.Button btnNextImgParking;
         private System.Windows.Forms.Button btnPreviousImgParking;
+        private System.Windows.Forms.Button btnExportParkings;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ProgressBar progressBarParkings;
+        private System.Windows.Forms.Button btnDownParking;
+        private System.Windows.Forms.Button btnUpParking;
     }
 }

@@ -52,7 +52,7 @@
             this.btnCancel.TabIndex = 25;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnAddParking
             // 
@@ -62,7 +62,7 @@
             this.btnAddParking.TabIndex = 24;
             this.btnAddParking.Text = "Сохранить";
             this.btnAddParking.UseVisualStyleBackColor = true;
-            this.btnAddParking.Click += new System.EventHandler(this.btnAddParking_Click);
+            this.btnAddParking.Click += new System.EventHandler(this.BtnAddParking_Click);
             // 
             // tbParking
             // 
@@ -73,6 +73,7 @@
             // 
             // AddParkingForm
             // 
+            this.AcceptButton = this.btnAddParking;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(368, 133);

@@ -21,13 +21,13 @@ namespace Map
             labelParkingNumber.Text = parking.Number;
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
+        private void BtnRemove_Click(object sender, EventArgs e)
         {
             Close();
             OnRemove?.Invoke(this, null);           
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }

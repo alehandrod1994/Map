@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -52,7 +54,7 @@ namespace Map
                     SelectedImageIndex = 0
                 };
 
-                tvParking.Nodes.Add(parking.Number);
+                tvParking.Nodes.Add(node);
             }
 
             _currentParking = null;
@@ -68,56 +70,8 @@ namespace Map
             tableSelectedCameras.Visible = false;         
             tableSelectedCameras.Rows.Clear();
         }
-
-        private string GetRatingValue(Rating rating)
-        {
-            string value = "";
-
-            switch (rating)
-            {
-                case Rating.High:
-                    value = "***";
-                    break;
-
-                case Rating.Medium:
-                    value = "**";
-                    break;
-
-                case Rating.Low:
-                    value = "*";
-                    break;
-            }
-
-            return value;
-        }
-
-        private Rating GetRating(string value)
-        {
-            var rating = Rating.Low;
-
-            switch (value)
-            {
-                case "***":
-                    rating = Rating.High;
-                    break;
-
-                case "**":
-                    rating = Rating.Medium;
-                    break;
-
-                case "*":
-                    rating = Rating.Low;
-                    break;
-
-                default:
-                    rating = Rating.Low;
-                    break;
-            }
-
-            return rating;
-        }
-
-        private void tvParking_AfterSelect(object sender, TreeViewEventArgs e)
+        
+        private void TvParking_AfterSelect(object sender, TreeViewEventArgs e)
         {
             panelParkingPreview.Enabled = true;
             ResetParkingPreview();
@@ -141,13 +95,14 @@ namespace Map
 
             try
             {
-                Image img = Image.FromFile(@"камеры\Охрана периметра\" + camera.Number + ".jpg");
+                Image img = Image.FromFile($"cameras\\Охрана периметра\\{camera.Number}.jpg");
                 imgParking.Image = img;
 
             }
             catch
             {
-                MessageBox.Show("Схема не найдена.");
+                imgParking.Image = null;
+                MessageBox.Show("Камера не найдена.");               
             }
         }
 
@@ -171,7 +126,7 @@ namespace Map
             for (int i = 0; i < _currentParkingCameras.Count; i++)
             {
                 tableSelectedCameras.Rows[i].Cells[0].Value = _currentParkingCameras[i].Camera.Number;
-                tableSelectedCameras.Rows[i].Cells[1].Value = GetRatingValue(_currentParkingCameras[i].Rating);
+                tableSelectedCameras.Rows[i].Cells[1].Value = Parser.GetValue(_currentParkingCameras[i].Rating);
             }           
         }
 
@@ -189,20 +144,12 @@ namespace Map
                      
         }
      
-        private void AddParking(object sender, EventArgs e)
+        private void AddParking(Parking newParking)
         {
-            var newParking = sender.ToString();
-
-            if (string.IsNullOrWhiteSpace(newParking))
-            {
-                return;
-            }
-
-            var parking = _parkings.FirstOrDefault(p => p.Number == newParking);
+            var parking = _parkings.FirstOrDefault(p => p.Number == newParking.Number);
             if (parking == null)
             {
-                parking = new Parking(newParking);
-                _parkings.Add(parking);
+                _parkings.Add(newParking);
                 Saver.Save(_parkings);
             }
             else
@@ -219,9 +166,11 @@ namespace Map
 
         private void ShowAddParkingForm()
         {
-            var addParkingForm = new AddParkingForm();
-            addParkingForm.OnAdd += AddParking;
-            addParkingForm.ShowDialog();
+            var form = new AddParkingForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                AddParking(form.Parking);
+            }
         }
 
         private void btnRemoveParking_Click(object sender, EventArgs e)
@@ -334,7 +283,7 @@ namespace Map
             for (int i = 0; i < tableSelectedCameras.RowCount - 1; i++)
             {
                 var camera = new Camera(Convert.ToInt32(tableSelectedCameras.Rows[i].Cells[0].Value));
-                var rating = GetRating(tableSelectedCameras.Rows[i].Cells[1].Value.ToString());
+                var rating = Parser.GetRating(tableSelectedCameras.Rows[i].Cells[1].Value.ToString());
 
                 var parkingCamera = new ParkingCamera(_currentParking, camera, rating);
                 _currentParkingCameras.Add(parkingCamera);                
@@ -567,26 +516,115 @@ namespace Map
             }
         }
 
-        //private void Save<T>(List<T> items)
-        //{
-        //    var formatter = new BinaryFormatter();
-        //    var fileName = $"{typeof(T).Name}s.bin";
+        private async void BtnExportParkings_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = "";
+            saveFileDialog1.Title = "Введите название файла";
+            saveFileDialog1.Filter = "Документ Excel (*xlsx) | *.xlsx";
 
-        //    using (var fs = new FileStream(fileName, FIleMode.OpenOrCreate))
-        //    {
-        //        formatter.Serialize(fs, items);
-        //    }
-        //}
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var newFileName = saveFileDialog1.FileName;
+                var progress = new Progress<int>(value => progressBarParkings.Value = value);
+                var report = new Report();
 
-        //private List<T> Load<T>()
-        //{
-        //    var formatter = new BinaryFormatter();
-        //    var fileName = $"{typeof(T).Name}s.bin";
+                SetUIForStartExport();
 
-        //    using (var fs = new FileStream(fileName, FIleMode.OpenOrCreate))
-        //    {
-        //        return fs.Length > 0 && formatter.Deserialize(fs) is List<T> items? items : new List<T>();
-        //    }
-        //}
+                ReportStatus status = await Task.Run(() =>
+                report.ExportParkings(_parkingCameras, newFileName, progress));
+
+                SetUIForEndExport();
+                ShowExportResult(status, newFileName);                                 
+            }
+        }
+
+        private void SetUIForStartExport()
+        {
+            btnExportParkings.Enabled = false;
+            progressBarParkings.Value = 0;
+            progressBarParkings.Visible = true;
+        }
+
+        private void SetUIForEndExport()
+        {
+            btnExportParkings.Enabled = true;
+            progressBarParkings.Visible = false;
+        }
+
+        private void ShowExportResult(ReportStatus status, string newFileName)
+        {
+            switch (status)
+            {
+                case ReportStatus.Failed:
+                    MessageBox.Show("Не удалось открыть подключение к файлу.");
+                    break;
+
+                case ReportStatus.NotSave:
+                    MessageBox.Show("Не удалось сохранить файл.");
+                    break;
+
+                case ReportStatus.Success:
+                    var form = new SuccessfullyExport(newFileName);
+                    form.Show();
+                    break;
+            }           
+        }
+
+        private void BtnUpParking_Click(object sender, EventArgs e)
+        {
+            if (tvParking.SelectedNode == null)
+            {
+                return;
+            }
+
+            ReplaceParking(tvParking.SelectedNode.Index - 1);
+        }
+
+        private void BtnDownParking_Click(object sender, EventArgs e)
+        {
+            if (tvParking.SelectedNode == null)
+            {
+                return;
+            }
+
+            ReplaceParking(tvParking.SelectedNode.Index + 1);
+        }
+
+        private void ReplaceParking(int newParkingIndex)
+        {
+            if (newParkingIndex != -1 && newParkingIndex != _parkings.Count)
+            {
+                int currentParkingIndex = tvParking.SelectedNode.Index;
+
+                var temp = _parkings[currentParkingIndex];
+                _parkings[currentParkingIndex] = _parkings[newParkingIndex];
+                _parkings[newParkingIndex] = temp;
+
+                tvParking.Nodes[currentParkingIndex].Text = _parkings[currentParkingIndex].Number;
+                tvParking.Nodes[newParkingIndex].Text = _parkings[newParkingIndex].Number;
+                tvParking.SelectedNode = tvParking.Nodes[newParkingIndex];
+                tvParking.Select();
+
+                Saver.Save(_parkings);
+            }
+        }
+
+        private void ImgParking_DoubleClick(object sender, EventArgs e)
+        {
+            if (_currentParkingCameras.Count > 0)
+            {
+                var camera = _currentParkingCameras[_imgIndex].Camera;
+                var path = $"cameras\\Охрана периметра\\{camera.Number}.jpg";
+
+                if (File.Exists(path))
+                {
+                    Process.Start(path);
+                }
+                else
+                {
+                    MessageBox.Show("Камера не найдена.");
+                }
+            }
+        }
     }
 }

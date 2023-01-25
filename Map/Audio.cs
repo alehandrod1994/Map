@@ -41,7 +41,11 @@ namespace Map
 
         public void Play()
         {
-            _sp.Play();
+            try
+            {
+                _sp.Play();
+            }
+            catch { }
         }
 
         public void Stop()
@@ -49,36 +53,36 @@ namespace Map
             _sp.Stop();
         }
 
-        public Audio GetAudio()
-        {
-            var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
-            var fileName = $"data\\{typeof(Audio).Name}s.json";
+        //public Audio GetAudio()
+        //{
+        //    var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
+        //    var fileName = $"data\\{typeof(Audio).Name}s.json";
 
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0)
-                {
-                    var item = (Audio)jsonFormatter.ReadObject(fs);
+        //    using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+        //    {
+        //        if (fs.Length > 0)
+        //        {
+        //            var item = (Audio)jsonFormatter.ReadObject(fs);
 
-                    if (item != null)
-                    {
-                        return item;
-                    }
-                }
+        //            if (item != null)
+        //            {
+        //                return item;
+        //            }
+        //        }
 
-                return new Audio();
-            }
-        }
+        //        return new Audio();
+        //    }
+        //}
 
-        public void Save()
-        {
-            var formatter = new DataContractJsonSerializer(typeof(Audio));
-            var fileName = $"data\\{typeof(Audio).Name}s.json";
+        //public void Save()
+        //{
+        //    var formatter = new DataContractJsonSerializer(typeof(Audio));
+        //    var fileName = $"data\\{typeof(Audio).Name}s.json";
 
-            using (var fs = new FileStream(fileName, FileMode.Create))
-            {
-                formatter.WriteObject(fs, this);
-            }
-        }
+        //    using (var fs = new FileStream(fileName, FileMode.Create))
+        //    {
+        //        formatter.WriteObject(fs, this);
+        //    }
+        //}
     }
 }

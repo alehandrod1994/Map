@@ -62,7 +62,7 @@
             this.btnCancel.TabIndex = 21;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnRemove
             // 
@@ -72,7 +72,7 @@
             this.btnRemove.TabIndex = 20;
             this.btnRemove.Text = "Да";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // RemoveParkingForm
             // 
