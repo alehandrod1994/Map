@@ -16,9 +16,10 @@ namespace Map
 
 		private ReportStatus _status;
 
+		private int _currentRow;
 		private int _maxRow;
 
-		public ReportStatus ExportParkings(List<ParkingCamera> items, string newFileName, IProgress<int> progress)
+		public ReportStatus ExportParkings(string newFileName, IProgress<int> progress)
 		{
 			if (!OpenConnection())
 			{
@@ -29,10 +30,10 @@ namespace Map
 			{
 				"Стоянка",
 				"Камера",
-				"Рейтинг"
+				"Приоритет"
 			};
 			CreateHead(headers);
-			PasteData(items, progress);
+			PasteData(progress);
 			FormatTable();
 
 			if (!Save(newFileName))
@@ -76,40 +77,51 @@ namespace Map
 			}
 		}
 
-		private void PasteData(List<ParkingCamera> items, IProgress<int> progress)
+		private void PasteData(IProgress<int> progress)
 		{
-			int startRow = 2;
-			_maxRow = items.Count + 1;
+			_currentRow = 1;
+			var parkings = Saver.Load<Parking>();
+			var parkingsCameras = Saver.Load<ParkingCamera>();
 
-			for (int i = startRow; i <= _maxRow; i++)
+			for (int i = 0; i < parkings.Count; i++)           
 			{
-				_sheet.Cells[i, 1] = items[i - startRow].Parking.Number;
-				_sheet.Cells[i, 2] = items[i - startRow].Camera.Number.ToString();
-				_sheet.Cells[i, 3] = Parser.GetValue(items[i - startRow].Rating);
+				List<ParkingCamera> currentParkingCameras = parkingsCameras.Where(pc => pc.Parking.Number == parkings[i].Number).ToList();
+				if (currentParkingCameras.Count > 0)
+				{
+					foreach (var item in currentParkingCameras)
+					{
+						AddRow(item.Parking.Number, item.Camera.Number.ToString(), Parser.GetValue(item.Rating));
+					}
 
-				progress.Report(CalculateProgress(i, _maxRow));
+					int mergeStartIndex = _currentRow - (currentParkingCameras.Count - 1);
+					MergeCells(mergeStartIndex, "A", _currentRow, "A");
+
+					progress.Report(CalculateProgress(i + 1, parkings.Count));
+				}
 			}
+
+			_maxRow = _currentRow;
 		}
+
+		private void AddRow(string parking, string camera, string rating)
+		{
+			_currentRow++;
+
+			_sheet.Cells[_currentRow, 1] = parking;
+			_sheet.Cells[_currentRow, 2] = camera;
+			_sheet.Cells[_currentRow, 3] = rating;
+		}
+
 
 		private void FormatTable()
 		{
+			AutoFitColumn(1, "C", _maxRow, "C");
 			DrawBorders(1, "A", _maxRow, "C");
 			FillBackground(1, "A", 1, "C", 112, 173, 71);
 
-			// TODO: Объединить ячейки.
-			//for (int i = 2; i < _maxRow; i++)
-			//{
-			//	if (ToString(i, 1) == ToString(i + 1, 1))
-			//	{
-			//		MergeCells(i, "A", i + 1, "A");
-			//	}
-			//}
-
-			// TODO: Выровнять стоянки по центру.
+			VerticalAlignment(1, "A", _maxRow, "A", Excel.XlVAlign.xlVAlignCenter);
+			HorizontalAlignment(1, "A", _maxRow, "A", Excel.XlVAlign.xlVAlignCenter);
 			HorizontalAlignment(1, "C", _maxRow, "C", Excel.XlVAlign.xlVAlignCenter);
-
-			// TODO: Выполнить автоширину у столбцов.
-
 		}
 
 		private bool Save(string newFileName)
@@ -191,7 +203,23 @@ namespace Map
 		}
 
 		/// <summary>
-		/// Горизонтальное выравнивание.
+		/// Выровнять по вертикали.
+		/// </summary>
+		/// <param name="startX"> Начальный номер строки. </param>
+		/// <param name="startY"> Начальный номер столбца. </param>
+		/// <param name="lastX"> Конечный номер строки. </param>
+		/// <param name="lastY"> Конечный номер столбца. </param>
+		/// <param name="valign"> Способ выравнивания. </param>
+		private void VerticalAlignment(int startX, string startY, int lastX, string lastY, Excel.XlVAlign valign)
+		{
+			Excel.Range range;
+
+			range = _sheet.Range[startY + startX + ":" + lastY + lastX];
+			range.VerticalAlignment = valign;
+		}
+
+		/// <summary>
+		/// Выровнять по горизонтали.
 		/// </summary>
 		/// <param name="startX"> Начальный номер строки. </param>
 		/// <param name="startY"> Начальный номер столбца. </param>

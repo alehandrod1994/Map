@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddCamerasForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,12 @@
     </Compile>
     <Compile Include="Audio.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="SearchCameraForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchCameraForm.Designer.cs">
+      <DependentUpon>SearchCameraForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Parser.cs" />
     <Compile Include="RemoveParkingForm.cs">
       <SubType>Form</SubType>
@@ -107,11 +119,17 @@
     <Compile Include="SuccessfullyExport.Designer.cs">
       <DependentUpon>SuccessfullyExport.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddCamerasForm.resx">
       <DependentUpon>AddCamerasForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddParkingForm.resx">
       <DependentUpon>AddParkingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchCameraForm.resx">
+      <DependentUpon>SearchCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -199,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Basic_view_watch_eye_6611489.ico" />
+    <None Include="images\iconfinder_Basic_view_watch_eye_6611489.png" />
     <None Include="images\sortDown.png" />
     <None Include="images\sortUp.png" />
     <None Include="images\settings.png" />

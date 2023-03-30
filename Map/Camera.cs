@@ -34,37 +34,37 @@ namespace Map
         //public Dictionary<Parking, Rating> Parkings { get; set; }
         //public ICollection<ParkingCamera> ParkingCamera { get; set; }
 
-        public List<Camera> GetCameras()
-        {
-            var jsonFormatter = new DataContractJsonSerializer(typeof(List<Camera>));
-            var fileName = $"data\\{typeof(Camera).Name}s.json";
+        //public List<Camera> GetCameras()
+        //{
+        //    var jsonFormatter = new DataContractJsonSerializer(typeof(List<Camera>));
+        //    var fileName = $"data\\{typeof(Camera).Name}s.json";
 
-            using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-            {
-                if (fs.Length > 0)
-                {
-                    var items = (List<Camera>)jsonFormatter.ReadObject(fs);
+        //    using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
+        //    {
+        //        if (fs.Length > 0)
+        //        {
+        //            var items = (List<Camera>)jsonFormatter.ReadObject(fs);
 
-                    if (items != null)
-                    {
-                        return items;
-                    }
-                }
+        //            if (items != null)
+        //            {
+        //                return items;
+        //            }
+        //        }
 
-                return new List<Camera>();
-            }
-        }
+        //        return new List<Camera>();
+        //    }
+        //}
 
-        public void Save(List<Camera> cameras)
-        {
-            var formatter = new DataContractJsonSerializer(typeof(List<Camera>));
-            var fileName = $"data\\{typeof(Camera).Name}s.json";
+        //public void Save(List<Camera> cameras)
+        //{
+        //    var formatter = new DataContractJsonSerializer(typeof(List<Camera>));
+        //    var fileName = $"data\\{typeof(Camera).Name}s.json";
 
-            using (var fs = new FileStream(fileName, FileMode.Create))
-            {
-                formatter.WriteObject(fs, cameras);
-            }
-        }
+        //    using (var fs = new FileStream(fileName, FileMode.Create))
+        //    {
+        //        formatter.WriteObject(fs, cameras);
+        //    }
+        //}
 
         public override string ToString()
         {
@@ -73,7 +73,12 @@ namespace Map
 
         public override bool Equals(object obj)
         {
-            return Number == ((Camera)obj).Number;
+            if (obj is Camera camera)
+            {
+                return Number == camera.Number;
+            }
+
+            return false;
         }
 
         public override int GetHashCode()

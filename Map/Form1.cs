@@ -23,6 +23,7 @@ namespace Map
         private int _picHeight = 0;
         private int _zoom = 100;
         private Point _lastPoint;
+        private int _startY = 24;
         private float _imgWidth;
         private float _imgHeight;
         private float _pictureboxWidth;
@@ -35,9 +36,8 @@ namespace Map
         private List<Label> _labels;
         private List<PictureBox> _pictureBoxes;
         private List<string> _cameras;
-        private List<Parking> _parkings = new List<Parking>();
-        private List<Camera> _ccameras = new List<Camera>();
-        private List<ParkingCamera> _parkingCameras = new List<ParkingCamera>();
+        private List<Parking> _parkings;
+        private List<Camera> _ccameras;
 
         public Form1()
         {
@@ -91,9 +91,7 @@ namespace Map
 
             List<Audio> audios = Saver.Load<Audio>();
             _audio = audios.Count > 0 ? audios.First() : new Audio();
-            _cameras = new List<string>();
-            _parkings = Saver.Load<Parking>();
-
+            _cameras = new List<string>();          
         }
 
         private void LoadMap(string labelPreview)
@@ -105,6 +103,7 @@ namespace Map
                 try
                 {
                     _img = Image.FromFile(path);
+                    cbMaps.Text = labelPreview;
                 }
                 catch
                 {
@@ -114,7 +113,7 @@ namespace Map
             }
 
             if (_isFirstMap)
-            {
+            {               
                 OpenMapWindow(labelPreview);
             }
 
@@ -127,9 +126,11 @@ namespace Map
                 cbCameras.Items.Add(camera);
             }
 
-            if (labelPreview == "Охрана периметра")                                                    // Загрузка панели со стоянками
+            if (labelPreview == "Охрана периметра")                                               // Загрузка панели со стоянками
             {
-                cbParkings.Items.Clear();                                                         //Загрузка схем               
+                _parkings = Saver.Load<Parking>();                                                
+
+                cbParkings.Items.Clear();                                                                      
                 foreach (var p in _parkings)
                 {
                     cbParkings.Items.Add(p.Number);
@@ -217,17 +218,16 @@ namespace Map
             panelStart.Visible = false;
             _audio.Stop();
 
-            this.WindowState = FormWindowState.Maximized;                                      //Подбор размеров под разрешение монитора
-            this.MaximizeBox = true;
-            pictureBoxMap.Width = this.Width - 10;
-            pictureBoxMap.Height = this.Height - 150;
+            WindowState = FormWindowState.Maximized;                                      //Подбор размеров под разрешение монитора
+            MaximizeBox = true;
+            pictureBoxMap.Width = Width - 10;
+            pictureBoxMap.Height = Height - 150;
 
             cbMaps.Items.Clear();                                                         //Загрузка схем               
             DirectoryInfo dirMaps = new DirectoryInfo("maps");
             foreach (FileInfo files in dirMaps.GetFiles())
             {
                 cbMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
-
             }
             cbMaps.Text = mapName;
 
@@ -236,7 +236,7 @@ namespace Map
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            panelStart.Location = new Point(0, 0);
+            panelStart.Location = new Point(0, _startY);
             MaximizeBox = false;
             Width = 1280;
             Height = 720;
@@ -255,7 +255,7 @@ namespace Map
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0));
-            e.Graphics.DrawLine(pen, 0, 74, pictureBoxMap.Width, 74);
+            e.Graphics.DrawLine(pen, 0, 98, pictureBoxMap.Width, 98);
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
@@ -583,7 +583,7 @@ namespace Map
 
         private void ShowParkingCameras()
         {
-            var parking = _parkings.SingleOrDefault(p => p.Number == cbParkings.Text);
+            var parking = _parkings.SingleOrDefault(p => p.Number.Equals(cbParkings.Text, StringComparison.CurrentCultureIgnoreCase));
 
             if (parking != null)
             {
@@ -645,12 +645,12 @@ namespace Map
             MessageBox.Show("Сохранено.");
         }
 
-        private void btnOpenParking_Click(object sender, EventArgs e)
+        private void BtnOpenParking_Click(object sender, EventArgs e)
         {
             ShowParkingCameras();
         }
 
-        private void imgSettings_Click(object sender, EventArgs e)
+        private void ImgSettings_Click(object sender, EventArgs e)
         {
             ShowSettingsForm();
         }
@@ -659,6 +659,45 @@ namespace Map
         {
             SettingsForm settingsForm = new SettingsForm();
             settingsForm.Show();
+        }
+
+        private void SearchCamerasItem_Click(object sender, EventArgs e)
+        {
+            var form = new SearchCameraForm();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadMap(form.SelectedMap);
+            }
+        }
+
+        private void SettingsItem_Click(object sender, EventArgs e)
+        {
+            ShowSettingsForm();
+        }
+
+        private void ExitItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ManualItem_Click(object sender, EventArgs e)
+        {
+            string path = "manual\\Пошаговая инструкция.docx";
+
+            if (File.Exists(path))
+            {
+                Process.Start(path);
+            }
+            else
+            {
+                MessageBox.Show("Не удалось открыть инструкцию.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void AboutItem_Click(object sender, EventArgs e)
+        {
+            var aboutForm = new AboutForm();
+            aboutForm.Show();
         }
 
 

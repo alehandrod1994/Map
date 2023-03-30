@@ -34,9 +34,7 @@ namespace Map
 
             _parkings = Saver.Load<Parking>();
             _cameras = Saver.Load<Camera>();
-            _parkingCameras = Saver.Load<ParkingCamera>();
-          
-            tvParking.ImageList = imageList1;
+            _parkingCameras = Saver.Load<ParkingCamera>();        
 
             UpdateParkings();
             ResetParkingPreview();
@@ -65,6 +63,7 @@ namespace Map
         private void ResetParkingPreview()
         {
             imgParking.Image = null;
+            labelCameraNumber.Text = "";
             tbParkingNumber.Text = "";
             tbParkingCameras.Text = "";
             tableSelectedCameras.Visible = false;         
@@ -78,12 +77,11 @@ namespace Map
 
             _currentParking = _parkings.FirstOrDefault(p => p.Number == e.Node.Text);
             _currentParkingCameras = _parkingCameras.Where(pc => pc.Parking.Number == _currentParking.Number).ToList();
-
+           
             if (_currentParkingCameras.Count > 0)
             {
                 _imgIndex = 0;
                 UpdateImgParking();
-
             }
 
             UpdateParkingPreview();
@@ -92,6 +90,7 @@ namespace Map
         private void UpdateImgParking()
         {
             var camera = _currentParkingCameras[_imgIndex].Camera;
+            labelCameraNumber.Text = $"Камера {camera.Number}";
 
             try
             {
@@ -101,8 +100,7 @@ namespace Map
             }
             catch
             {
-                imgParking.Image = null;
-                MessageBox.Show("Камера не найдена.");               
+                imgParking.Image = null;             
             }
         }
 
@@ -114,11 +112,7 @@ namespace Map
 
         private void UpdateParkingCamerasData()
         {
-            tbParkingCameras.Text = "";
-            foreach (var pc in _currentParkingCameras)
-            {
-                tbParkingCameras.Text += pc.Camera.Number + "; ";
-            }
+            tbParkingCameras.Text = string.Join("; ", _currentParkingCameras.Select(pc => pc.Camera));
 
             tableSelectedCameras.Rows.Clear();
             tableSelectedCameras.RowCount = _currentParkingCameras.Count + 1;
@@ -133,10 +127,6 @@ namespace Map
         private void btnPrepareAddParking_Click(object sender, EventArgs e)
         {
             ShowAddParkingForm();
-
-            //tbAddParking.Text = "";
-            //tbAddParking.Visible = true;
-            //btnAddParking.Visible = true;
         }
 
         private void btnAddParking_Click(object sender, EventArgs e)
@@ -146,7 +136,7 @@ namespace Map
      
         private void AddParking(Parking newParking)
         {
-            var parking = _parkings.FirstOrDefault(p => p.Number == newParking.Number);
+            var parking = _parkings.FirstOrDefault(p => p.Number.Equals(newParking.Number, StringComparison.CurrentCultureIgnoreCase));
             if (parking == null)
             {
                 _parkings.Add(newParking);
@@ -155,13 +145,12 @@ namespace Map
             else
             {
                 MessageBox.Show("Такая стоянка уже есть.");
+                return;
             }
 
             UpdateParkings();
-            ResetParkingPreview();
-
-            //tbAddParking.Visible = false;
-            //btnAddParking.Visible = false;
+            tvParking.SelectedNode = tvParking.Nodes[tvParking.Nodes.Count - 1];
+            tvParking.Focus();
         }
 
         private void ShowAddParkingForm()
@@ -183,7 +172,7 @@ namespace Map
             ShowRemoveParkingForm();          
         }
 
-        private void RemoveParking(object sender, EventArgs e)
+        private void RemoveParking()
         {           
             _parkings.Remove(_currentParking);
             _parkingCameras.RemoveAll(pc => pc.Parking.Number == _currentParking.Number);
@@ -197,9 +186,11 @@ namespace Map
 
         private void ShowRemoveParkingForm()
         {
-            var removeParkingForm = new RemoveParkingForm(_currentParking);
-            removeParkingForm.OnRemove += RemoveParking;
-            removeParkingForm.ShowDialog();
+            var form = new RemoveParkingForm(_currentParking);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                RemoveParking();
+            }
         }
 
         //private void UpdateTables()
@@ -226,7 +217,7 @@ namespace Map
 
         private void btnAddCameras_Click(object sender, EventArgs e)
         {
-            tableSelectedCameras.Visible = tableSelectedCameras.Visible ? false : true;
+            tableSelectedCameras.Visible = !tableSelectedCameras.Visible;
         }
 
         private void ShowAddCamerasForm()
@@ -243,8 +234,7 @@ namespace Map
                 return false;
             }
 
-            int index = 0;
-            if (!FormatTable(tableSelectedCameras, out index))
+            if (!FormatTable(tableSelectedCameras, out int index))
             {
                 MessageBox.Show($"Неверно введён номер камеры на {index} строке.");
                 return false;
@@ -258,19 +248,27 @@ namespace Map
             if (!MarkOnValid())
             {
                 return;
-            }
-            
+            }         
+
             SaveParkings();
             SaveParkingCameras();
             SaveCameras();
-           
+
+            if (_currentParkingCameras.Count > 0)
+            {
+                _imgIndex = 0;
+                UpdateImgParking();
+            }
+            UpdateParkingPreview();
+
             MessageBox.Show("Сохранено.");           
         }
       
         private void SaveParkings()
         {          
             _currentParking.Number = tbParkingNumber.Text;
-            Saver.Save(_parkings);
+            tvParking.SelectedNode.Text = _currentParking.Number;
+            Saver.Save(_parkings);           
         }
 
         private void SaveParkingCameras()
@@ -528,24 +526,23 @@ namespace Map
                 var progress = new Progress<int>(value => progressBarParkings.Value = value);
                 var report = new Report();
 
-                SetUIForStartExport();
+                SetUiForStartExport();
 
-                ReportStatus status = await Task.Run(() =>
-                report.ExportParkings(_parkingCameras, newFileName, progress));
+                ReportStatus status = await Task.Run(() => report.ExportParkings(newFileName, progress));
 
-                SetUIForEndExport();
+                SetUiForEndExport();
                 ShowExportResult(status, newFileName);                                 
             }
         }
 
-        private void SetUIForStartExport()
+        private void SetUiForStartExport()
         {
             btnExportParkings.Enabled = false;
             progressBarParkings.Value = 0;
             progressBarParkings.Visible = true;
         }
 
-        private void SetUIForEndExport()
+        private void SetUiForEndExport()
         {
             btnExportParkings.Enabled = true;
             progressBarParkings.Visible = false;

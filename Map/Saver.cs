@@ -12,6 +12,11 @@ namespace Map
     {
         public static List<T> Load<T>() where T : class
         {
+            if (!Directory.Exists("data"))
+            {
+                Directory.CreateDirectory("data");
+            }
+
             var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
             var fileName = $"data\\{typeof(T).Name}s.json";
             

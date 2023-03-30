@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RemoveParkingForm));
             this.labelParkingNumber = new System.Windows.Forms.Label();
             this.labelParking = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -56,6 +57,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(206, 84);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -66,26 +68,31 @@
             // 
             // btnRemove
             // 
+            this.btnRemove.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemove.Location = new System.Drawing.Point(88, 84);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(82, 23);
             this.btnRemove.TabIndex = 20;
             this.btnRemove.Text = "Да";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
             // RemoveParkingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(368, 133);
             this.Controls.Add(this.labelParkingNumber);
             this.Controls.Add(this.labelParking);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnRemove);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "RemoveParkingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RemoveParkingForm";
+            this.Text = "Удаление стоянки";
             this.ResumeLayout(false);
             this.PerformLayout();
 

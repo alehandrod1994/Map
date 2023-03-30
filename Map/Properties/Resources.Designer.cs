@@ -73,6 +73,16 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap iconfinder_Basic_view_watch_eye_6611489 {
+            get {
+                object obj = ResourceManager.GetObject("iconfinder_Basic_view_watch_eye_6611489", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Image0 {
             get {
                 object obj = ResourceManager.GetObject("Image0", resourceCulture);
@@ -126,6 +136,16 @@ namespace Map.Properties {
         internal static System.Drawing.Bitmap parking_square_icon {
             get {
                 object obj = ResourceManager.GetObject("parking_square_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap parking_square_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("parking_square_icon1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

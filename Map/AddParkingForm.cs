@@ -14,7 +14,9 @@ namespace Map
     {      
         public AddParkingForm()
         {
-            InitializeComponent();           
+            InitializeComponent();
+
+            tbParking.Select();
         }
 
         public Parking Parking { get; private set; }

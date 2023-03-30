@@ -32,12 +32,15 @@ namespace Map
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormParkingCameras));
             this.table = new System.Windows.Forms.DataGridView();
-            this.labelParking = new System.Windows.Forms.Label();
-            this.labelParkingNumber = new System.Windows.Forms.Label();
             this.tableCameraColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableRatingColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelParking = new System.Windows.Forms.Label();
+            this.labelParkingNumber = new System.Windows.Forms.Label();
+            this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.table)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // table
@@ -72,6 +75,20 @@ namespace Map
             this.table.TabIndex = 0;
             this.table.DoubleClick += new System.EventHandler(this.Table_DoubleClick);
             // 
+            // tableCameraColumn
+            // 
+            this.tableCameraColumn.HeaderText = "Камера";
+            this.tableCameraColumn.Name = "tableCameraColumn";
+            this.tableCameraColumn.ReadOnly = true;
+            // 
+            // tableRatingColumn
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.tableRatingColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.tableRatingColumn.HeaderText = "Приоритет";
+            this.tableRatingColumn.Name = "tableRatingColumn";
+            this.tableRatingColumn.ReadOnly = true;
+            // 
             // labelParking
             // 
             this.labelParking.AutoSize = true;
@@ -92,32 +109,34 @@ namespace Map
             this.labelParkingNumber.TabIndex = 2;
             this.labelParkingNumber.Text = "Номер";
             // 
-            // tableCameraColumn
+            // imgCameraLogo
             // 
-            this.tableCameraColumn.HeaderText = "Камера";
-            this.tableCameraColumn.Name = "tableCameraColumn";
-            this.tableCameraColumn.ReadOnly = true;
-            // 
-            // tableRatingColumn
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.tableRatingColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.tableRatingColumn.HeaderText = "Рейтинг";
-            this.tableRatingColumn.Name = "tableRatingColumn";
-            this.tableRatingColumn.ReadOnly = true;
+            this.imgCameraLogo.Image = global::Map.Properties.Resources.parking_square_icon1;
+            this.imgCameraLogo.Location = new System.Drawing.Point(95, 7);
+            this.imgCameraLogo.Name = "imgCameraLogo";
+            this.imgCameraLogo.Size = new System.Drawing.Size(29, 29);
+            this.imgCameraLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgCameraLogo.TabIndex = 22;
+            this.imgCameraLogo.TabStop = false;
+            this.imgCameraLogo.Visible = false;
             // 
             // FormParkingCameras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(325, 402);
+            this.Controls.Add(this.imgCameraLogo);
             this.Controls.Add(this.labelParkingNumber);
             this.Controls.Add(this.labelParking);
             this.Controls.Add(this.table);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FormParkingCameras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormParkingCameras";
+            this.Text = "Стоянки ВС";
             ((System.ComponentModel.ISupportInitialize)(this.table)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,5 +149,6 @@ namespace Map
         private System.Windows.Forms.Label labelParkingNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn tableCameraColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tableRatingColumn;
+        private System.Windows.Forms.PictureBox imgCameraLogo;
     }
 }

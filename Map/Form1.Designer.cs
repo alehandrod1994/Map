@@ -88,6 +88,15 @@
             this.imgMapLogo = new System.Windows.Forms.PictureBox();
             this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.camerasItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchCamerasItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manualItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelStart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview18)).BeginInit();
@@ -116,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgMapLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -167,7 +177,7 @@
             // cbCameras
             // 
             this.cbCameras.FormattingEnabled = true;
-            this.cbCameras.Location = new System.Drawing.Point(108, 40);
+            this.cbCameras.Location = new System.Drawing.Point(108, 64);
             this.cbCameras.Name = "cbCameras";
             this.cbCameras.Size = new System.Drawing.Size(121, 21);
             this.cbCameras.TabIndex = 6;
@@ -175,7 +185,7 @@
             // 
             // btnOpenCamera
             // 
-            this.btnOpenCamera.Location = new System.Drawing.Point(257, 40);
+            this.btnOpenCamera.Location = new System.Drawing.Point(257, 64);
             this.btnOpenCamera.Name = "btnOpenCamera";
             this.btnOpenCamera.Size = new System.Drawing.Size(75, 23);
             this.btnOpenCamera.TabIndex = 7;
@@ -188,7 +198,7 @@
             // 
             this.labelZoom.AutoSize = true;
             this.labelZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelZoom.Location = new System.Drawing.Point(913, 29);
+            this.labelZoom.Location = new System.Drawing.Point(913, 53);
             this.labelZoom.Name = "labelZoom";
             this.labelZoom.Size = new System.Drawing.Size(50, 20);
             this.labelZoom.TabIndex = 9;
@@ -197,7 +207,7 @@
             // 
             // btnOpenMap
             // 
-            this.btnOpenMap.Location = new System.Drawing.Point(257, 10);
+            this.btnOpenMap.Location = new System.Drawing.Point(257, 34);
             this.btnOpenMap.Name = "btnOpenMap";
             this.btnOpenMap.Size = new System.Drawing.Size(75, 23);
             this.btnOpenMap.TabIndex = 14;
@@ -219,7 +229,7 @@
             "Т1 - 3 этаж (2)",
             "Т1 - 4 этаж",
             "Т2 - Цоколь"});
-            this.cbMaps.Location = new System.Drawing.Point(108, 10);
+            this.cbMaps.Location = new System.Drawing.Point(108, 34);
             this.cbMaps.Name = "cbMaps";
             this.cbMaps.Size = new System.Drawing.Size(121, 21);
             this.cbMaps.TabIndex = 13;
@@ -267,7 +277,7 @@
             this.panelStart.Controls.Add(this.labelPreview1);
             this.panelStart.Controls.Add(this.pictureBoxPreview1);
             this.panelStart.Controls.Add(this.pictureBoxPreview11);
-            this.panelStart.Location = new System.Drawing.Point(26, 113);
+            this.panelStart.Location = new System.Drawing.Point(26, 137);
             this.panelStart.Name = "panelStart";
             this.panelStart.Size = new System.Drawing.Size(1280, 1280);
             this.panelStart.TabIndex = 22;
@@ -285,7 +295,7 @@
             this.imgSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.imgSettings.TabIndex = 38;
             this.imgSettings.TabStop = false;
-            this.imgSettings.Click += new System.EventHandler(this.imgSettings_Click);
+            this.imgSettings.Click += new System.EventHandler(this.ImgSettings_Click);
             // 
             // labelPreview18
             // 
@@ -749,7 +759,7 @@
             this.btnOpenParking.TabIndex = 24;
             this.btnOpenParking.Text = "Показать";
             this.btnOpenParking.UseVisualStyleBackColor = true;
-            this.btnOpenParking.Click += new System.EventHandler(this.btnOpenParking_Click);
+            this.btnOpenParking.Click += new System.EventHandler(this.BtnOpenParking_Click);
             // 
             // cbParkings
             // 
@@ -764,7 +774,7 @@
             this.panelParking.Controls.Add(this.imgParkingLogo);
             this.panelParking.Controls.Add(this.cbParkings);
             this.panelParking.Controls.Add(this.btnOpenParking);
-            this.panelParking.Location = new System.Drawing.Point(444, 7);
+            this.panelParking.Location = new System.Drawing.Point(444, 31);
             this.panelParking.Name = "panelParking";
             this.panelParking.Size = new System.Drawing.Size(278, 26);
             this.panelParking.TabIndex = 26;
@@ -782,7 +792,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(566, 45);
+            this.btnTest.Location = new System.Drawing.Point(566, 69);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(156, 23);
             this.btnTest.TabIndex = 27;
@@ -795,7 +805,7 @@
             // 
             this.imgPlus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgPlus.Image = global::Map.Properties.Resources.plus;
-            this.imgPlus.Location = new System.Drawing.Point(969, 21);
+            this.imgPlus.Location = new System.Drawing.Point(969, 45);
             this.imgPlus.Name = "imgPlus";
             this.imgPlus.Size = new System.Drawing.Size(35, 35);
             this.imgPlus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -808,7 +818,7 @@
             // 
             this.imgMinus.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgMinus.Image = global::Map.Properties.Resources.minus;
-            this.imgMinus.Location = new System.Drawing.Point(872, 21);
+            this.imgMinus.Location = new System.Drawing.Point(872, 45);
             this.imgMinus.Name = "imgMinus";
             this.imgMinus.Size = new System.Drawing.Size(35, 35);
             this.imgMinus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -820,7 +830,7 @@
             // imgMapLogo
             // 
             this.imgMapLogo.Image = global::Map.Properties.Resources.map;
-            this.imgMapLogo.Location = new System.Drawing.Point(57, 10);
+            this.imgMapLogo.Location = new System.Drawing.Point(57, 34);
             this.imgMapLogo.Name = "imgMapLogo";
             this.imgMapLogo.Size = new System.Drawing.Size(23, 23);
             this.imgMapLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -831,7 +841,7 @@
             // imgCameraLogo
             // 
             this.imgCameraLogo.Image = global::Map.Properties.Resources.Image0;
-            this.imgCameraLogo.Location = new System.Drawing.Point(46, 40);
+            this.imgCameraLogo.Location = new System.Drawing.Point(46, 64);
             this.imgCameraLogo.Name = "imgCameraLogo";
             this.imgCameraLogo.Size = new System.Drawing.Size(46, 29);
             this.imgCameraLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -841,7 +851,7 @@
             // 
             // pictureBoxMap
             // 
-            this.pictureBoxMap.Location = new System.Drawing.Point(0, 75);
+            this.pictureBoxMap.Location = new System.Drawing.Point(0, 99);
             this.pictureBoxMap.Name = "pictureBoxMap";
             this.pictureBoxMap.Size = new System.Drawing.Size(1882, 912);
             this.pictureBoxMap.TabIndex = 0;
@@ -850,6 +860,79 @@
             this.pictureBoxMap.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             this.pictureBoxMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             this.pictureBoxMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuItem,
+            this.refItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1596, 24);
+            this.menuStrip1.TabIndex = 28;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuItem
+            // 
+            this.menuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.camerasItem,
+            this.settingsItem,
+            this.exitItem});
+            this.menuItem.Name = "menuItem";
+            this.menuItem.Size = new System.Drawing.Size(53, 20);
+            this.menuItem.Text = "Меню";
+            // 
+            // camerasItem
+            // 
+            this.camerasItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchCamerasItem});
+            this.camerasItem.Name = "camerasItem";
+            this.camerasItem.Size = new System.Drawing.Size(134, 22);
+            this.camerasItem.Text = "Камеры";
+            // 
+            // searchCamerasItem
+            // 
+            this.searchCamerasItem.Name = "searchCamerasItem";
+            this.searchCamerasItem.Size = new System.Drawing.Size(109, 22);
+            this.searchCamerasItem.Text = "Поиск";
+            this.searchCamerasItem.Click += new System.EventHandler(this.SearchCamerasItem_Click);
+            // 
+            // settingsItem
+            // 
+            this.settingsItem.Name = "settingsItem";
+            this.settingsItem.Size = new System.Drawing.Size(134, 22);
+            this.settingsItem.Text = "Настройки";
+            this.settingsItem.Click += new System.EventHandler(this.SettingsItem_Click);
+            // 
+            // exitItem
+            // 
+            this.exitItem.Name = "exitItem";
+            this.exitItem.Size = new System.Drawing.Size(134, 22);
+            this.exitItem.Text = "Выход";
+            this.exitItem.Click += new System.EventHandler(this.ExitItem_Click);
+            // 
+            // refItem
+            // 
+            this.refItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manualItem,
+            this.aboutItem});
+            this.refItem.Name = "refItem";
+            this.refItem.Size = new System.Drawing.Size(65, 20);
+            this.refItem.Text = "Справка";
+            // 
+            // manualItem
+            // 
+            this.manualItem.Name = "manualItem";
+            this.manualItem.Size = new System.Drawing.Size(180, 22);
+            this.manualItem.Text = "Инструкция";
+            this.manualItem.Click += new System.EventHandler(this.ManualItem_Click);
+            // 
+            // aboutItem
+            // 
+            this.aboutItem.Name = "aboutItem";
+            this.aboutItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutItem.Text = "О программе";
+            this.aboutItem.Click += new System.EventHandler(this.AboutItem_Click);
             // 
             // Form1
             // 
@@ -874,7 +957,9 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBoxMap);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Просмотр схем";
@@ -908,6 +993,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgMapLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMap)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -974,6 +1061,15 @@
         private System.Windows.Forms.Panel panelParking;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.PictureBox imgSettings;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuItem;
+        private System.Windows.Forms.ToolStripMenuItem camerasItem;
+        private System.Windows.Forms.ToolStripMenuItem searchCamerasItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsItem;
+        private System.Windows.Forms.ToolStripMenuItem exitItem;
+        private System.Windows.Forms.ToolStripMenuItem refItem;
+        private System.Windows.Forms.ToolStripMenuItem manualItem;
+        private System.Windows.Forms.ToolStripMenuItem aboutItem;
     }
 }
 

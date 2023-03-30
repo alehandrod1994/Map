@@ -29,6 +29,7 @@ namespace Map
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SuccessfullyExport));
             this.label1 = new System.Windows.Forms.Label();
             this.btnOpenFolder = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -38,9 +39,9 @@ namespace Map
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(71, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 13);
+            this.label1.Size = new System.Drawing.Size(135, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Файл успешно сохранён";
+            this.label1.Text = "Файл успешно сохранён.";
             // 
             // btnOpenFolder
             // 
@@ -59,9 +60,12 @@ namespace Map
             this.ClientSize = new System.Drawing.Size(264, 144);
             this.Controls.Add(this.btnOpenFolder);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "SuccessfullyExport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SuccessfullyExport";
+            this.Text = "Уведомление";
             this.ResumeLayout(false);
             this.PerformLayout();
 
