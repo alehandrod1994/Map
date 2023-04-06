@@ -252,7 +252,7 @@
             this.imgParking.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgParking.TabIndex = 14;
             this.imgParking.TabStop = false;
-            this.imgParking.DoubleClick += new System.EventHandler(this.ImgParking_DoubleClick);
+            this.imgParking.Click += new System.EventHandler(this.ImgParking_Click);
             // 
             // btnCancelParking
             // 

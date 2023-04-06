@@ -86,13 +86,14 @@ namespace Map
             // imgPreview
             // 
             this.imgPreview.BackColor = System.Drawing.Color.Transparent;
+            this.imgPreview.Cursor = System.Windows.Forms.Cursors.Default;
             this.imgPreview.Location = new System.Drawing.Point(1, 1);
             this.imgPreview.Name = "imgPreview";
             this.imgPreview.Size = new System.Drawing.Size(282, 153);
             this.imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgPreview.TabIndex = 14;
             this.imgPreview.TabStop = false;
-            this.imgPreview.DoubleClick += new System.EventHandler(this.ImgPreview_DoubleClick);
+            this.imgPreview.Click += new System.EventHandler(this.ImgPreview_Click);
             // 
             // btnOpenMap
             // 

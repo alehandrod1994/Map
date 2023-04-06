@@ -608,6 +608,11 @@ namespace Map
 
         private void ImgParking_DoubleClick(object sender, EventArgs e)
         {
+            
+        }
+
+        private void ImgParking_Click(object sender, EventArgs e)
+        {
             if (_currentParkingCameras.Count > 0)
             {
                 var camera = _currentParkingCameras[_imgIndex].Camera;

@@ -110,6 +110,11 @@ namespace Map
 
 		private void ImgPreview_DoubleClick(object sender, EventArgs e)
 		{
+			
+		}
+
+		private void ImgPreview_Click(object sender, EventArgs e)
+		{
 			if (_camera == null)
 			{
 				return;
@@ -139,6 +144,6 @@ namespace Map
 		private void BtnClose_Click(object sender, EventArgs e)
 		{
 			Close();
-		}
+		}		
 	}
 }
