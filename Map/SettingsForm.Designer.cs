@@ -54,12 +54,10 @@
             this.lblParkingCameras = new System.Windows.Forms.Label();
             this.tbParkingNumber = new System.Windows.Forms.TextBox();
             this.lblParkingNumber = new System.Windows.Forms.Label();
-            this.tbAddParking = new System.Windows.Forms.TextBox();
             this.tvParking = new System.Windows.Forms.TreeView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnRemoveParking = new System.Windows.Forms.Button();
             this.btnPrepareAddParking = new System.Windows.Forms.Button();
-            this.btnAddParking = new System.Windows.Forms.Button();
             this.labelParking = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl.SuspendLayout();
@@ -86,11 +84,9 @@
             this.parkingPage.Controls.Add(this.progressBarParkings);
             this.parkingPage.Controls.Add(this.btnExportParkings);
             this.parkingPage.Controls.Add(this.panelParkingPreview);
-            this.parkingPage.Controls.Add(this.tbAddParking);
             this.parkingPage.Controls.Add(this.tvParking);
             this.parkingPage.Controls.Add(this.btnRemoveParking);
             this.parkingPage.Controls.Add(this.btnPrepareAddParking);
-            this.parkingPage.Controls.Add(this.btnAddParking);
             this.parkingPage.Controls.Add(this.labelParking);
             this.parkingPage.Location = new System.Drawing.Point(4, 22);
             this.parkingPage.Name = "parkingPage";
@@ -176,7 +172,7 @@
             this.btnNextImgParking.TabIndex = 33;
             this.btnNextImgParking.Text = ">";
             this.btnNextImgParking.UseVisualStyleBackColor = true;
-            this.btnNextImgParking.Click += new System.EventHandler(this.btnNextImgParking_Click);
+            this.btnNextImgParking.Click += new System.EventHandler(this.BtnNextImgParking_Click);
             // 
             // btnPreviousImgParking
             // 
@@ -186,7 +182,7 @@
             this.btnPreviousImgParking.TabIndex = 32;
             this.btnPreviousImgParking.Text = "<";
             this.btnPreviousImgParking.UseVisualStyleBackColor = true;
-            this.btnPreviousImgParking.Click += new System.EventHandler(this.btnPreviousImgParking_Click);
+            this.btnPreviousImgParking.Click += new System.EventHandler(this.BtnPreviousImgParking_Click);
             // 
             // tableSelectedCameras
             // 
@@ -262,7 +258,7 @@
             this.btnCancelParking.TabIndex = 29;
             this.btnCancelParking.Text = "Отмена";
             this.btnCancelParking.UseVisualStyleBackColor = true;
-            this.btnCancelParking.Click += new System.EventHandler(this.btnCancelParking_Click);
+            this.btnCancelParking.Click += new System.EventHandler(this.BtnCancelParking_Click);
             // 
             // btnSaveParking
             // 
@@ -272,7 +268,7 @@
             this.btnSaveParking.TabIndex = 28;
             this.btnSaveParking.Text = "Сохранить";
             this.btnSaveParking.UseVisualStyleBackColor = true;
-            this.btnSaveParking.Click += new System.EventHandler(this.btnSaveParking_Click);
+            this.btnSaveParking.Click += new System.EventHandler(this.BtnSaveParking_Click);
             // 
             // btnAddCameras
             // 
@@ -282,7 +278,7 @@
             this.btnAddCameras.TabIndex = 27;
             this.btnAddCameras.Text = "...";
             this.btnAddCameras.UseVisualStyleBackColor = true;
-            this.btnAddCameras.Click += new System.EventHandler(this.btnAddCameras_Click);
+            this.btnAddCameras.Click += new System.EventHandler(this.BtnAddCameras_Click);
             // 
             // tbParkingCameras
             // 
@@ -317,14 +313,6 @@
             this.lblParkingNumber.TabIndex = 23;
             this.lblParkingNumber.Text = "Номер:";
             // 
-            // tbAddParking
-            // 
-            this.tbAddParking.Location = new System.Drawing.Point(76, 73);
-            this.tbAddParking.Name = "tbAddParking";
-            this.tbAddParking.Size = new System.Drawing.Size(100, 20);
-            this.tbAddParking.TabIndex = 23;
-            this.tbAddParking.Visible = false;
-            // 
             // tvParking
             // 
             this.tvParking.ImageIndex = 0;
@@ -350,7 +338,7 @@
             this.btnRemoveParking.TabIndex = 11;
             this.btnRemoveParking.Text = "-";
             this.btnRemoveParking.UseVisualStyleBackColor = true;
-            this.btnRemoveParking.Click += new System.EventHandler(this.btnRemoveParking_Click);
+            this.btnRemoveParking.Click += new System.EventHandler(this.BtnRemoveParking_Click);
             // 
             // btnPrepareAddParking
             // 
@@ -360,18 +348,7 @@
             this.btnPrepareAddParking.TabIndex = 10;
             this.btnPrepareAddParking.Text = "+";
             this.btnPrepareAddParking.UseVisualStyleBackColor = true;
-            this.btnPrepareAddParking.Click += new System.EventHandler(this.btnPrepareAddParking_Click);
-            // 
-            // btnAddParking
-            // 
-            this.btnAddParking.Location = new System.Drawing.Point(182, 71);
-            this.btnAddParking.Name = "btnAddParking";
-            this.btnAddParking.Size = new System.Drawing.Size(75, 23);
-            this.btnAddParking.TabIndex = 4;
-            this.btnAddParking.Text = "Добавить";
-            this.btnAddParking.UseVisualStyleBackColor = true;
-            this.btnAddParking.Visible = false;
-            this.btnAddParking.Click += new System.EventHandler(this.btnAddParking_Click);
+            this.btnPrepareAddParking.Click += new System.EventHandler(this.BtnPrepareAddParking_Click);
             // 
             // labelParking
             // 
@@ -411,12 +388,10 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage parkingPage;
         private System.Windows.Forms.Label labelParking;
-        private System.Windows.Forms.Button btnAddParking;
         private System.Windows.Forms.Button btnRemoveParking;
         private System.Windows.Forms.Button btnPrepareAddParking;
         private System.Windows.Forms.TreeView tvParking;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.TextBox tbAddParking;
         private System.Windows.Forms.Panel panelParkingPreview;
         private System.Windows.Forms.Panel borderParkingPreview;
         private System.Windows.Forms.PictureBox imgParking;

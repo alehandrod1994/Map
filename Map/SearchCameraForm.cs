@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -106,11 +103,6 @@ namespace Map
 			}
 
 			return maps;
-		}
-
-		private void ImgPreview_DoubleClick(object sender, EventArgs e)
-		{
-			
 		}
 
 		private void ImgPreview_Click(object sender, EventArgs e)

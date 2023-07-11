@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Map
 {
     public partial class SuccessfullyExport : Form
     {
-        private string _newFileName;
+        private readonly string _newFileName;
         public SuccessfullyExport(string newFileName)
         {
             InitializeComponent();
@@ -21,7 +14,7 @@ namespace Map
             _newFileName = newFileName;
         }
 
-        private void btnOpenFolder_Click(object sender, EventArgs e)
+        private void BtnOpenFolder_Click(object sender, EventArgs e)
         {
             Process process = new Process();
             ProcessStartInfo psi = new ProcessStartInfo();

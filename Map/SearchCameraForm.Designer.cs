@@ -71,7 +71,7 @@ namespace Map
             this.tbCamera.Location = new System.Drawing.Point(89, 21);
             this.tbCamera.Name = "tbCamera";
             this.tbCamera.Size = new System.Drawing.Size(121, 20);
-            this.tbCamera.TabIndex = 22;
+            this.tbCamera.TabIndex = 1;
             // 
             // borderPreview
             // 

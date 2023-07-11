@@ -1,16 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
-using System.Media;
-using System.Runtime.Serialization.Json;
 
 namespace Map
 {
@@ -23,21 +17,20 @@ namespace Map
         private int _picHeight = 0;
         private int _zoom = 100;
         private Point _lastPoint;
-        private int _startY = 24;
+        private readonly int _startY = 24;
         private float _imgWidth;
         private float _imgHeight;
         private float _pictureboxWidth;
         private float _pictureboxHeight;
         private bool _isFirstMap = true;
 
-        private Audio _audio;
+        private readonly Audio _audio;
         private string _mapName;
 
-        private List<Label> _labels;
-        private List<PictureBox> _pictureBoxes;
-        private List<string> _cameras;
+        private readonly List<Label> _labels;
+        private readonly List<PictureBox> _pictureBoxes;
+        private readonly List<string> _cameras;
         private List<Parking> _parkings;
-        private List<Camera> _ccameras;
 
         public Form1()
         {
@@ -62,7 +55,8 @@ namespace Map
                 labelPreview15,
                 labelPreview16,
                 labelPreview17,
-                labelPreview18
+                labelPreview18,
+                labelPreview19
             };
 
             _pictureBoxes = new List<PictureBox>()
@@ -84,7 +78,8 @@ namespace Map
                 pictureBoxPreview15,
                 pictureBoxPreview16,
                 pictureBoxPreview17,
-                pictureBoxPreview18
+                pictureBoxPreview18,
+                pictureBoxPreview19
             };
 
             MouseWheel += new MouseEventHandler(This_MouseWheel);
@@ -170,23 +165,6 @@ namespace Map
             pictureBoxMap.Invalidate();
         }
 
-        private void SortCameras()
-        {
-            string c;                                                                              // Сортировка камер
-            for (int i = 0; i < _cameras.Count; i++)
-            {
-                for (int j = 0; j < _cameras.Count; j++)
-                {
-                    if (_cameras[j].ToString().Length > _cameras[i].ToString().Length)
-                    {
-                        c = _cameras[i].ToString();
-                        _cameras[i] = _cameras[j];
-                        _cameras[j] = c;
-                    }
-                }
-            }
-        }
-
         private void LoadCameras(string mapName)
         {
             cbCameras.Items.Clear();                                                         //Загрузка камер
@@ -196,13 +174,43 @@ namespace Map
             if (Directory.Exists($"cameras\\{mapName}"))
             {
                 DirectoryInfo dirCameras = new DirectoryInfo($"cameras\\{mapName}");
-                foreach (FileInfo files in dirCameras.GetFiles())
+                foreach (FileInfo file in dirCameras.GetFiles())
                 {
-                    _cameras.Add(Path.GetFileNameWithoutExtension(files.Name));
+                    _cameras.Add(Path.GetFileNameWithoutExtension(file.Name));
                 }
             }
         }
 
+
+        private void SortCameras()
+        {
+            var count = _cameras.Count;
+
+            for (int j = 0; j < count; j++)
+            {
+                for (int i = 0; i < count - j - 1; i++)
+                {
+                    var a = _cameras[i];
+                    var b = _cameras[i + 1];
+
+                    if (a.Length > b.Length || (a.Length == b.Length && a.CompareTo(b) == 1))
+                    {
+                        Swop(i, i + 1);
+                    }
+                }
+            }
+        }
+
+        private void Swop(int positionA, int positionB)
+        {
+            if (positionA < _cameras.Count && positionB < _cameras.Count)
+            {
+                var temp = _cameras[positionA];
+                _cameras[positionA] = _cameras[positionB];
+                _cameras[positionB] = temp;
+            }
+        }
+       
         private void OpenMapWindow(string mapName)
         {
             pictureBoxMap.Visible = true;
@@ -225,9 +233,9 @@ namespace Map
 
             cbMaps.Items.Clear();                                                         //Загрузка схем               
             DirectoryInfo dirMaps = new DirectoryInfo("maps");
-            foreach (FileInfo files in dirMaps.GetFiles())
+            foreach (FileInfo file in dirMaps.GetFiles())
             {
-                cbMaps.Items.Add(Path.GetFileNameWithoutExtension(files.Name));
+                cbMaps.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
             }
             cbMaps.Text = mapName;
 
@@ -258,7 +266,7 @@ namespace Map
             e.Graphics.DrawLine(pen, 0, 98, pictureBoxMap.Width, 98);
         }
 
-        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        private void PictureBox1_Paint(object sender, PaintEventArgs e)
         {
           
            /* if (zoom == 100)
@@ -295,16 +303,6 @@ namespace Map
             g.DrawImage(_img, _x, _y, _picWidth, _picHeight);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void hScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
           //  x = e.NewValue;    
@@ -316,13 +314,7 @@ namespace Map
           //  pictureBoxMap.Invalidate();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            //little = true;
-            pictureBoxMap.Invalidate();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void BtnOpenCamera_Click(object sender, EventArgs e)
         {
             var path = $"cameras\\{_mapName}\\{cbCameras.Text}.jpg";
 
@@ -336,19 +328,13 @@ namespace Map
             }
         }
 
-        private void buttonBig_Click(object sender, EventArgs e)
-        {
-            //big = true;
-            pictureBoxMap.Invalidate();
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
             _lastPoint = new Point(e.X, e.Y);
             pictureBoxMap.Invalidate();
         }
 
-        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
             if (pictureBoxMap.Capture)
             {
@@ -359,7 +345,7 @@ namespace Map
             }
         }
 
-        private void pictureBoxMinus_Click(object sender, EventArgs e)
+        private void ImgMinus_Click(object sender, EventArgs e)
         {
             if (_zoom == 100)
             {
@@ -379,13 +365,11 @@ namespace Map
                 _y = Convert.ToInt32(_y / 1.5);
             }
 
-           // x = Convert.ToInt32(x / 2.4);
-            //y = Convert.ToInt32(y / 2);
             labelZoom.Text = _zoom + "%";
             pictureBoxMap.Invalidate();
         }
 
-        private void pictureBoxPlus_Click(object sender, EventArgs e)
+        private void ImgPlus_Click(object sender, EventArgs e)
         {
             if (_zoom == 50)
             {
@@ -410,32 +394,28 @@ namespace Map
             pictureBoxMap.Invalidate();
         }
 
-        private void pictureBoxPreview9_Click(object sender, EventArgs e)
-        {
-            LoadMap(labelPreview9.Text);
-        }
-
-        private void pictureBoxPreview1_Click(object sender, EventArgs e)
+        #region Обработка нажатий на превью схем
+        private void PictureBoxPreview1_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview1.Text);
         }
 
-        private void pictureBoxPreview2_Click(object sender, EventArgs e)
+        private void PictureBoxPreview2_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview2.Text);
         }
 
-        private void pictureBoxPreview3_Click(object sender, EventArgs e)
+        private void PictureBoxPreview3_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview3.Text);
         }
 
-        private void pictureBoxPreview4_Click(object sender, EventArgs e)
+        private void PictureBoxPreview4_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview4.Text);
         }
 
-        private void pictureBoxPreview5_Click(object sender, EventArgs e)
+        private void PictureBoxPreview5_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview5.Text);
         }
@@ -445,85 +425,93 @@ namespace Map
             LoadMap(labelPreview6.Text);
         }
 
-        private void pictureBoxPreview7_Click(object sender, EventArgs e)
+        private void PictureBoxPreview7_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview7.Text);
         }
 
-        private void pictureBoxPreview8_Click(object sender, EventArgs e)
+        private void PictureBoxPreview8_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview8.Text);
         }
 
-        private void pictureBoxPreview10_Click(object sender, EventArgs e)
+        private void PictureBoxPreview9_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview9.Text);
+        }
+
+        private void PictureBoxPreview10_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview10.Text);
         }     
 
-        private void pictureBoxPreview11_Click(object sender, EventArgs e)
+        private void PictureBoxPreview11_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview11.Text);
         }
 
-        private void pictureBoxPreview12_Click(object sender, EventArgs e)
+        private void PictureBoxPreview12_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview12.Text);
         }
 
-        private void pictureBoxPreview13_Click(object sender, EventArgs e)
+        private void PictureBoxPreview13_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview13.Text);
         }
 
-        private void pictureBoxPreview14_Click(object sender, EventArgs e)
+        private void PictureBoxPreview14_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview14.Text);
         }
 
-        private void pictureBoxPreview15_Click(object sender, EventArgs e)
+        private void PictureBoxPreview15_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview15.Text);
         }
 
-        private void pictureBoxPreview16_Click(object sender, EventArgs e)
+        private void PictureBoxPreview16_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview16.Text);
         }
 
-        private void pictureBoxPreview17_Click(object sender, EventArgs e)
+        private void PictureBoxPreview17_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview17.Text);
         }
 
-        private void pictureBoxPreview18_Click(object sender, EventArgs e)
+        private void PictureBoxPreview18_Click(object sender, EventArgs e)
         {
             LoadMap(labelPreview18.Text);
         }
 
-        private void buttonOpenMap_Click(object sender, EventArgs e)
+        private void PictureBoxPreview19_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview19.Text);
+        }
+        #endregion
+
+        private void ButtonOpenMap_Click(object sender, EventArgs e)
         {
             LoadMap(cbMaps.Text);
         }
 
-        private void panelStart_MouseDown(object sender, MouseEventArgs e)
+        private void PanelStart_MouseDown(object sender, MouseEventArgs e)
         {
             _lastPoint = new Point(e.X, e.Y);
         }
 
-        private void panelStart_MouseMove(object sender, MouseEventArgs e)
+        private void PanelStart_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Left += e.X - _lastPoint.X;
-                this.Top += e.Y - _lastPoint.Y;
+                Left += e.X - _lastPoint.X;
+                Top += e.Y - _lastPoint.Y;
             }
         }
 
-        private void pictureBoxSound_Click(object sender, EventArgs e)
+        private void PictureBoxSound_Click(object sender, EventArgs e)
         {
-            //pictureBoxSound.Image = Map.Properties.Resources.mute;
-            //sp.Stop();
-
             if (_audio.Enabled == true)
             {
                 _audio.Stop();
@@ -536,14 +524,6 @@ namespace Map
                 pictureBoxSound.Image = Properties.Resources.speaker;
             }
 
-            //var jsonFormatter = new DataContractJsonSerializer(typeof(Audio));
-
-            //using (var file = new FileStream("settings.json", FileMode.Create))
-            //{
-            //    jsonFormatter.WriteObject(file, _audio);
-            //}
-
-            //_audio.Save();
             Saver.Save(new List<Audio>() { _audio });
         }    
 
@@ -587,62 +567,13 @@ namespace Map
 
             if (parking != null)
             {
-                FormParkingCameras formParkingCameras = new FormParkingCameras(parking);
-                formParkingCameras.ShowDialog();
+                var form = new FormParkingCameras(parking);
+                form.Show();
             }
             else
             {
                 MessageBox.Show("Стоянка не найдена.");
             }
-        }
-
-        private void btnAddParking_Click(object sender, EventArgs e)
-        {
-            //var parking = new Parking("42");
-            //var camera1 = new Camera(63);
-            //var camera2 = new Camera(64);
-            //var camera3 = new Camera(65);
-            //var camera4 = new Camera(45);
-
-            //parking.Cameras.Add(camera1, Rating.Low);
-            //parking.Cameras.Add(camera2, Rating.Medium);
-            //parking.Cameras.Add(camera3, Rating.High);
-            //parking.Cameras.Add(camera4, Rating.Medium);
-
-            //_parkings.Add(parking);
-            //parking.Save(_parkings);
-            //MessageBox.Show("Стоянка успешно добавлена.");   
-
-            //var parking = new Parking("10");
-            //var camera1 = new Camera(110);
-            //var camera2 = new Camera(119);
-            //var camera3 = new Camera(555);
-            //var pc1 = new ParkingCamera(parking, camera1, Rating.Low);
-            //var pc2 = new ParkingCamera(parking, camera2, Rating.Medium);
-            //var pc3 = new ParkingCamera(parking, camera3, Rating.High);
-
-            //_parkings.Add(parking);
-            //_ccameras.Add(camera1);
-            //_ccameras.Add(camera2);
-            //_ccameras.Add(camera3);
-            //_parkingCameras.Add(pc1);
-            //_parkingCameras.Add(pc2);
-            //_parkingCameras.Add(pc3);
-
-            //Saver.Save(_parkings);
-            //Saver.Save(_ccameras);
-            //Saver.Save(_parkingCameras);
-
-            _ccameras.Clear();
-            DirectoryInfo dirCameras = new DirectoryInfo(@"cameras\Охрана периметра");
-            foreach (FileInfo files in dirCameras.GetFiles())
-            {
-                var camera = new Camera(Convert.ToInt32(Path.GetFileNameWithoutExtension(files.Name)));
-                _ccameras.Add(camera);
-            }
-
-            Saver.Save(_ccameras);
-            MessageBox.Show("Сохранено.");
         }
 
         private void BtnOpenParking_Click(object sender, EventArgs e)
@@ -657,8 +588,8 @@ namespace Map
 
         private static void ShowSettingsForm()
         {
-            SettingsForm settingsForm = new SettingsForm();
-            settingsForm.Show();
+            var form = new SettingsForm();
+            form.Show();
         }
 
         private void SearchCamerasItem_Click(object sender, EventArgs e)
@@ -699,31 +630,5 @@ namespace Map
             var aboutForm = new AboutForm();
             aboutForm.Show();
         }
-
-
-
-        //private void SaveFile<T>(List<T> items)
-        //{
-        //    var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
-        //    var fileName = $"{typeof(T).Name}s.json";
-
-        //    using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-        //    {
-        //        jsonFormatter.WriteObject(fs, items);
-        //    }
-        //}
-
-        //private List<T> LoadFile<T>()
-        //{
-        //    var jsonFormatter = new DataContractJsonSerializer(typeof(List<T>));
-        //    var fileName = $"{typeof(T).Name}s.json";
-
-        //    using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
-        //    {
-        //        return fs.Length > 0 && jsonFormatter.ReadObject(fs) is List<T> items ? items : new List<T>();
-        //    }
-        //}
-
-
     }
 }

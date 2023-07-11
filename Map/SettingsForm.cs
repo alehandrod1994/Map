@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,9 +20,9 @@ namespace Map
 
         private List<ParkingCamera> _currentParkingCameras;
 
-        private List<Parking> _parkings;
-        private List<Camera> _cameras;
-        private List<ParkingCamera> _parkingCameras;
+        private readonly List<Parking> _parkings;
+        private readonly List<Camera> _cameras;
+        private readonly List<ParkingCamera> _parkingCameras;
 
         public SettingsForm()
         {
@@ -124,14 +123,9 @@ namespace Map
             }           
         }
 
-        private void btnPrepareAddParking_Click(object sender, EventArgs e)
+        private void BtnPrepareAddParking_Click(object sender, EventArgs e)
         {
             ShowAddParkingForm();
-        }
-
-        private void btnAddParking_Click(object sender, EventArgs e)
-        {
-                     
         }
      
         private void AddParking(Parking newParking)
@@ -162,7 +156,7 @@ namespace Map
             }
         }
 
-        private void btnRemoveParking_Click(object sender, EventArgs e)
+        private void BtnRemoveParking_Click(object sender, EventArgs e)
         {
             if (tvParking.SelectedNode == null)
             {
@@ -192,38 +186,10 @@ namespace Map
                 RemoveParking();
             }
         }
-
-        //private void UpdateTables()
-        //{
-        //    var parking = _parkings.FirstOrDefault(p => p.Number == cbParking.Text);
-
-        //    if (parking == null)
-        //    {
-        //        return;
-        //    }
-
-        //    UpdateTableSelectedCameras(parking);
-
-        //    var selectedCameras = new List<Camera>();
-        //    foreach (var camera in parking.Cameras)
-        //    {
-        //        selectedCameras.Add(camera.Key);
-        //    }
-
-        //    var exceptCameras = _cameras.Except(selectedCameras).ToList();
-        //    UpdateTableAllCameras(exceptCameras);
-        //}
-
-
-        private void btnAddCameras_Click(object sender, EventArgs e)
+       
+        private void BtnAddCameras_Click(object sender, EventArgs e)
         {
             tableSelectedCameras.Visible = !tableSelectedCameras.Visible;
-        }
-
-        private void ShowAddCamerasForm()
-        {
-            AddCamerasForm addCamerasForm = new AddCamerasForm(_currentParking, _cameras, _currentParkingCameras);
-            addCamerasForm.Show();
         }
 
         private bool MarkOnValid()
@@ -243,7 +209,7 @@ namespace Map
             return true;
         }
 
-        private void btnSaveParking_Click(object sender, EventArgs e)
+        private void BtnSaveParking_Click(object sender, EventArgs e)
         {
             if (!MarkOnValid())
             {
@@ -335,156 +301,25 @@ namespace Map
 
             return true;
         }
-
-        //    private void RenameParking()
-        //    {
-        //        parkingNumber = ParseInt(cbParking.Text);
-        //        if (parkingNumber == 0) return;
-
-        //        newParkingNumber = ParseInt(tbNewParkingNumber.Text);
-        //        if (newParkingNumber == 0) return;
-
-        //        var parking = _parkings.SingleOrDefault(p => p.Number == parkingNumber);
-        //        if (parking != null)
-        //        {
-        //            _parkings[parking].Number = newParkingNumber;
-        //            Save(_parkings);
-        //        }
-
-        //        foreach (camera in _cameras)
-        //        {
-        //            parking = camera.Parkings.SingleOrDefault(p => p.Number == parkingNumber);
-        //            if (parking != null)
-        //            {
-        //                camera.Parkings[parking].Number = newParkingNumber;
-        //                Save(_cameras);
-        //            }
-        //        }
-
-        //        var parkings = _parkingCameras.Where(pc => pc.Parking.Number == parkingNumber);
-        //        if (parkings != null)
-        //        {
-        //            foreach (parking in parkings)
-        //            {
-        //                _parkingCameras[parking].Parking.Number = newParkingNumber;
-        //            }
-
-        //            Save(_parkingCameras);
-        //        }
-
-        //        MessageBox.Show("Стоянка успешно изменена.");
-        //    }
-
-        //    private void SaveParkingsChanges()
-        //    {
-        //        _parking.Cameras.Clear();
-
-        //        for (int i = 0; i < DataGridViewContains.RowCount - 1; i++)
-        //        {
-        //            var camera = new Camera(ParseInt(DataGridViewContains.Rows[i].Cells[0]));
-        //            _parking.Cameras.Add(camera);
-        //        }
-
-        //        Save(_parking);
-        //    }
-
-        //    private void SaveCamerasChanges()
-        //    {
-        //        for (int i = 0; i < DataGridViewContains.RowCount - 1; i++)
-        //        {
-        //            for (int j = 0; j < _cameras.Count; j++)
-        //            {
-        //                if (DataGridViewContains.Rows[i].Cells[0] == _cameras[j].Number.ToString())
-        //                {
-        //                    var parkingIntersect = _cameras[j].Parkings.ToString().Intersect(cbParking.Text);
-
-        //                    if (parkingIntersect == null)
-        //                    {
-        //                        _cameras[j].Parkings.Add(new Parking(ParseInt(cbParking.Text)));
-        //                    }
-
-        //                    break;
-        //                }
-        //            }
-        //        }
-
-        //        for (int i = 0; i < DataGridViewNotContains.RowCount - 1; i++)
-        //        {
-        //            for (int j = 0; j < _cameras.Count; j++)
-        //            {
-        //                if (DataGridViewNotContains.Rows[i].Cells[0] == _cameras[j].Number.ToString())
-        //                {
-        //                    var parkingIntersect = _cameras[j].Parkings.ToString().Intersect(cbParking.Text);
-
-        //                    if (parkingIntersect != null)
-        //                    {
-        //                        _cameras[j].Parkings.Remove(parkingIntersect);
-        //                    }
-
-        //                    break;
-        //                }
-        //            }
-        //        }
-
-        //        Save(_cameras);
-        //    }
-
-        //    private void SaveParkingCamerasChanges()
-        //    {
-        //        for (int i = 0; i < _parkingCameras.Count; i++)
-        //        {
-        //            if (_parkingCameras[i].Parking.Number.ToString() == cbParking.Text)
-        //            {
-        //                _parkingCameras.RemoveAt(i);
-
-        //                i--;
-        //            }
-        //        }
-
-        //        for (int i = 0; i < DataGridViewContains.RowCount - 1; i++)
-        //        {
-        //            var parkingCamera = new ParkingCamera()
-        //            {
-        //                Parking = new Parking(ParseInt(DataGridViewContains.Rows[i].Cells[0]));
-        //            Camera = new Camera(ParseInt(DataGridViewContains.Rows[i].Cells[1]));
-        //            Rating = // метод для вставки Rating.	
-
-        //            }
-
-        //        _parkingCameras.Add(parkingCamera);
-        //    }
-
-
-        //        Save(_parkingCameras);
-        //}
-
-        //private void Cancel()
-        //{
-        //    UpdateDataParking();
-        //}
-
-
-
+       
         private int ParseInt(string value)
         {
-            int result = 0;
-
-            if (int.TryParse(value, out result))
+            if (int.TryParse(value, out int result))
             {
                 return result;
             }
             else
-            {               
+            {
                 return 0;
             }
         }
 
-        private void btnCancelParking_Click(object sender, EventArgs e)
+        private void BtnCancelParking_Click(object sender, EventArgs e)
         {
             UpdateParkingPreview();
         }
 
-        private void btnNextImgParking_Click(object sender, EventArgs e)
+        private void BtnNextImgParking_Click(object sender, EventArgs e)
         {
             if (_currentParkingCameras.Count > 0)
             {
@@ -499,7 +334,7 @@ namespace Map
             }
         }
 
-        private void btnPreviousImgParking_Click(object sender, EventArgs e)
+        private void BtnPreviousImgParking_Click(object sender, EventArgs e)
         {
             if (_currentParkingCameras.Count > 0)
             {
@@ -604,11 +439,6 @@ namespace Map
 
                 Saver.Save(_parkings);
             }
-        }
-
-        private void ImgParking_DoubleClick(object sender, EventArgs e)
-        {
-            
         }
 
         private void ImgParking_Click(object sender, EventArgs e)

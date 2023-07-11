@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Map
@@ -235,30 +233,6 @@ namespace Map
 		}
 
 		/// <summary>
-		/// Проверяет, равны ли значение в ячейке Excel и введённое значение.
-		/// </summary>
-		/// <param name="i"> Номер строки. </param>
-		/// <param name="j"> Номер столбца. </param>
-		/// <param name="value"> Текст. </param>
-		/// <returns> Возвращает true, если равны; в противном случае - false. </returns>
-		private bool Equals(int i, int j, string value)
-		{
-			return ToString(i, j).Equals(value, StringComparison.CurrentCultureIgnoreCase);
-		}
-
-		/// <summary>
-		/// Проверяет, содержит ли ячейка Excel введённую подстроку. 
-		/// </summary>
-		/// <param name="i"> Номер строки. </param>
-		/// <param name="j"> Номер столбца. </param>
-		/// <param name="value"> Текст. </param>
-		/// <returns> Возвращает true, если содержит; в противном случае - false. </returns>
-		private bool Contains(int i, int j, string value)
-		{
-			return ToString(i, j).ToUpper().Contains(value.ToUpper());
-		}
-
-		/// <summary>
 		/// Приводит значение из ячейки Excel к строке.
 		/// </summary>
 		/// <param name="i"> Номер строки. </param>
@@ -266,8 +240,8 @@ namespace Map
 		/// <returns> Результат приведения. </returns>
 		private string ToString(int i, int j)
 		{
-			Excel.Range rng = (Excel.Range)_sheet.Cells[i, j];
-			return rng.Value?.ToString() ?? "";
+			Excel.Range range = (Excel.Range)_sheet.Cells[i, j];
+			return range.Value?.ToString() ?? "";
 		}
 	}
 }

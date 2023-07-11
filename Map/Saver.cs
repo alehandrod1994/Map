@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Map
 {
@@ -22,17 +18,7 @@ namespace Map
             
             using (var fs = new FileStream(fileName, FileMode.OpenOrCreate))
             {
-                if (fs.Length > 0)
-                {
-                    var items = (List<T>)jsonFormatter.ReadObject(fs);
-
-                    if (items != null)
-                    {
-                        return items;
-                    }
-                }
-
-                return new List<T>();
+                return fs.Length > 0 && jsonFormatter.ReadObject(fs) is List<T> items ? items : new List<T>();
             }
         }
 
