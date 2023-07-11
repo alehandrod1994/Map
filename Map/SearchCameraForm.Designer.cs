@@ -31,30 +31,20 @@ namespace Map
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchCameraForm));
-            this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             this.btnSearchCamera = new System.Windows.Forms.Button();
             this.tbCamera = new System.Windows.Forms.TextBox();
             this.borderPreview = new System.Windows.Forms.Panel();
-            this.imgPreview = new System.Windows.Forms.PictureBox();
             this.btnOpenMap = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tvMaps = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).BeginInit();
+            this.imgPreview = new System.Windows.Forms.PictureBox();
+            this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             this.borderPreview.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).BeginInit();
             this.SuspendLayout();
-            // 
-            // imgCameraLogo
-            // 
-            this.imgCameraLogo.Image = global::Map.Properties.Resources.Image0;
-            this.imgCameraLogo.Location = new System.Drawing.Point(27, 21);
-            this.imgCameraLogo.Name = "imgCameraLogo";
-            this.imgCameraLogo.Size = new System.Drawing.Size(46, 29);
-            this.imgCameraLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imgCameraLogo.TabIndex = 21;
-            this.imgCameraLogo.TabStop = false;
             // 
             // btnSearchCamera
             // 
@@ -83,23 +73,11 @@ namespace Map
             this.borderPreview.Size = new System.Drawing.Size(286, 157);
             this.borderPreview.TabIndex = 31;
             // 
-            // imgPreview
-            // 
-            this.imgPreview.BackColor = System.Drawing.Color.Transparent;
-            this.imgPreview.Cursor = System.Windows.Forms.Cursors.Default;
-            this.imgPreview.Location = new System.Drawing.Point(1, 1);
-            this.imgPreview.Name = "imgPreview";
-            this.imgPreview.Size = new System.Drawing.Size(282, 153);
-            this.imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.imgPreview.TabIndex = 14;
-            this.imgPreview.TabStop = false;
-            this.imgPreview.Click += new System.EventHandler(this.ImgPreview_Click);
-            // 
             // btnOpenMap
             // 
-            this.btnOpenMap.Location = new System.Drawing.Point(29, 471);
+            this.btnOpenMap.Location = new System.Drawing.Point(107, 471);
             this.btnOpenMap.Name = "btnOpenMap";
-            this.btnOpenMap.Size = new System.Drawing.Size(144, 23);
+            this.btnOpenMap.Size = new System.Drawing.Size(123, 23);
             this.btnOpenMap.TabIndex = 33;
             this.btnOpenMap.Text = "Открыть схему";
             this.btnOpenMap.UseVisualStyleBackColor = true;
@@ -143,6 +121,28 @@ namespace Map
             this.label1.TabIndex = 36;
             this.label1.Text = "Схемы:";
             // 
+            // imgPreview
+            // 
+            this.imgPreview.BackColor = System.Drawing.Color.Transparent;
+            this.imgPreview.Cursor = System.Windows.Forms.Cursors.Default;
+            this.imgPreview.Location = new System.Drawing.Point(1, 1);
+            this.imgPreview.Name = "imgPreview";
+            this.imgPreview.Size = new System.Drawing.Size(282, 153);
+            this.imgPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgPreview.TabIndex = 14;
+            this.imgPreview.TabStop = false;
+            this.imgPreview.Click += new System.EventHandler(this.ImgPreview_Click);
+            // 
+            // imgCameraLogo
+            // 
+            this.imgCameraLogo.Image = global::Map.Properties.Resources.Image0;
+            this.imgCameraLogo.Location = new System.Drawing.Point(27, 21);
+            this.imgCameraLogo.Name = "imgCameraLogo";
+            this.imgCameraLogo.Size = new System.Drawing.Size(46, 29);
+            this.imgCameraLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgCameraLogo.TabIndex = 21;
+            this.imgCameraLogo.TabStop = false;
+            // 
             // SearchCameraForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -163,9 +163,9 @@ namespace Map
             this.Name = "SearchCameraForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поиск камер";
-            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).EndInit();
             this.borderPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgCameraLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -217,6 +217,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Basic_view_watch_eye_6611489.ico" />
+    <None Include="images\ССТ %28превью%29.png" />
+    <None Include="images\СКС %28превью%29.png" />
     <None Include="images\Парковка %28превью%29.png" />
     <None Include="images\iconfinder_Basic_view_watch_eye_6611489.png" />
     <None Include="images\sortDown.png" />

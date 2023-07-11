@@ -37,6 +37,10 @@
             this.btnOpenMap = new System.Windows.Forms.Button();
             this.cbMaps = new System.Windows.Forms.ComboBox();
             this.panelStart = new System.Windows.Forms.Panel();
+            this.labelPreview21 = new System.Windows.Forms.Label();
+            this.pictureBoxPreview21 = new System.Windows.Forms.PictureBox();
+            this.labelPreview20 = new System.Windows.Forms.Label();
+            this.pictureBoxPreview20 = new System.Windows.Forms.PictureBox();
             this.labelPreview19 = new System.Windows.Forms.Label();
             this.pictureBoxPreview19 = new System.Windows.Forms.PictureBox();
             this.imgSettings = new System.Windows.Forms.PictureBox();
@@ -97,6 +101,8 @@
             this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.panelStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview21)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview19)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview18)).BeginInit();
@@ -216,6 +222,10 @@
             // panelStart
             // 
             this.panelStart.BackColor = System.Drawing.SystemColors.Window;
+            this.panelStart.Controls.Add(this.labelPreview21);
+            this.panelStart.Controls.Add(this.pictureBoxPreview21);
+            this.panelStart.Controls.Add(this.labelPreview20);
+            this.panelStart.Controls.Add(this.pictureBoxPreview20);
             this.panelStart.Controls.Add(this.labelPreview19);
             this.panelStart.Controls.Add(this.pictureBoxPreview19);
             this.panelStart.Controls.Add(this.imgSettings);
@@ -265,6 +275,54 @@
             this.panelStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelStart_MouseDown);
             this.panelStart.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelStart_MouseMove);
             // 
+            // labelPreview21
+            // 
+            this.labelPreview21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview21.Location = new System.Drawing.Point(90, 1115);
+            this.labelPreview21.Name = "labelPreview21";
+            this.labelPreview21.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview21.TabIndex = 43;
+            this.labelPreview21.Text = "Охрана периметра";
+            this.labelPreview21.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview21.Click += new System.EventHandler(this.PictureBoxPreview21_Click);
+            // 
+            // pictureBoxPreview21
+            // 
+            this.pictureBoxPreview21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview21.Image = global::Map.Properties.Resources.Охрана_периметра__превью_;
+            this.pictureBoxPreview21.Location = new System.Drawing.Point(90, 1120);
+            this.pictureBoxPreview21.Name = "pictureBoxPreview21";
+            this.pictureBoxPreview21.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview21.TabIndex = 44;
+            this.pictureBoxPreview21.TabStop = false;
+            this.pictureBoxPreview21.Click += new System.EventHandler(this.PictureBoxPreview21_Click);
+            // 
+            // labelPreview20
+            // 
+            this.labelPreview20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview20.Location = new System.Drawing.Point(1010, 885);
+            this.labelPreview20.Name = "labelPreview20";
+            this.labelPreview20.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview20.TabIndex = 41;
+            this.labelPreview20.Text = "ССТ";
+            this.labelPreview20.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview20.Click += new System.EventHandler(this.PictureBoxPreview20_Click);
+            // 
+            // pictureBoxPreview20
+            // 
+            this.pictureBoxPreview20.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview20.Image = global::Map.Properties.Resources.ССТ__превью_;
+            this.pictureBoxPreview20.Location = new System.Drawing.Point(1010, 890);
+            this.pictureBoxPreview20.Name = "pictureBoxPreview20";
+            this.pictureBoxPreview20.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview20.TabIndex = 42;
+            this.pictureBoxPreview20.TabStop = false;
+            this.pictureBoxPreview20.Click += new System.EventHandler(this.PictureBoxPreview20_Click);
+            // 
             // labelPreview19
             // 
             this.labelPreview19.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -273,14 +331,14 @@
             this.labelPreview19.Name = "labelPreview19";
             this.labelPreview19.Size = new System.Drawing.Size(180, 20);
             this.labelPreview19.TabIndex = 39;
-            this.labelPreview19.Text = "Охрана периметра";
+            this.labelPreview19.Text = "СКС";
             this.labelPreview19.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.labelPreview19.Click += new System.EventHandler(this.PictureBoxPreview19_Click);
             // 
             // pictureBoxPreview19
             // 
             this.pictureBoxPreview19.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxPreview19.Image = global::Map.Properties.Resources.Охрана_периметра__превью_;
+            this.pictureBoxPreview19.Image = global::Map.Properties.Resources.СКС__превью_;
             this.pictureBoxPreview19.Location = new System.Drawing.Point(780, 890);
             this.pictureBoxPreview19.Name = "pictureBoxPreview19";
             this.pictureBoxPreview19.Size = new System.Drawing.Size(180, 180);
@@ -956,6 +1014,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panelStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview21)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview19)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview18)).EndInit();
@@ -1060,6 +1120,10 @@
         private System.Windows.Forms.ToolStripMenuItem aboutItem;
         private System.Windows.Forms.Label labelPreview19;
         private System.Windows.Forms.PictureBox pictureBoxPreview19;
+        private System.Windows.Forms.Label labelPreview21;
+        private System.Windows.Forms.PictureBox pictureBoxPreview21;
+        private System.Windows.Forms.Label labelPreview20;
+        private System.Windows.Forms.PictureBox pictureBoxPreview20;
     }
 }
 

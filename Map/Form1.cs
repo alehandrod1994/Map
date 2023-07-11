@@ -56,7 +56,9 @@ namespace Map
                 labelPreview16,
                 labelPreview17,
                 labelPreview18,
-                labelPreview19
+                labelPreview19,
+                labelPreview20,
+                labelPreview21
             };
 
             _pictureBoxes = new List<PictureBox>()
@@ -79,7 +81,9 @@ namespace Map
                 pictureBoxPreview16,
                 pictureBoxPreview17,
                 pictureBoxPreview18,
-                pictureBoxPreview19
+                pictureBoxPreview19,
+                pictureBoxPreview20,
+                pictureBoxPreview21
             };
 
             MouseWheel += new MouseEventHandler(This_MouseWheel);
@@ -489,6 +493,16 @@ namespace Map
         {
             LoadMap(labelPreview19.Text);
         }
+
+        private void PictureBoxPreview20_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview20.Text);
+        }
+
+        private void PictureBoxPreview21_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview21.Text);
+        }
         #endregion
 
         private void ButtonOpenMap_Click(object sender, EventArgs e)
@@ -629,6 +643,6 @@ namespace Map
         {
             var aboutForm = new AboutForm();
             aboutForm.Show();
-        }
+        }        
     }
 }

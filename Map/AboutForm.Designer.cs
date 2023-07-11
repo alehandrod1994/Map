@@ -78,9 +78,9 @@ namespace Map
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(9, 110);
+            this.label3.Location = new System.Drawing.Point(9, 120);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(351, 90);
+            this.label3.Size = new System.Drawing.Size(351, 37);
             this.label3.TabIndex = 18;
             this.label3.Text = "Программа разработана с целью взаимодействия со схемами сотрудниками аэропорта.\r\n" +
     "";
