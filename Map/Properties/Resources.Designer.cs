@@ -203,6 +203,16 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Вертолётный_ангар__превью_ {
+            get {
+                object obj = ResourceManager.GetObject("Вертолётный ангар (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Галерея_5___1_этаж__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Галерея_5___1_этаж__превью_", resourceCulture);

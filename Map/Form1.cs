@@ -58,7 +58,8 @@ namespace Map
                 labelPreview18,
                 labelPreview19,
                 labelPreview20,
-                labelPreview21
+                labelPreview21,
+                labelPreview22
             };
 
             _pictureBoxes = new List<PictureBox>()
@@ -83,7 +84,8 @@ namespace Map
                 pictureBoxPreview18,
                 pictureBoxPreview19,
                 pictureBoxPreview20,
-                pictureBoxPreview21
+                pictureBoxPreview21,
+                pictureBoxPreview22
             };
 
             MouseWheel += new MouseEventHandler(This_MouseWheel);
@@ -199,13 +201,13 @@ namespace Map
 
                     if (a.Length > b.Length || (a.Length == b.Length && a.CompareTo(b) == 1))
                     {
-                        Swop(i, i + 1);
+                        Swap(i, i + 1);
                     }
                 }
             }
         }
 
-        private void Swop(int positionA, int positionB)
+        private void Swap(int positionA, int positionB)
         {
             if (positionA < _cameras.Count && positionB < _cameras.Count)
             {
@@ -503,6 +505,11 @@ namespace Map
         {
             LoadMap(labelPreview21.Text);
         }
+
+        private void PictureBoxPreview22_Click(object sender, EventArgs e)
+        {
+            LoadMap(labelPreview22.Text);
+        }
         #endregion
 
         private void ButtonOpenMap_Click(object sender, EventArgs e)
@@ -643,6 +650,6 @@ namespace Map
         {
             var aboutForm = new AboutForm();
             aboutForm.Show();
-        }        
+        }      
     }
 }

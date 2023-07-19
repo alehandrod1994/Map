@@ -37,6 +37,8 @@
             this.btnOpenMap = new System.Windows.Forms.Button();
             this.cbMaps = new System.Windows.Forms.ComboBox();
             this.panelStart = new System.Windows.Forms.Panel();
+            this.labelPreview22 = new System.Windows.Forms.Label();
+            this.pictureBoxPreview22 = new System.Windows.Forms.PictureBox();
             this.labelPreview21 = new System.Windows.Forms.Label();
             this.pictureBoxPreview21 = new System.Windows.Forms.PictureBox();
             this.labelPreview20 = new System.Windows.Forms.Label();
@@ -101,6 +103,7 @@
             this.imgCameraLogo = new System.Windows.Forms.PictureBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.panelStart.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview19)).BeginInit();
@@ -222,6 +225,8 @@
             // panelStart
             // 
             this.panelStart.BackColor = System.Drawing.SystemColors.Window;
+            this.panelStart.Controls.Add(this.labelPreview22);
+            this.panelStart.Controls.Add(this.pictureBoxPreview22);
             this.panelStart.Controls.Add(this.labelPreview21);
             this.panelStart.Controls.Add(this.pictureBoxPreview21);
             this.panelStart.Controls.Add(this.labelPreview20);
@@ -274,6 +279,30 @@
             this.panelStart.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
             this.panelStart.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelStart_MouseDown);
             this.panelStart.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelStart_MouseMove);
+            // 
+            // labelPreview22
+            // 
+            this.labelPreview22.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelPreview22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPreview22.Location = new System.Drawing.Point(320, 1115);
+            this.labelPreview22.Name = "labelPreview22";
+            this.labelPreview22.Size = new System.Drawing.Size(180, 20);
+            this.labelPreview22.TabIndex = 45;
+            this.labelPreview22.Text = "Вертолётный ангар";
+            this.labelPreview22.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelPreview22.Click += new System.EventHandler(this.PictureBoxPreview22_Click);
+            // 
+            // pictureBoxPreview22
+            // 
+            this.pictureBoxPreview22.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPreview22.Image = global::Map.Properties.Resources.Вертолётный_ангар__превью_;
+            this.pictureBoxPreview22.Location = new System.Drawing.Point(320, 1120);
+            this.pictureBoxPreview22.Name = "pictureBoxPreview22";
+            this.pictureBoxPreview22.Size = new System.Drawing.Size(180, 180);
+            this.pictureBoxPreview22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxPreview22.TabIndex = 46;
+            this.pictureBoxPreview22.TabStop = false;
+            this.pictureBoxPreview22.Click += new System.EventHandler(this.PictureBoxPreview22_Click);
             // 
             // labelPreview21
             // 
@@ -1014,6 +1043,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.panelStart.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview19)).EndInit();
@@ -1124,6 +1154,8 @@
         private System.Windows.Forms.PictureBox pictureBoxPreview21;
         private System.Windows.Forms.Label labelPreview20;
         private System.Windows.Forms.PictureBox pictureBoxPreview20;
+        private System.Windows.Forms.Label labelPreview22;
+        private System.Windows.Forms.PictureBox pictureBoxPreview22;
     }
 }
 
