@@ -73,7 +73,16 @@
       <DependentUpon>AddParkingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Audio.cs" />
+    <Compile Include="AuthorizationResult.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs" />
     <Compile Include="SearchCameraForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,23 +128,32 @@
     <Compile Include="SuccessfullyExport.Designer.cs">
       <DependentUpon>SuccessfullyExport.cs</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AddCamerasForm.resx">
       <DependentUpon>AddCamerasForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="AddParkingForm.resx">
       <DependentUpon>AddParkingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchCameraForm.resx">
       <DependentUpon>SearchCameraForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormParkingCameras.resx">
       <DependentUpon>FormParkingCameras.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

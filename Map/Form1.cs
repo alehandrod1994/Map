@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using Map.Controller;
 
 namespace Map
 {
@@ -32,9 +33,21 @@ namespace Map
         private readonly List<string> _cameras;
         private List<Parking> _parkings;
 
+        private readonly UserController _userController;
+
         public Form1()
         {
+            _userController = new UserController();
+
+            ShowLoginForm();
+
             InitializeComponent();
+
+            List<Audio> audios = Saver.Load<Audio>();
+            _audio = audios.Count > 0 ? audios.First() : new Audio();
+            _cameras = new List<string>();
+
+            Text = $"Просмотр схем (Пользователь: {_userController.CurrentUser})";
 
             _labels = new List<Label>()
             {
@@ -88,11 +101,16 @@ namespace Map
                 pictureBoxPreview22
             };
 
-            MouseWheel += new MouseEventHandler(This_MouseWheel);
+            MouseWheel += new MouseEventHandler(This_MouseWheel);        
+        }
 
-            List<Audio> audios = Saver.Load<Audio>();
-            _audio = audios.Count > 0 ? audios.First() : new Audio();
-            _cameras = new List<string>();          
+        private void ShowLoginForm()
+        {
+            var form = new LoginForm(_userController);
+            if (form.ShowDialog() != DialogResult.OK)
+            {
+                Environment.Exit(0);
+            }
         }
 
         private void LoadMap(string labelPreview)
@@ -604,7 +622,7 @@ namespace Map
 
         private void ImgSettings_Click(object sender, EventArgs e)
         {
-            ShowSettingsForm();
+            RunSafe(ShowSettingsForm);
         }
 
         private static void ShowSettingsForm()
@@ -624,7 +642,7 @@ namespace Map
 
         private void SettingsItem_Click(object sender, EventArgs e)
         {
-            ShowSettingsForm();
+            RunSafe(ShowSettingsForm);
         }
 
         private void ExitItem_Click(object sender, EventArgs e)
@@ -651,5 +669,17 @@ namespace Map
             var aboutForm = new AboutForm();
             aboutForm.Show();
         }      
+
+        private void RunSafe(Action action)
+        {
+            if (_userController.CurrentUser.Role == Role.Admin)
+            {
+                action();
+            }
+            else
+            {
+                MessageBox.Show("Отказано в доступе.");
+            }
+        }
     }
 }
