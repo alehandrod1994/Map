@@ -105,7 +105,7 @@ namespace Map
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(266, 279);
+            this.ClientSize = new System.Drawing.Size(249, 279);
             this.Controls.Add(this.btnLoginGuest);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnLogin);
