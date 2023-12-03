@@ -14,9 +14,10 @@ namespace Map
 		private string _camera;
 		private List<string> _maps;
 
-		public SearchCameraForm()
+		public SearchCameraForm(bool topMost)
 		{
 			InitializeComponent();
+			TopMost = topMost;
 		}
 
 		public string SelectedMap { get; set; }
@@ -91,9 +92,7 @@ namespace Map
 			{
 				foreach (FileInfo file in directory.GetFiles())
 				{
-					int index = file.Name.LastIndexOf('.');
-					string cameraNumber = file.Name.Remove(index);					
-
+					string cameraNumber = Path.GetFileNameWithoutExtension(file.Name);
 					if (cameraNumber == camera)
 					{
 						maps.Add(directory.Name);

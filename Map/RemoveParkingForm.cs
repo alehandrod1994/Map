@@ -5,10 +5,11 @@ namespace Map
 {
     public partial class RemoveParkingForm : Form
     {
-        public RemoveParkingForm(Parking parking)
+        public RemoveParkingForm(bool topMost, Parking parking)
         {
             InitializeComponent();
 
+            TopMost = topMost;
             labelParkingNumber.Text = parking.Number;
         }
 

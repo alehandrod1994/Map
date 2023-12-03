@@ -10,10 +10,11 @@ namespace Map
 {
     public partial class FormParkingCameras : Form
     {
-        public FormParkingCameras(Parking parking)
+        public FormParkingCameras(bool topMost, Parking parking)
         {
             InitializeComponent();
 
+            TopMost = topMost;
             labelParkingNumber.Text = parking.Number;
 
             var parkingCameras = Saver.Load<ParkingCamera>();

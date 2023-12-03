@@ -133,6 +133,16 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap note {
+            get {
+                object obj = ResourceManager.GetObject("note", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap parking_square_icon {
             get {
                 object obj = ResourceManager.GetObject("parking_square_icon", resourceCulture);
@@ -203,6 +213,36 @@ namespace Map.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap top_off {
+            get {
+                object obj = ResourceManager.GetObject("top_off", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap top_on {
+            get {
+                object obj = ResourceManager.GetObject("top_on", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap unnote {
+            get {
+                object obj = ResourceManager.GetObject("unnote", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Вертолётный_ангар__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Вертолётный ангар (превью)", resourceCulture);
@@ -256,6 +296,16 @@ namespace Map.Properties {
         internal static System.Drawing.Bitmap Парковка__превью_ {
             get {
                 object obj = ResourceManager.GetObject("Парковка (превью)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Рамка {
+            get {
+                object obj = ResourceManager.GetObject("Рамка", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

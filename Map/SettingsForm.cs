@@ -24,17 +24,18 @@ namespace Map
         private readonly List<Camera> _cameras;
         private readonly List<ParkingCamera> _parkingCameras;
 
-        public SettingsForm()
+        public SettingsForm(bool topMost)
         {
             InitializeComponent();
 
+            TopMost = topMost;
             _currentParking = new Parking();
             _currentParkingCameras = new List<ParkingCamera>();
 
             _parkings = Saver.Load<Parking>();
             _cameras = Saver.Load<Camera>();
-            _parkingCameras = Saver.Load<ParkingCamera>();        
-
+            _parkingCameras = Saver.Load<ParkingCamera>();
+            
             UpdateParkings();
             ResetParkingPreview();
         }
@@ -149,7 +150,7 @@ namespace Map
 
         private void ShowAddParkingForm()
         {
-            var form = new AddParkingForm();
+            var form = new AddParkingForm(TopMost);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 AddParking(form.Parking);
@@ -180,7 +181,7 @@ namespace Map
 
         private void ShowRemoveParkingForm()
         {
-            var form = new RemoveParkingForm(_currentParking);
+            var form = new RemoveParkingForm(TopMost, _currentParking);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 RemoveParking();
@@ -396,7 +397,7 @@ namespace Map
                     break;
 
                 case ReportStatus.Success:
-                    var form = new SuccessfullyExport(newFileName);
+                    var form = new SuccessfullyExport(TopMost, newFileName);
                     form.Show();
                     break;
             }           

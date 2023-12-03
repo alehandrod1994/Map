@@ -76,13 +76,22 @@
     <Compile Include="AuthorizationResult.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Flashback.cs" />
+    <Compile Include="FlashbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlashbackForm.Designer.cs">
+      <DependentUpon>FlashbackForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreviewItem.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="Scheme.cs" />
     <Compile Include="SearchCameraForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +139,7 @@
       <DependentUpon>SuccessfullyExport.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <Compile Include="View.cs" />
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -141,6 +151,9 @@
     <EmbeddedResource Include="AddParkingForm.resx">
       <DependentUpon>AddParkingForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FlashbackForm.resx">
+      <DependentUpon>FlashbackForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -236,6 +249,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconfinder_Basic_view_watch_eye_6611489.ico" />
+    <None Include="images\top_off.png" />
+    <None Include="images\top_on.png" />
+    <None Include="images\unnote.png" />
+    <None Include="images\note.png" />
+    <None Include="images\Рамка.png" />
     <None Include="images\Вертолётный ангар %28превью%29.png" />
     <None Include="images\ССТ %28превью%29.png" />
     <None Include="images\СКС %28превью%29.png" />

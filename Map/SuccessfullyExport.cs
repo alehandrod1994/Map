@@ -7,10 +7,11 @@ namespace Map
     public partial class SuccessfullyExport : Form
     {
         private readonly string _newFileName;
-        public SuccessfullyExport(string newFileName)
+        public SuccessfullyExport(bool topMost, string newFileName)
         {
             InitializeComponent();
 
+            TopMost = topMost;
             _newFileName = newFileName;
         }
 

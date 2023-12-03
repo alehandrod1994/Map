@@ -47,8 +47,8 @@ namespace Map
 
         private void LoginForm_Paint(object sender, PaintEventArgs e)
         {
-			var firstPoint = new Point(37, 175);
-		    var lastPoint = new Point(205, 175);
+			var firstPoint = new Point(37, 240);
+		    var lastPoint = new Point(205, 240);
 
 			var pen = new Pen(Color.Black);
 			e.Graphics.DrawLine(pen, firstPoint, lastPoint);

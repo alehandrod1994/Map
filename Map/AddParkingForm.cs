@@ -5,10 +5,11 @@ namespace Map
 {
     public partial class AddParkingForm : Form
     {      
-        public AddParkingForm()
+        public AddParkingForm(bool topMost)
         {
             InitializeComponent();
 
+            TopMost = topMost;
             tbParking.Select();
         }
 

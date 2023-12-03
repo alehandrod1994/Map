@@ -1,4 +1,5 @@
-﻿using System.Media;
+﻿using System;
+using System.Media;
 using System.Runtime.Serialization;
 
 namespace Map
@@ -21,6 +22,11 @@ namespace Map
 
         public Audio(string soundLocation)
         {
+            if (string.IsNullOrWhiteSpace(soundLocation))
+            {
+                throw new ArgumentNullException(soundLocation, "Путь к файлу не может быть пустым.");
+            }
+
             SoundLocation = soundLocation;
             Enabled = true;
             _sp = new SoundPlayer(soundLocation);

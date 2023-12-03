@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using Map.Controller;
+using System.Threading.Tasks;
 
 namespace Map
 {
@@ -24,9 +25,11 @@ namespace Map
         private float _pictureboxWidth;
         private float _pictureboxHeight;
         private bool _isFirstMap = true;
+        private static bool _isTop = false;
 
         private readonly Audio _audio;
         private string _mapName;
+        private Scheme _currentScheme;
 
         private readonly List<Label> _labels;
         private readonly List<PictureBox> _pictureBoxes;
@@ -72,7 +75,6 @@ namespace Map
                 labelPreview19,
                 labelPreview20,
                 labelPreview21,
-                labelPreview22
             };
 
             _pictureBoxes = new List<PictureBox>()
@@ -98,10 +100,9 @@ namespace Map
                 pictureBoxPreview19,
                 pictureBoxPreview20,
                 pictureBoxPreview21,
-                pictureBoxPreview22
             };
 
-            MouseWheel += new MouseEventHandler(This_MouseWheel);        
+            MouseWheel += new MouseEventHandler(This_MouseWheel);           
         }
 
         private void ShowLoginForm()
@@ -115,7 +116,7 @@ namespace Map
 
         private void LoadMap(string labelPreview)
         {
-            var path = $"maps\\{ labelPreview}.png";
+            var path = $"maps\\{labelPreview}.png";
 
             if (_mapName != labelPreview)                                                           //Загрузка схемы происходит
             {                                                                                      //если выбрана новая схема
@@ -123,6 +124,11 @@ namespace Map
                 {
                     _img = Image.FromFile(path);
                     cbMaps.Text = labelPreview;
+
+                    _currentScheme = new Scheme(labelPreview)
+                    {
+                        LeftScheme = new Scheme("Т1 - 3 этаж (1)")
+                    };
                 }
                 catch
                 {
@@ -237,6 +243,7 @@ namespace Map
        
         private void OpenMapWindow(string mapName)
         {
+            ImgTopLevel.Visible = true;
             pictureBoxMap.Visible = true;
             imgMapLogo.Visible = true;
             imgCameraLogo.Visible = true;
@@ -262,10 +269,9 @@ namespace Map
                 cbMaps.Items.Add(Path.GetFileNameWithoutExtension(file.Name));
             }
             cbMaps.Text = mapName;
-
             _isFirstMap = false;
         }
-
+      
         private void Form1_Load(object sender, EventArgs e)
         {
             panelStart.Location = new Point(0, _startY);
@@ -369,54 +375,60 @@ namespace Map
             }
         }
 
-        private void ImgMinus_Click(object sender, EventArgs e)
+        private async void ImgMinus_Click(object sender, EventArgs e)
         {
-            if (_zoom == 100)
+            await Task.Run(() => pictureBoxMap.BeginInvoke((Action)delegate
             {
-                _picWidth = Convert.ToInt32(_picWidth / 2);
-                _picHeight = Convert.ToInt32(_picHeight / 2);
-                _zoom -= 50;
-                _x = Convert.ToInt32(_x / 2);
-                _y = Convert.ToInt32(_y / 2);
-            }
+                if (_zoom == 100)
+                {
+                    _picWidth = Convert.ToInt32(_picWidth / 2);
+                    _picHeight = Convert.ToInt32(_picHeight / 2);
+                    _zoom -= 50;
+                    _x = Convert.ToInt32((_x / 2) + (pictureBoxMap.Width / 4));
+                    _y = Convert.ToInt32((_y / 2) + (pictureBoxMap.Height / 4));
+                }
 
-            else if (_zoom > 100)
-            {
-                _picWidth = Convert.ToInt32(_picWidth / 1.5);
-                _picHeight = Convert.ToInt32(_picHeight / 1.5);
-                _zoom -= 25;
-                _x = Convert.ToInt32(_x / 1.5);
-                _y = Convert.ToInt32(_y / 1.5);
-            }
+                else if (_zoom > 100)
+                {
+                    _picWidth = Convert.ToInt32(_picWidth / 1.5);
+                    _picHeight = Convert.ToInt32(_picHeight / 1.5);
+                    _zoom -= 25;
+                    _x = Convert.ToInt32((_x / 1.5) + (pictureBoxMap.Width / 6));
+                    _y = Convert.ToInt32((_y / 1.5) + (pictureBoxMap.Height / 6));
+                }
 
-            labelZoom.Text = _zoom + "%";
-            pictureBoxMap.Invalidate();
+                labelZoom.Text = _zoom + "%";
+                pictureBoxMap.Invalidate();
+            }));
         }
 
-        private void ImgPlus_Click(object sender, EventArgs e)
+        private async void ImgPlus_Click(object sender, EventArgs e)
         {
-            if (_zoom == 50)
+            await Task.Run(() => pictureBoxMap.BeginInvoke((Action)delegate
             {
-                _picWidth = Convert.ToInt32(_picWidth * 2);
-                _picHeight = Convert.ToInt32(_picHeight * 2);
-                _zoom += 50;
-                _x = Convert.ToInt32 (_x * 2);
-                _y = Convert.ToInt32 (_y * 2);
-            }
+                if (_zoom == 50)
+                {
+                    _picWidth = Convert.ToInt32(_picWidth * 2);
+                    _picHeight = Convert.ToInt32(_picHeight * 2);
+                    _zoom += 50;
+                    _x = Convert.ToInt32((_x * 2) - (pictureBoxMap.Width / 2));
+                    _y = Convert.ToInt32((_y * 2) - (pictureBoxMap.Height / 2));
+                }
 
-            else if (_zoom < 200)
-            {
-                _picWidth = Convert.ToInt32(_picWidth * 1.5);
-                _picHeight = Convert.ToInt32(_picHeight * 1.5);
-                _zoom += 25;
-                _x = Convert.ToInt32(_x * 1.5);
-                _y = Convert.ToInt32(_y * 1.5);
-            }
+                else if (_zoom < 200)
+                {
+                    _picWidth = Convert.ToInt32(_picWidth * 1.5);
+                    _picHeight = Convert.ToInt32(_picHeight * 1.5);
+                    _zoom += 25;
+                    _x = Convert.ToInt32((_x * 1.5) - (pictureBoxMap.Width / 4));
+                    _y = Convert.ToInt32((_y * 1.5) - (pictureBoxMap.Height / 4));
+                }
 
-            
-            labelZoom.Text = _zoom + "%";
-            pictureBoxMap.Invalidate();
-        }
+                labelZoom.Text = _zoom + "%";
+                pictureBoxMap.Invalidate();
+            }));
+
+        }      
 
         #region Обработка нажатий на превью схем
         private void PictureBoxPreview1_Click(object sender, EventArgs e)
@@ -523,11 +535,6 @@ namespace Map
         {
             LoadMap(labelPreview21.Text);
         }
-
-        private void PictureBoxPreview22_Click(object sender, EventArgs e)
-        {
-            LoadMap(labelPreview22.Text);
-        }
         #endregion
 
         private void ButtonOpenMap_Click(object sender, EventArgs e)
@@ -546,7 +553,7 @@ namespace Map
             {
                 Left += e.X - _lastPoint.X;
                 Top += e.Y - _lastPoint.Y;
-            }
+            }           
         }
 
         private void PictureBoxSound_Click(object sender, EventArgs e)
@@ -606,7 +613,7 @@ namespace Map
 
             if (parking != null)
             {
-                var form = new FormParkingCameras(parking);
+                var form = new FormParkingCameras(_isTop, parking);
                 form.Show();
             }
             else
@@ -627,13 +634,13 @@ namespace Map
 
         private static void ShowSettingsForm()
         {
-            var form = new SettingsForm();
-            form.Show();
+            var form = new SettingsForm(_isTop);
+            form.ShowDialog();
         }
 
         private void SearchCamerasItem_Click(object sender, EventArgs e)
         {
-            var form = new SearchCameraForm();
+            var form = new SearchCameraForm(_isTop);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadMap(form.SelectedMap);
@@ -666,7 +673,7 @@ namespace Map
 
         private void AboutItem_Click(object sender, EventArgs e)
         {
-            var aboutForm = new AboutForm();
+            var aboutForm = new AboutForm(_isTop);
             aboutForm.Show();
         }      
 
@@ -680,6 +687,22 @@ namespace Map
             {
                 MessageBox.Show("Отказано в доступе.");
             }
+        }
+
+        private void ImgTopLevel_Click(object sender, EventArgs e)
+        {
+            if (!_isTop)
+            {
+                _isTop = true;
+                ImgTopLevel.Image = Properties.Resources.top_on;
+            }
+            else
+            {
+                _isTop = false;                
+                ImgTopLevel.Image = Properties.Resources.top_off;
+            }
+
+            TopMost = _isTop;
         }
     }
 }
